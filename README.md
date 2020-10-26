@@ -9,13 +9,12 @@ The main change is that i created a singleton Users class
 to track users. It works quite well; it allows me to easily
 store all users to disk for recovery. There are tons of small
 changes involving overloaded adders, removers, and more.
-
+<br>
 Running tests:
 There are several test files, which test the core functionality of the core
 components. They are all located in src/main/java/Rello.
 -- userTest.java (passes)
 -- listTest.java (passes)
--- labelTest.java (label is not complete, will be placed in cardTest -- does work in xml though)
 -- cardTest.java (passes)
 -- boardTest.java (passes)
 -- xmlTest.java (combines everything and passes)
