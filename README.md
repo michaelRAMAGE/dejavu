@@ -10,15 +10,15 @@ to track users. It works quite well; it allows me to easily
 store all users to disk for recovery. There are tons of small
 changes involving overloaded adders, removers, and more.
 <br>
-Running tests:
-There are several test files, which test the core functionality of the core
-components. They are all located in src/main/java/Rello.
--- userTest.java (passes)
--- listTest.java (passes)
--- cardTest.java (passes)
--- boardTest.java (passes)
--- xmlTest.java (combines everything and passes)
-Tests should be run using JUnit5.
-Select one of the files and click the play button on the 
-top bar panel. 
+Running tests: <br>
+There are several test files, which test the core functionality of the core <br>
+components. They are all located in src/main/java/Rello. <br> 
+-- userTest.java (passes) <br>
+-- listTest.java (passes)<br>
+-- cardTest.java (passes)<br>
+-- boardTest.java (passes)<br>
+-- xmlTest.java (combines everything and passes)<br>
+Tests should be run using JUnit5.<br>
+Select one of the files and click the play button on the <br>
+top bar panel. <br>
 
