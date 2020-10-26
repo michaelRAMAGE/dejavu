@@ -15,8 +15,8 @@ There are several test files, which test the core functionality of the core
 components. They are all located in src/main/java/Rello.
 -- userTest.java
 -- listTest.java
--- labelTest.java
--- cardTest.java
+-- labelTest.java (label is not complete)
+-- cardTest.java (card is not complete)
 -- boardTest.java
 -- xmlTest.java
 Tests should be run using JUnit5.
