@@ -156,5 +156,7 @@ class cardTest
 		// remove description component --> back to size 0
 		cschwk1.removeComponent(0);
 		assertTrue(cschwk1.getComponents().size() == 0);
+		
+		// changing name is trivial
 	}	
 }

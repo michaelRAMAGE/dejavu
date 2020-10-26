@@ -6,6 +6,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// Used a static setup with BeforeAll here
+// The reason was to workaround a singleton thing,
+// but in the future tests I utilize a helper 
+// for resetting singleton instances after each test.
 class listTest
 {
 
