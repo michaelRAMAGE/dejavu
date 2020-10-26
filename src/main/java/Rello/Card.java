@@ -20,6 +20,16 @@ public class Card
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
 	public Card(String name, Board board) {
 		this.name = name;
 		this.board = board; 

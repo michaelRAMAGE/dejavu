@@ -1,6 +1,7 @@
 package Rello;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 
 public class List
@@ -92,23 +93,61 @@ public class List
 		return "List [name=" + name + ", cards=" + cards + "]";
 	}
 	
+	// Overloaded 
+	// creates card to add
 	public Card addCard(String name) {
 		Card new_card = new Card(name, this.board); 
 		cards.add(new_card); 
 		return new_card; 
 	}
-	
-	public void moveCardInList(int old_idx, int new_idx) {
-		if (new_idx < cards.size()) {
-			cards.add(new_idx, cards.get(old_idx)); 
+
+	public void moveCardIntraList(int old_idx, int new_idx) {
+		// index checking
+		if (old_idx < 0 || old_idx >= cards.size()) {
+			return;
+		}
+		if (new_idx < 0 || new_idx >= cards.size()) {
+			return;
+		}
+		
+		// if only 1 card, do nothing
+		
+		// get card
+		Card card_to_move = cards.get(old_idx);
+
+		if (cards.size() == 2) {
+			Collections.swap(cards,0,1);
 		}
 		else {
-			cards.add(cards.get(old_idx)); 			
+			cards.remove(old_idx); 
+			cards.add(new_idx, card_to_move); 
 		}
+			
 	}
 	
-	public void moveCardToOtherList(List list, int old_idx, int new_idx) {
+	public void moveCardInterList(int curr_idx, int insert_at_idx, List target_list) {
 		
+		ArrayList<Card> target_list_cards = target_list.getCards();
+		ArrayList<Card> curr_list_cards = this.getCards();
+		
+		// check list indexing
+		if (insert_at_idx >= target_list_cards.size() || insert_at_idx < 0) {
+			return; 
+		}
+		if (curr_idx >= curr_list_cards.size() || curr_idx < 0) {
+			return; 
+		}
+		
+		// move is valid
+		Card card_to_move = curr_list_cards.get(curr_idx);
+//		System.out.println(card_to_move.name);
+		this.cards.remove(curr_idx);
+		target_list.cards.add(insert_at_idx, card_to_move);
+
+		if (target_list.cards.size() <= 2) { 
+			Collections.swap(target_list.cards,0,1);
+		}
+
 	}
 	
 	public void removeCard(int idx) {

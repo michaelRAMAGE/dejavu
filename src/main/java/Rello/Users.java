@@ -20,17 +20,17 @@ public class Users
 	
 	private Users() {}
 	
-	public static Users getInstance() {
+	public static synchronized Users getInstance() {
 		if (uniqueInstance == null) {
-			System.out.println(users);
-			users = new HashMap<String, User>(); 
 			uniqueInstance = new Users(); 
+			users = new HashMap<String, User>(); 
 		}
 		return uniqueInstance; 
 	}
 
 	public void resetInstance() {
 		uniqueInstance = null;
+		users = null; 
 	}
 	
 	// ADDS -- overloaded
@@ -50,7 +50,7 @@ public class Users
 			return new_user; 
 		}
 		else {
-			return null; 
+			return users.get(email); 
 		}
 	}
 	

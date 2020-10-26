@@ -114,6 +114,7 @@ public class Board
 	
 
 
+	// Overloading 
 	public List getList(String name) {
 		for (int i=0; i < this.lists.size(); i++) {
 			if (lists.get(i).name == name) {
@@ -122,7 +123,6 @@ public class Board
 		}
 		return null;
 	}
-	
 	public List getList(List list) { // do an in depth comparison? not sure
 		for (int i=0; i < this.lists.size(); i++) {
 			if (this.lists.get(i).name == list.name) {
@@ -131,7 +131,6 @@ public class Board
 		}
 		return null;
 	}
-	
 	public List getList(int idx) {
 		System.out.println(idx);
 		if (idx >= 0 && idx < lists.size()) {

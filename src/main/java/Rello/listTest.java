@@ -22,7 +22,6 @@ class listTest
 		
 		// create board 
 		team_jim = jim.createBoard("Team Jim");
-
 	}
 
 	@Test

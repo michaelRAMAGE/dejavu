@@ -20,9 +20,7 @@ class cardTest
 
 		// Set up users
 		users_instance = Users.getInstance(); // start users
-		
-		System.out.println(users_instance);
-		
+			
 		// add user jim
 		jim = users_instance.addUser("jim@gmail.com","jim123");
 
@@ -45,27 +43,36 @@ class cardTest
 	}
 	
 	@Test
-	void testCardSwap() {
-		// add two cards, swap them
-		Card cschwk1 = week1list.addCard("CSC Homework PG 10");
-		Card cschwk2 = week2list.addCard("CSC Homework PG 20");
+	void testCardMoveIntraList() {
+		// add two cards, move them
+		week1list.addCard("CSC Homework PG 10");
+		week1list.addCard("CSC Homework PG 20");
 		
-		week1list.moveCardInList(1, 0);
+		// was the move successful? 
+//		System.out.println(week1list.getCards().get(0).name);
+		week1list.moveCardIntraList(1, 0);
+		
+//		System.out.println(week1list.getCards().get(1).name);
 		assertTrue(week1list.getCards().get(0).name.equals("CSC Homework PG 20"));
-		
+		users_instance.resetInstance();
 	}
-//	
-//	@Test
-//	void testAddCardMemberSwap() {
-//		Card cschwk1 = week1list.addCard("CSC Homework PG 10");
-//	}
-//	
-//	void testRemoveCardMemberSwap() {
-//		Card cschwk1 = week1list.addCard("CSC Homework PG 10");
-//	}
-//	
 	
-	
-	
-
+	@Test
+	void testCardMoveInterList() {
+		// add two cards
+		week1list.addCard("CSC Homework PG 10");
+		week2list.addCard("CSC Homework PG 20");
+		
+		// move card 0 in week1list to index 0 in week2list
+		week1list.moveCardInterList(0, 0, week2list);
+		assertTrue(week2list.getCards().get(0).name.equals("CSC Homework PG 20"));
+		assertTrue(week2list.getCards().get(1).name.equals("CSC Homework PG 10"));
+		
+		Card cschwk3 = week1list.addCard("CSC Homework PG 30");
+		// move new card 0 in week1list to index 1 in week2list
+		week1list.moveCardInterList(0, 1, week2list);
+		assertTrue(week2list.getCards().get(0).name.equals("CSC Homework PG 20"));
+		assertTrue(week2list.getCards().get(1).name.equals("CSC Homework PG 30"));
+		assertTrue(week2list.getCards().get(2).name.equals("CSC Homework PG 10"));
+	}
 }
