@@ -19,11 +19,11 @@ all instance variables to static, but that is too much for a simple fix. <br>
 Running tests: <br>
 There are several test files, which test the core functionality of the core <br>
 components. They are all located in src/main/java/Rello. <br> 
--- userTest.java (passes) <br>
--- listTest.java (passes)<br>
--- cardTest.java (passes)<br>
--- boardTest.java (passes)<br>
--- xmlTest.java (combines everything and passes)<br>
+-1- userTest.java (passes) <br>
+-2- boardTest.java (passes)<br>
+-3- listTest.java (passes)<br>
+-4- cardTest.java (passes)<br>
+-5- xmlTest.java (combines everything and passes)<br>
 Tests should be run using JUnit5.<br>
 Select one of the files and click the play button on the <br>
 top bar panel. <br>
