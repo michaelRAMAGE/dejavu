@@ -16,7 +16,7 @@ components. They are all located in src/main/java/Rello.
 -- userTest.java
 -- listTest.java
 -- labelTest.java (label is not complete)
--- cardTest.java (card is not complete)
+-- cardTest.java (card is not complete -- tests run but only if the other is commented out)
 -- boardTest.java
 -- xmlTest.java
 Tests should be run using JUnit5.
