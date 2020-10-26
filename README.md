@@ -13,9 +13,9 @@ store all users to disk for recovery. There are tons of small
 changes involving overloaded adders, removers, and more. For 
 testing, I made a resetInstance() to get around BeforEach in JUnit5's
 decorator clauses. I could have used BeforeAll everywhere and changed 
-all instance variables to static, but that is too much for a simple fix. <br>
-
+all instance variables to static, but that is too much for a simple fix. 
 <br>
+
 **Running tests** 
 <br>
 There are several test files, which test the core functionality of the core <br>
