@@ -13,12 +13,12 @@ changes involving overloaded adders, removers, and more.
 Running tests:
 There are several test files, which test the core functionality of the core
 components. They are all located in src/main/java/Rello.
--- userTest.java
--- listTest.java
--- labelTest.java (label is not complete)
--- cardTest.java (card is not complete -- tests run but only if the other is commented out)
--- boardTest.java
--- xmlTest.java
+-- userTest.java (passes)
+-- listTest.java (passes)
+-- labelTest.java (label is not complete, will be placed in cardTest -- does work in xml though)
+-- cardTest.java (passes)
+-- boardTest.java (passes)
+-- xmlTest.java (combines everything and passes)
 Tests should be run using JUnit5.
 Select one of the files and click the play button on the 
 top bar panel. 
