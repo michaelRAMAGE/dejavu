@@ -3,7 +3,6 @@ I left out complete implementations for checklist and attachments (but have skel
 Because these implementations were not completely refined (not sure how checklist is supposed to function and also not sure what kind of files to support for attachments),
 testing was not done on these files, and they are not accounted for in xml storage.
 Description is accounted for, however. 
-
 <br>
 
 **What changed from design to implementation?**
