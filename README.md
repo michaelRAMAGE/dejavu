@@ -4,11 +4,17 @@ Because these implementations were not completely refined (not sure how checklis
 testing was not done on these files, and they are not accounted for in xml storage.
 Description is accounted for, however. 
 
+<br>
+
 What changed from design to implementation?
 The main change is that i created a singleton Users class
 to track users. It works quite well; it allows me to easily
 store all users to disk for recovery. There are tons of small
-changes involving overloaded adders, removers, and more.
+changes involving overloaded adders, removers, and more. For 
+testing, I made a resetInstance() to get around BeforEach in JUnit5's
+decorator clauses. I could have used BeforeAll everywhere and changed 
+all instance variables to static, but that is too much for a simple fix. <br>
+
 <br>
 Running tests: <br>
 There are several test files, which test the core functionality of the core <br>
