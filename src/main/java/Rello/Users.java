@@ -16,18 +16,23 @@ public class Users
 	
 	private static Users uniqueInstance = null; 
 	private static final String SERIALIZED_FILE_NAME="users.xml";
-	public static HashMap<String, User> users;
+	private static HashMap<String, User> users;
 	
 	private Users() {}
 	
 	public static Users getInstance() {
 		if (uniqueInstance == null) {
+			System.out.println(users);
 			users = new HashMap<String, User>(); 
 			uniqueInstance = new Users(); 
 		}
 		return uniqueInstance; 
 	}
 
+	public void resetInstance() {
+		uniqueInstance = null;
+	}
+	
 	// ADDS -- overloaded
 	public boolean addUser(User user) { 
 		if (user != null) { 
@@ -48,7 +53,11 @@ public class Users
 			return null; 
 		}
 	}
-
+	
+	public HashMap<String, User> getUsers() {
+		return users; 
+	}
+	
 	// GETS -- overloaded
 	public User getUser(User user) {
 		if (user != null) {

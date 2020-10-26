@@ -123,13 +123,25 @@ public class Board
 		return null;
 	}
 	
-	public List getList(List list) { // do an in depth comparison?
+	public List getList(List list) { // do an in depth comparison? not sure
 		for (int i=0; i < this.lists.size(); i++) {
-			if (lists.get(i).name == list.name) {
-				return lists.get(i);
+			if (this.lists.get(i).name == list.name) {
+				return this.lists.get(i);
 			}
 		}
 		return null;
+	}
+	
+	public List getList(int idx) {
+		System.out.println(idx);
+		if (idx >= 0 && idx < lists.size()) {
+			List desired_list = this.lists.get(idx);
+			return desired_list;
+		}
+		else {
+			return null; // cannot satisfy request
+		}
+		
 	}
 	
 	public void moveList(int old_idx, int new_idx) {

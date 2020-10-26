@@ -48,8 +48,6 @@ public class List
 		}
 		
 		for (int i=0; i < this.getCards().size(); i++) {
-//			System.out.println(original_cards.get(i).name);
-//			System.out.println(recovered_cards.get(i).name);
 			if (!original_cards.get(i).equals(recovered_cards.get(i))) {
 				return false; 
 			}
@@ -72,8 +70,6 @@ public class List
 	{
 		return cards;
 	}
-
-
 
 	public void setCards(ArrayList<Card> cards)
 	{
@@ -109,6 +105,10 @@ public class List
 		else {
 			cards.add(cards.get(old_idx)); 			
 		}
+	}
+	
+	public void moveCardToOtherList(List list, int old_idx, int new_idx) {
+		
 	}
 	
 	public void removeCard(int idx) {
