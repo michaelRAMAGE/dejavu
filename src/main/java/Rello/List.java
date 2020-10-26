@@ -22,14 +22,6 @@ public class List
 		this.cards = new ArrayList<Card>();
 	};
 		
-	public List(String name, ArrayList<Card> cards, Board board)
-	{
-		super();
-		this.name = name;
-		this.cards = cards;
-		this.board = board;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		List recovered_list = (List) obj; 

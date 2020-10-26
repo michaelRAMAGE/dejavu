@@ -74,5 +74,34 @@ class cardTest
 		assertTrue(week2list.getCards().get(0).name.equals("CSC Homework PG 20"));
 		assertTrue(week2list.getCards().get(1).name.equals("CSC Homework PG 30"));
 		assertTrue(week2list.getCards().get(2).name.equals("CSC Homework PG 10"));
+		users_instance.resetInstance();
+	}
+	
+	@Test 
+	void testAddCardMember() {
+		// add cards to lists
+		Card c1 = week1list.addCard("CSC Homework PG 10");
+		User olly = users_instance.addUser("olly@gmail.com","olly123");
+		c1.addMember(olly, jim); // he is not member of board
+		
+		// this test should fail because olly not on board
+		assertTrue(!c1.getMembers().containsKey("olly@gmail.com"));
+		
+		// add olly to board and now we can add olly to a card
+		team_jim.addMember(olly, jim);
+		assertTrue(team_jim == c1.board);
+		c1.addMember(olly, jim); // he is not member of board
+		assertTrue(c1.getMembers().containsKey("olly@gmail.com"));
+		users_instance.resetInstance();
+	}
+	
+	void testRemoveCardMember() {
+		Card c1 = week1list.addCard("CSC Homework PG 10");
+		User olly = users_instance.addUser("olly@gmail.com","olly123");
+		team_jim.addMember(olly, jim);
+		c1.addMember(olly, jim); 
+		assertTrue(c1.getMembers().containsKey("olly@gmail.com"));		
+		c1.removeMember(olly, jim); 
+		assertTrue(!c1.getMembers().containsKey("olly@gmail.com"));		
 	}
 }

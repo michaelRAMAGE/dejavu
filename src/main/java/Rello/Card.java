@@ -147,7 +147,9 @@ public class Card
 	
 	public void addMember(User user, User requester) {
 		if (requester.userEquals(this.board.owner)) {
-			if (board.members.containsKey(user.email)) {
+			System.out.println("here");
+			if (board.getMembers().containsKey(user.email)) {
+				System.out.println("here");
 				members.put(user.email, user);
 			}
 			else {
