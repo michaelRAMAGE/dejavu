@@ -16,7 +16,8 @@ decorator clauses. I could have used BeforeAll everywhere and changed
 all instance variables to static, but that is too much for a simple fix. <br>
 
 <br>
-**Running tests:** <br>
+**Running tests** 
+<br>
 There are several test files, which test the core functionality of the core <br>
 components. They are all located in *src/main/java/Rello.* <br> 
 -1- userTest.java (passes) <br>
