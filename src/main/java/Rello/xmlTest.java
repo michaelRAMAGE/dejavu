@@ -2,12 +2,14 @@ package Rello;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashMap;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class xmlTest
 {
-	Users users = Users.getInstance(); // start users
+	Server users = Server.getInstance(); // start users
 	Board team_jim;
 	User jim;
 	User alfred;
@@ -54,7 +56,10 @@ class xmlTest
 		cschwk1.addComponent(desc1);
 
 		users.storeToDisk(); // store to disk
-		assertTrue(users.equals(Users.readFromDisk())); // check when read back in	
+		HashMap<String, User> disk_users = Server.readFromDisk(); // read from disk into variable 
+		
+		assertTrue(users.getUsers().size() == disk_users.size()); // check that the two have same siz
+		assertTrue(users.equals(disk_users)); // check when read back in	
 	}
 
 }

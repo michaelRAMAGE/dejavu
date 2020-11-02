@@ -12,6 +12,13 @@
      </void>
     </void>
     <void class="Rello.User" method="getField">
+     <string>password</string>
+     <void method="set">
+      <object idref="User0"/>
+      <string>odysseus123</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
      <string>boards</string>
      <void method="set">
       <object idref="User0"/>
@@ -19,6 +26,13 @@
        <void method="put">
         <string>Team Jim</string>
         <object class="Rello.Board" id="Board0">
+         <void class="Rello.Board" method="getField">
+          <string>boardID</string>
+          <void method="set">
+           <object idref="Board0"/>
+           <string>76</string>
+          </void>
+         </void>
          <void class="Rello.Board" method="getField">
           <string>name</string>
           <void method="set">
@@ -36,6 +50,13 @@
              <void method="set">
               <object idref="User1"/>
               <string>jim@gmail.com</string>
+             </void>
+            </void>
+            <void class="Rello.User" method="getField">
+             <string>password</string>
+             <void method="set">
+              <object idref="User1"/>
+              <string>jim123</string>
              </void>
             </void>
             <void class="Rello.User" method="getField">
@@ -70,6 +91,13 @@
                <void method="set">
                 <object idref="User2"/>
                 <string>alfred@gmail.com</string>
+               </void>
+              </void>
+              <void class="Rello.User" method="getField">
+               <string>password</string>
+               <void method="set">
+                <object idref="User2"/>
+                <string>alfred123</string>
                </void>
               </void>
               <void class="Rello.User" method="getField">

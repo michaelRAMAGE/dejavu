@@ -1,15 +1,20 @@
 package Rello;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class User
+public class User implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8420532006952901735L;
 	public String email; 
-	private String password;
-	public HashMap<String, Board> boards; 
+	public String password;
+	public HashMap<String, Board> boards; // key : boardname, value : board
 		
 	
-	public User() { super(); } // default constructor for jbeans
+	public User() { super(); } 
 	
 	public User(String email, String password) {
 		this.email = email;
@@ -22,10 +27,10 @@ public class User
 		return boards;
 	}
 	
-	public Board getBoard(String name) {
-		return boards.get(name); 
+	public Board getBoard(String bname) {
+		return boards.get(bname); 
 	}
-
+	
 	public void setBoards(HashMap<String, Board> boards)
 	{
 		this.boards = boards;
@@ -34,6 +39,11 @@ public class User
 	public void setBoard(String bname, Board board)
 	{
 		this.boards.put(bname, board);
+	}
+	
+	public void replaceBoard(String bname, Board board)
+	{
+		this.boards.replace(bname, board);
 	}
 
 	public String getEmail()
@@ -44,6 +54,12 @@ public class User
 	public void setEmail(String email)
 	{
 		this.email = email;
+	}
+	
+	public void changeBoardKey(String old_name, String new_name) {
+		Board old_board = this.getBoard(old_name);
+		this.getBoards().put(new_name, old_board);
+		this.getBoards().remove(old_name); 
 	}
 
 	public boolean userEquals(User user) { // move other equals to Users (one with two user params)
@@ -96,6 +112,9 @@ public class User
 	}
 
 	// Creates a board and puts it on user
+	// NOTE : boards_index and boards differ
+	// in that boards_index uses a board's id as key for hashing,
+	// boards uses a board name
 	public Board createBoard(String bname) {
 		Board new_board = new Board(bname, this);
 		boards.put(bname, new_board); 

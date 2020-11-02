@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class cardTest
 {
-	Users users_instance;
+	Server users_instance;
 	Board team_jim;
 	User jim;
 	List week1list;
@@ -18,7 +18,7 @@ class cardTest
 	void setUp() throws Exception
 	{
 		// Set up users
-		users_instance = Users.getInstance(); // start users
+		users_instance = Server.getInstance(); // start users
 			
 		// add user jim
 		jim = users_instance.addUser("jim@gmail.com","jim123");

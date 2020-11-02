@@ -1,10 +1,17 @@
 package Rello;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
-public class Board
+public class Board implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4558850599683177950L;
+	public String boardID; // added
 	public String name; 
 	public User owner; 
 	public HashMap<String, User> members; 
@@ -21,6 +28,24 @@ public class Board
 		this.owner = owner;	
 		this.members = new HashMap<String, User>();
 		this.lists = new ArrayList<List>();
+		this.boardID = generateID(); 
+		
+	}
+	
+	// Generate ID for board
+	public String generateID() {
+		 Random rand = new Random();	
+		 int upperbound = 100; 
+		 String random = Integer.toString(rand.nextInt(upperbound)); 
+		 if (Server.getBoardsIndex() == null) {
+			 return random;
+		 }
+		 else if (Server.getBoardsIndex().containsKey(random) == false) {
+			 return random; 
+		 }
+		 else {
+			 return generateID(); 
+		 }
 	}
 	
 	@Override
@@ -33,6 +58,7 @@ public class Board
 		String ori_board_name = this.getName(); 
 		User rec_owner = recovered_board.getOwner();
 		User ori_owner = this.getOwner();
+		
 		if (!(rec_board_name.equals(ori_board_name)) || !(rec_owner.userEquals(ori_owner))) {
 			return false; 
 		} // iffy 
@@ -64,17 +90,17 @@ public class Board
 		}
 		
 		return true; 
-		
-
 	}
+	
 	public String getName()
 	{
 		return name;
 	}
 
-	public void setName(String name)
+	public void setName(String new_name)
 	{
-		this.name = name;
+		owner.changeBoardKey(this.getName(), new_name); 
+		this.name = new_name; 
 	}
 
 	public User getOwner()
@@ -112,8 +138,6 @@ public class Board
 		this.lists = lists;
 	}
 	
-
-
 	// Overloading 
 	public List getList(String name) {
 		for (int i=0; i < this.lists.size(); i++) {
@@ -123,6 +147,7 @@ public class Board
 		}
 		return null;
 	}
+	
 	public List getList(List list) { // do an in depth comparison? not sure
 		for (int i=0; i < this.lists.size(); i++) {
 			if (this.lists.get(i).name == list.name) {

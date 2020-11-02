@@ -1,11 +1,16 @@
 package Rello;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
 
-public class List
+public class List implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6733510980070055053L;
 	public String name; 
 	public ArrayList<Card> cards;
 	public Board board; 

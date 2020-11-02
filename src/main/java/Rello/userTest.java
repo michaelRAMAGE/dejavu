@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class userTest
 {
-	Users users_instance = Users.getInstance(); 
+	Server users_instance = Server.getInstance(); 
 	User jim;
 	User alfred;
 	User odysseus;

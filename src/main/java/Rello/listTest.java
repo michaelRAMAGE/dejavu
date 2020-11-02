@@ -14,7 +14,7 @@ class listTest
 {
 
 	// Just set everything once to use throughout
-	static Users users = Users.getInstance(); // start users
+	static Server users = Server.getInstance(); // start users
 	static Board team_jim;
 	static User jim;
 	

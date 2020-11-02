@@ -1,7 +1,13 @@
 package Rello;
 
-public class Description implements Component
+import java.io.Serializable;
+
+public class Description implements Component, Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1113519390734932359L;
 	public String description;
 
 	public Description()

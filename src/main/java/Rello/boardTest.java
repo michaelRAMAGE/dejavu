@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class boardTest
 {
-	Users users_instance = Users.getInstance(); 
+	Server users_instance = Server.getInstance(); 
 	Board team_jim; 
 	User jim; 
 	User alfred;

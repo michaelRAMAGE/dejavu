@@ -1,9 +1,14 @@
 package Rello;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 
-public class Label
+public class Label implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2865056290087922670L;
 	public Colors color;
 	public String text;
 	

@@ -1,7 +1,13 @@
 package Rello;
 
-public class Checklist implements Component
+import java.io.Serializable;
+
+public class Checklist implements Component, Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6055482212057952479L;
 	public boolean checked;
 
 	public Checklist()

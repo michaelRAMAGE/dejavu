@@ -1,12 +1,17 @@
 package Rello;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 
-public class Card
+public class Card implements Serializable
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9169189339417151079L;
 	public String name; 
 	public EnumMap<Colors, Label> labels; // update to Labels for second type
 	public ArrayList<Component> components; 
