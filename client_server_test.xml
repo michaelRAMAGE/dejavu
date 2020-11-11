@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_261" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>odysseus@gmail.com</string>
+   <object class="Rello.User" id="User0">
+    <void class="Rello.User" method="getField">
+     <string>email</string>
+     <void method="set">
+      <object idref="User0"/>
+      <string>odysseus@gmail.com</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>password</string>
+     <void method="set">
+      <object idref="User0"/>
+      <string>odysseus123</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>boards</string>
+     <void method="set">
+      <object idref="User0"/>
+      <object class="java.util.HashMap"/>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>jim@gmail.com</string>
+   <object class="Rello.User" id="User1">
+    <void class="Rello.User" method="getField">
+     <string>email</string>
+     <void method="set">
+      <object idref="User1"/>
+      <string>jim@gmail.com</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>password</string>
+     <void method="set">
+      <object idref="User1"/>
+      <string>jim123</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>boards</string>
+     <void method="set">
+      <object idref="User1"/>
+      <object class="java.util.HashMap"/>
+     </void>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
