@@ -35,6 +35,22 @@ public class Board implements Serializable
 		
 	}
 	
+	public Board(String name, String id, User owner) {
+		this.name = name; 
+		this.owner = owner;	
+		this.members = new HashMap<String, User>();
+		this.lists = new ArrayList<List>();
+		if (Server.getBoardsIndex().containsKey(id) == false) {
+			this.boardID = generateID(); 
+		}
+		else {
+			System.out.println("We will just randomly generate");
+			
+		}
+		
+	}
+	
+	
 	// Generate ID for board
 	public String generateID() {
 		 Random rand = new Random();	

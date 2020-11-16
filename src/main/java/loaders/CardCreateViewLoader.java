@@ -9,6 +9,6 @@ public class CardCreateViewLoader implements ViewLoaderInterface
 	public FXMLLoader load()
 	{
 		return new FXMLLoader(CustomCreateViewController.class
-				.getResource("../views/cardCreateView.fxml"));
+				.getResource("../views/customCreateView.fxml"));
 	}
 }

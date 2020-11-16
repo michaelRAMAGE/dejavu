@@ -124,6 +124,12 @@ public class User implements Serializable
 		return new_board; 
 	}
 	
+	public Board createBoard(String bname, String id) {
+		Board new_board = new Board(bname, id, this);
+		boards.put(bname, new_board); 
+		return new_board; 
+	}
+	
 	public boolean changePassword(String old_pwd, String new_pwd) {
 		if (this.password == old_pwd) {
 			this.password = new_pwd; 

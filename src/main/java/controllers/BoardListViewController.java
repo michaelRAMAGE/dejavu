@@ -111,4 +111,10 @@ public class BoardListViewController {
 		button.setPrefSize(size[0], size[1]);
 		return button; 
     }
+
+	public void setModel()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }

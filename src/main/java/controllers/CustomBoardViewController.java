@@ -17,6 +17,7 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import loaders.BoardCreateViewLoader;
 import loaders.BoardListViewLoader;
 import loaders.ListCreateViewLoader;
 import loaders.ListViewLoader;
@@ -76,9 +77,9 @@ public class CustomBoardViewController
     void onExitApplication(ActionEvent event) throws IOException {
     	// save and leave
     	// return to previous page
-    	FXMLLoader loader = (new SaveChangesViewLoader()).load(); 
+    	FXMLLoader loader = (new BoardCreateViewLoader()).load(); 
     	BorderPane view = loader.load(); 
-    	BoardListViewController cont = loader.getController(); 
+    	BoardCreateViewController cont = loader.getController(); 
     	cont.setClient(client);
     	cont.setStage(stage);
     	Scene new_scene = new Scene(view);

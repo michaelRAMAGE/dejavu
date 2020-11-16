@@ -96,6 +96,8 @@ public class TestCardCreateView
 	{
 		robot.clickOn("#cancelCreationButton"); // just...add...nothing
 	}
+	
+	
 
 	@AfterAll
 	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {
