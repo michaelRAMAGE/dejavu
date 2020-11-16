@@ -2,13 +2,11 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import com.gluonhq.charm.glisten.control.CardPane;
-
-import Rello.Board;
 import Rello.Card;
 import Rello.Client;
 import Rello.List;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,15 +18,21 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import loaders.CardCreateViewLoader;
-import loaders.CustomBoardViewLoader;
 import loaders.CustomCardEditViewLoader;
+import loaders.ListActionsViewLoader;
 
 public class ListViewController {
 
 	public List list;
+	public StringProperty list_name; 
 	public Stage stage;
 	public Client client; 
 	public int list_idx; 
+	
+	
+    @FXML
+    private TextField listTitleTextField;
+
 	
 	public void setStage(Stage stage) {
 		this.stage = stage;
@@ -41,9 +45,21 @@ public class ListViewController {
 	public void setModel(List list, int list_idx) {
 		this.list = list; 
 		this.list_idx = list_idx; 
+		list_name = new SimpleStringProperty(list.getName());
+		list_name.bindBidirectional(listTitleTextField.textProperty());
 		loadCards(); 
 	}
 	
+    @FXML
+    private Button editListButton;
+
+    @FXML
+    private Button addNewCardButton;
+
+    @FXML
+    private VBox cardContainer;
+
+    
 	public void loadCards() {
 		ArrayList<Card> cards = this.list.getCards(); 
 		for (int i=0; i<cards.size(); i++) { 
@@ -74,24 +90,9 @@ public class ListViewController {
 			// Add button to flow pane 
 			cardContainer.getChildren().add(button);
 		}
-		listTitleTextField.setText(list.getName());
 	}
 	
-	
-    @FXML
-    private TextField listTitleTextField;
 
-    @FXML
-    private Button editListButton;
-
-    @FXML
-    private Button addNewCardButton;
-
-//    @FXML
-//    private CardPane<Button> cardPane;
-
-    @FXML
-    private VBox cardContainer;
 
     
     @FXML
@@ -103,16 +104,27 @@ public class ListViewController {
 		cont.setStage(stage);
 		cont.setClient(client);
 		cont.setModel(list, list_idx);
+    	Scene new_scene = new Scene(view);
+    	stage.setScene(new_scene);	
+    	stage.show();
     }
 
+    // alter this
     @FXML
     void onChangeListTitle(InputMethodEvent event) {
-
+    	
     }
 
     @FXML
-    void onEditList(ActionEvent event) {
-
+    void onEditList(ActionEvent event) throws IOException {
+    	FXMLLoader loader = (new ListActionsViewLoader()).load();
+		BorderPane view = loader.load();
+		ListActionsViewController cont = loader.getController();
+		cont.setClient(client);
+		cont.setModel(list, list_idx);
+    	Scene new_scene = new Scene(view);
+    	stage.setScene(new_scene);	
+    	stage.show(); 
     }
     
     // Creates a button to be rendered into a view 
