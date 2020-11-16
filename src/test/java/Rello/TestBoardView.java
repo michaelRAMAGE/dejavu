@@ -68,32 +68,32 @@ public class TestBoardView
     	stage.show();
 	}
 	
-//	@Test 
-//	public void testDeepCheckLists(FxRobot robot) throws InterruptedException, IOException {
-//		Thread.sleep(1000);
-//		ArrayList<List> lists = board.getLists();	
-//		for (int i=0; i<lists.size(); i++) {
-//			List list = lists.get(i);
-//			ArrayList<Card> cards = list.getCards();
-//			String list_selector = "list"+Integer.toString(i);
-//			Assertions.assertThat(robot.lookup(list_selector)).isNotEqualTo(null);
-//			for (int j=0; j<cards.size(); j++) {
-//				Card card = cards.get(j);
-//				String card_selector = "#" + Integer.toString(i) + Integer.toString(j);
-//				Assertions.assertThat(robot.lookup(card_selector)).isNotEqualTo(null);
-//			}	
-//		}
-//	}
-//	
-//	@Test 
-//	public void testAddList(FxRobot robot) throws InterruptedException, IOException {
-//		// Do the adding
-//		robot.clickOn("#onAddListButton");
-//		Thread.sleep(1000);
-//		
-//		// adding lists is checked in add list test
-//		
-//	}
+	@Test 
+	public void testDeepCheckLists(FxRobot robot) throws InterruptedException, IOException {
+		Thread.sleep(1000);
+		ArrayList<List> lists = board.getLists();	
+		for (int i=0; i<lists.size(); i++) {
+			List list = lists.get(i);
+			ArrayList<Card> cards = list.getCards();
+			String list_selector = "list"+Integer.toString(i);
+			Assertions.assertThat(robot.lookup(list_selector)).isNotEqualTo(null);
+			for (int j=0; j<cards.size(); j++) {
+				Card card = cards.get(j);
+				String card_selector = "#" + Integer.toString(i) + Integer.toString(j);
+				Assertions.assertThat(robot.lookup(card_selector)).isNotEqualTo(null);
+			}	
+		}
+	}
+	
+	@Test 
+	public void testAddList(FxRobot robot) throws InterruptedException, IOException {
+		// Do the adding
+		robot.clickOn("#onAddListButton");
+		Thread.sleep(1000);
+		
+		// adding lists is checked in add list test
+		
+	}
 	
 	@Test 
 	public void testNameChange(FxRobot robot) throws InterruptedException, IOException {
