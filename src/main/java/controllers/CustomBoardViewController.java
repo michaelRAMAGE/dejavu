@@ -7,6 +7,8 @@ import Rello.Card;
 import Rello.Client;
 import Rello.List;
 import Rello.User;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -30,6 +34,7 @@ public class CustomBoardViewController
 	public Stage stage; 
 	public Client client; 
 
+	
     @FXML
     private Button addListButton;
 
@@ -45,9 +50,14 @@ public class CustomBoardViewController
     @FXML
     private Button addMembersButton;
 
+    
+    @FXML
+    private Button save;
+    
+    
     @FXML
     private HBox listViewStorageContainer;
-
+	public StringProperty bname;
     
     
     @FXML
@@ -68,11 +78,15 @@ public class CustomBoardViewController
     }
 
     @FXML
-    void onChangeBoardName(InputMethodEvent event) {
-    	client.getUser().getBoard(this.board.getName()).setName(boardTitleTextField.getText()); // update client
-    	this.board = client.getUser().getBoard(this.board.getName()); // update local model
+    void onSave(ActionEvent event) {
+    	String new_name = boardTitleTextField.getText(); 
+//		System.out.println("Before: " + client.getUser().getBoard(bname.get()).getName()); 
+//    	boardTitleTextField.setText(board.getName());
+		
+		client.getUser().getBoard(board.getName()).setName(new_name);
+		System.out.println("After: " + client.getUser().getBoard(new_name).getName()); 
     }
-
+    
     @FXML
     void onExitApplication(ActionEvent event) throws IOException {
     	// save and leave
@@ -108,15 +122,10 @@ public class CustomBoardViewController
     
     public void setModel(Board board) throws IOException {
     	this.board = board; 
-		loadManagementBar(); 
+    	bname = new SimpleStringProperty(); 
+		bname.bindBidirectional(boardTitleTextField.textProperty());
 		loadAllListViews(); 
     }
-
-	private void loadManagementBar()
-	{
-		// TODO Auto-generated method stub
-		boardTitleTextField.setText(board.getName());
-	}
 
 
 	public void loadAllListViews() throws IOException {
