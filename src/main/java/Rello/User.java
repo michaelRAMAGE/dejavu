@@ -3,6 +3,9 @@ package Rello;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
+
 public class User implements Serializable
 {
 	/**
@@ -11,7 +14,7 @@ public class User implements Serializable
 	private static final long serialVersionUID = 8420532006952901735L;
 	public String email; 
 	public String password;
-	public HashMap<String, Board> boards; // key : boardname, value : board //OBS
+	public HashMap<String, Board> boards;
 		
 	
 	public User() { super(); } 

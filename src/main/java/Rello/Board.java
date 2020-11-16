@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Board implements Serializable
 {
 	/**
@@ -24,7 +27,7 @@ public class Board implements Serializable
 	}
 
 	public Board(String name, User owner) {
-		this.name = name;
+		this.name = name; 
 		this.owner = owner;	
 		this.members = new HashMap<String, User>();
 		this.lists = new ArrayList<List>();

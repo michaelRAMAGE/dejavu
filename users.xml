@@ -30,7 +30,7 @@
           <string>boardID</string>
           <void method="set">
            <object idref="Board0"/>
-           <string>78</string>
+           <string>4</string>
           </void>
          </void>
          <void class="Rello.Board" method="getField">

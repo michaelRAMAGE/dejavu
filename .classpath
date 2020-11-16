@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -18,18 +23,25 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="/home/ming/Downloads/eclipse/plugins/org.junit.jupiter.api_5.6.0.v20200203-2009.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
 		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/ming/.m2/repository/org/testfx/testfx-core/4.0.16-alpha/testfx-core-4.0.16-alpha.jar" sourcepath="/home/ming/.m2/repository/org/testfx/testfx-core/4.0.16-alpha/testfx-core-4.0.16-alpha-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/ming/.m2/repository/org/testfx/testfx-core/4.0.16-alpha/testfx-core-4.0.16-alpha-javadoc.jar!/"/>
+			<attribute name="test" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.testfx"/>
+			<attribute name="maven.artifactId" value="testfx-core"/>
+			<attribute name="maven.version" value="4.0.16-alpha"/>
+			<attribute name="maven.scope" value="test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/ming/Desktop/charm-glisten-4.4.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

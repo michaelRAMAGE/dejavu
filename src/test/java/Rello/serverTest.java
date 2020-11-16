@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class ServerTest
+class serverTest
 {
 	static String bind_name = "Server"; 
 	static Server server; 

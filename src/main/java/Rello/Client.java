@@ -1,5 +1,6 @@
 package Rello; 
 import java.net.MalformedURLException;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
@@ -9,6 +10,19 @@ public class Client {
 	public static ServerInterface SS; // will probably only want to initialize this once?
 	public User user; 
 	
+	// added back in 
+	public Client(String host, String lookup_name) throws MalformedURLException {
+		try
+		{
+			String rmi_server_path = "rmi://"+host+"/"+lookup_name;
+			SS = (ServerInterface) Naming.lookup(rmi_server_path);
+		} catch (RemoteException | NotBoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public Client(Registry registry, String rmi_server) throws MalformedURLException {
 		try
 		{
@@ -21,6 +35,10 @@ public class Client {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public User getUser() {
+		return this.user; 
 	}
 	
 	public boolean loginUser(String email, String password) throws RemoteException {
@@ -42,8 +60,6 @@ public class Client {
 			return false; 
 		}
 		User user_in = SS.addUser(email, password); 
-		System.out.println(user_in);
-
 		if (user_in == null) {
 			return false;
 		}
@@ -83,8 +99,6 @@ public class Client {
 		SS.tester();
 		return true; 
 	}
-	
-	
 }
 	
 

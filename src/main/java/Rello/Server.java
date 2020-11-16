@@ -24,8 +24,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 {
 	private static Registry registry; // rmi server registry
 	
-	
-	
 	private static final long serialVersionUID = -2; 
 	private static Server uniqueInstance = null; // singleton class instance
 	
@@ -43,31 +41,11 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	private Server() throws RemoteException 
 	{ 
 		super(); 
+		users = new HashMap<String, User>(); 
+		board_index = new HashMap<String, Board>(); 
+		setAllData(); 
 	}
 	
-	// Boot server with default name binding
-	public Registry bootServer() throws RemoteException, MalformedURLException {
-		setUsers(readFromDisk()); // read users from disk
-		registry = LocateRegistry.createRegistry(2099); // FIRST ARGUMENT IS IP ADDRESS
-		registry.rebind("Server", uniqueInstance);	
-		return registry;
-	}
-	
-	// Boot server with a custom 
-	public Registry bootServer(String bind_name) throws RemoteException, MalformedURLException {
-		setUsers(readFromDisk()); // read users from disk
-		setBoardIndex(); // set up the board index
-		registry = LocateRegistry.createRegistry(2099);
-		registry.rebind(bind_name, uniqueInstance);	
-		return registry; 
-	}
-	
-	// Clean up server stuff
-	public void closeServer(Registry registry, String bind_name) throws AccessException, RemoteException, NotBoundException {
-		registry.unbind(bind_name); // clean up server bindings 
-		storeToDisk(); // store to disk on close
-	}
-
 	// Static method to get single class instance
 	public static synchronized Server getInstance() {
 		if (uniqueInstance == null) {
@@ -79,8 +57,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-			users = new HashMap<String, User>(); 
-			board_index = new HashMap<String, Board>(); 
 		}  
 		return uniqueInstance; 
 	}
@@ -93,6 +69,49 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		registry = null; 
 	}
 	
+	// Boot server with default name binding
+	public Registry bootServer() throws RemoteException, MalformedURLException {
+		setUsers(readFromDisk()); // read users from disk
+		registry = LocateRegistry.createRegistry(2099); // FIRST ARGUMENT IS IP ADDRESS
+		registry.rebind("Server", uniqueInstance);	
+		return registry;
+	}
+	
+	// Boot server with a non-default bind name
+	public Registry bootServer(String bind_name) throws RemoteException, MalformedURLException {
+		setUsers(readFromDisk()); // read users from disk
+		setBoardIndex(); // set up the board index
+		registry = LocateRegistry.createRegistry(2089);
+		registry.rebind(bind_name, uniqueInstance);	
+		return registry; 
+	}
+	
+	// added in 
+	// Boot server for remote host on a specified port (null host 
+	public Registry bootServer(String host, int port) throws RemoteException, MalformedURLException {
+		setUsers(readFromDisk()); // read users from disk
+		setBoardIndex(); // set up the board index
+		registry = LocateRegistry.getRegistry(host, port);
+		return registry; 
+	}
+
+	// Clean up server stuff (does this work for remote hosts?)
+	public void closeServer(Registry registry, String bind_name) throws AccessException, RemoteException, NotBoundException {
+		registry.unbind(bind_name); // clean up server bindings 
+		storeToDisk(); // store to disk on close
+	}
+	
+	// Clean up server
+	public void closeServer(String bind_name) throws AccessException, RemoteException, NotBoundException {
+		registry.unbind(bind_name); // clean up server bindings 
+		storeToDisk(); // store to disk on close
+	}
+
+	public void setAllData() {
+		setUsers(readFromDisk()); // read users from disk
+		setBoardIndex(); // set up the board index
+	}
+
 	// Log user into server
 	@Override
 	public User loginUser(String email, String password) throws RemoteException {
@@ -181,6 +200,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		User fetched_user = users.get(key);
 		return fetched_user; // check if null from caller
 	}
+	
+	// Get all users
 	public HashMap<String, User> getUsers() {
 		return users; 
 	}
@@ -228,15 +249,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		encoder.close();
 	}
 	
-//	private static void createFile() {
-//      try {
-//          File file = new File(SERIALIZED_FILE_NAME);
-//          file.createNewFile();
-//          System.out.println("File: " + file);
-//       } catch(Exception e) {
-//          e.printStackTrace();
-//       }
-//	}
 	
 	// Read users from disk
 	public static HashMap<String, User> readFromDisk() { // read from XML 
@@ -262,7 +274,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 	
 	// Sets the global board index
-	private void setBoardIndex() { // will be useful when called after a readFromDisk or when users is set
+	public void setBoardIndex() { // will be useful when called after a readFromDisk or when users is set
 		for (User user : users.values()) { 
 			HashMap<String, Board> user_boards = user.getBoards();
 			if (user_boards == null) { // if user has no boards, continue to next iteration
@@ -275,8 +287,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			}	
 		}
 	}
-	
-	
+
 	// Deep comparison of two maps of users
 	@Override
 	public boolean equals(Object obj) {
