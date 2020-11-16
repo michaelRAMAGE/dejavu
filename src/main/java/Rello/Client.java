@@ -9,11 +9,15 @@ public class Client {
 
 	public static ServerInterface SS; // will probably only want to initialize this once?
 	public User user; 
+	public String host;
+	public String lookup_name; 
 	
 	// added back in 
 	public Client(String host, String lookup_name) throws MalformedURLException {
 		try
 		{
+			this.host = host;
+			this.lookup_name = lookup_name; 
 			String rmi_server_path = "rmi://"+host+"/"+lookup_name;
 			SS = (ServerInterface) Naming.lookup(rmi_server_path);
 		} catch (RemoteException | NotBoundException e)

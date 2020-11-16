@@ -6,6 +6,7 @@ import Rello.Board;
 import Rello.Card;
 import Rello.Client;
 import Rello.List;
+import Rello.Server;
 import Rello.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -26,6 +27,7 @@ import loaders.BoardListViewLoader;
 import loaders.ListCreateViewLoader;
 import loaders.ListViewLoader;
 import loaders.SaveChangesViewLoader;
+import loaders.ServerViewLoader;
 
 public class CustomBoardViewController
 {
@@ -89,15 +91,14 @@ public class CustomBoardViewController
     
     @FXML
     void onExitApplication(ActionEvent event) throws IOException {
-    	// save and leave
-    	// return to previous page
-    	FXMLLoader loader = (new BoardCreateViewLoader()).load(); 
-    	BorderPane view = loader.load(); 
-    	BoardCreateViewController cont = loader.getController(); 
-    	cont.setClient(client);
-    	cont.setStage(stage);
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);
+		FXMLLoader loader = (new ServerViewLoader()).load(); 
+		BorderPane view = loader.load();
+		ServerViewController cont = loader.getController(); 
+		cont.setStage(stage);
+		cont.setModel(Server.getInstance());
+		Scene new_scene = new Scene(view);
+		stage.setScene(new_scene);
+		stage.show();
     }
 
     @FXML

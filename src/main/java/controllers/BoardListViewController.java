@@ -66,11 +66,12 @@ public class BoardListViewController {
 
     @FXML
     void onLogoutUser(ActionEvent event) throws IOException {
-		FXMLLoader loader = (new ServerViewLoader()).load(); 
+		FXMLLoader loader = (new LoginViewLoader()).load(); 
 		BorderPane view = loader.load();
-		ServerViewController cont = loader.getController(); 
+		LoginViewController cont = loader.getController(); 
 		cont.setStage(stage);
-		cont.setModel(Server.getInstance());
+		Client new_client = new Client(this.client.host, this.client.lookup_name);
+		cont.setClient(new_client);
 		Scene new_scene = new Scene(view);
 		stage.setScene(new_scene);
 		stage.show();
