@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import Rello.Board;
 import Rello.Client;
+import Rello.Server;
 import Rello.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import loaders.BoardCreateViewLoader;
 import loaders.BoardListViewLoader;
 import loaders.CustomBoardViewLoader;
 import loaders.LoginViewLoader;
@@ -50,14 +52,17 @@ public class BoardListViewController {
 
     @FXML
     void onAddBoard(ActionEvent event) throws IOException {
-		FXMLLoader loader = (new BoardListViewLoader()).load(); 
-		BorderPane view = loader.load(); 
-		BoardListViewController cont = loader.getController();
+		// Initialize 
+		FXMLLoader loader = (new BoardCreateViewLoader()).load(); 
+		BorderPane view = loader.load();
+		BoardCreateViewController cont = loader.getController(); 
 		cont.setClient(client);
 		cont.setStage(stage);
 		Scene new_scene = new Scene(view);
 		stage.setScene(new_scene);
+		stage.show();
     }
+
 
     @FXML
     void onLogoutUser(ActionEvent event) throws IOException {
@@ -65,8 +70,10 @@ public class BoardListViewController {
 		BorderPane view = loader.load();
 		ServerViewController cont = loader.getController(); 
 		cont.setStage(stage);
+		cont.setModel(Server.getInstance());
 		Scene new_scene = new Scene(view);
 		stage.setScene(new_scene);
+		stage.show();
     }
     
     // Renders the flow pane for the BoardListView

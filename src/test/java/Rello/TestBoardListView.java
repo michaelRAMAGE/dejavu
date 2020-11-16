@@ -76,6 +76,7 @@ public class TestBoardListView
     	BorderPane view = loader.load(); 
     	cont = loader.getController(); 
     	cont.setClient(client);
+    	cont.setStage(stage);
     	
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
@@ -108,15 +109,18 @@ public class TestBoardListView
 		robot.clickOn("#" + test_board.boardID); 
 	}
 	
+	// this is tested in testboard create view (too?)
 	@Test
 	public void testAddBoard(FxRobot robot) throws InterruptedException 
-	{
+	{		
+		robot.clickOn("#addBoardButton"); 
 		Thread.sleep(1000);
 	}
 	
 	@Test
 	public void logOut(FxRobot robot) throws InterruptedException 
 	{
+		robot.clickOn("#logoutUserButton"); 
 		Thread.sleep(1000);
 	}
 	
