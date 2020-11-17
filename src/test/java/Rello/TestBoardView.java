@@ -96,8 +96,14 @@ public class TestBoardView
 		// Do the adding
 		robot.clickOn("#onAddListButton");
 		Thread.sleep(1000);
+		testHelper.enterTextInField(robot, "#newListNameTextField", "DummyList");
+		robot.clickOn("#createListButton");
 		
-		// adding lists is checked in add list test
+		// Do the checking
+		Assertions.assertThat(robot.lookup("#listViewStorageContainer").queryAs(HBox.class)
+				.getChildren().size()).isEqualTo(5);
+	    assert(testHelper.checkTextField(robot, "#listTitleTextField3", "DummyList") == true);
+		Thread.sleep(1000);
 		
 	}
 
@@ -113,23 +119,19 @@ public class TestBoardView
 	
 	@Test
 	public void testMoveList(FxRobot robot) throws InterruptedException {
-		Thread.sleep(6000);
-
+		Thread.sleep(3000);
 		robot.clickOn("#editListButton0");
 		robot.clickOn("#moveListButton");
 		assert(robot.lookup("#currentListLabel").queryAs(javafx.scene.control.Label.class).getText().equals("0, Week1") == true);
-
 		robot.clickOn("#choiceBoxB").clickOn("1, Week2");
 		robot.clickOn("#saveButton");
-		
-		Assertions.assertThat(robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size()).isEqualTo(4);
+		Assertions.assertThat(robot.lookup("#listViewStorageContainer").queryAs(HBox.class)
+				.getChildren().size()).isEqualTo(4);
 	    assert(testHelper.checkTextField(robot, "#listTitleTextField1", "Week1") == true);
-
-
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 	}
 	
-//	// willl not be implemented
+	// willl not be implemented
 //	@Test 
 //	public void testAddMembers() throws InterruptedException, IOException {
 //		
