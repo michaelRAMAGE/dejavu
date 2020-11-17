@@ -67,9 +67,6 @@ public class TestBoardView
     	board = client.getUser().getBoard("Team Jim");
     	cont.setModel(board);
     	
-
-    	
-
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
     	stage.show();
@@ -121,14 +118,21 @@ public class TestBoardView
 	@Test
 	public void testMoveList(FxRobot robot) throws InterruptedException {
 		Thread.sleep(3000);
+		int before_size = robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size();
 		robot.clickOn("#editListButton0");
 		robot.clickOn("#moveListButton");
 		assert(robot.lookup("#currentListLabel").queryAs(javafx.scene.control.Label.class).getText().equals("0, Week1") == true);
 		robot.clickOn("#choiceBoxB").clickOn("1, Week2");
 		robot.clickOn("#saveButton");
+		
+		// make sure everything still here
 		Assertions.assertThat(robot.lookup("#listViewStorageContainer").queryAs(HBox.class)
-				.getChildren().size()).isEqualTo(4);
+				.getChildren().size()).isEqualTo(before_size);
+		
+		// Week 1 should be after week 2 now
+	    assert(testHelper.checkTextField(robot, "#listTitleTextField0", "Week2") == true);
 	    assert(testHelper.checkTextField(robot, "#listTitleTextField1", "Week1") == true);
+	    
 		Thread.sleep(3000);
 	}
 	
@@ -136,6 +140,8 @@ public class TestBoardView
 	public void testRemoveList(FxRobot robot) throws InterruptedException {
 		int prev_lists = robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size();
 		
+		Assertions.assertThat(robot.lookup("#listTitleTextField2").queryAs(TextField.class)
+				.getText()).isEqualTo("Week3");
 		robot.clickOn("#editListButton2");
 		robot.clickOn("#removeListButton");
 
@@ -145,8 +151,11 @@ public class TestBoardView
 		int after_actual = robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size();
 		assert(after_expected == after_actual); 
 		
-//		Assertions.assertThat(robot.lookup("#listTitleTextField0").queryAs(TextField.class))
-
+		// We removed week 3, ensure it is no longer in the list view storage container
+		for (int i=0; i<after_actual-1; i++) {
+			Assertions.assertThat(robot.lookup("#listTitleTextField"+Integer.toString(i))
+					.queryAs(TextField.class)).isNotEqualTo("Week3");
+		}
 	}
 	
 	// willl not be implemented
