@@ -1,5 +1,6 @@
 package loaders;
 
+import controllers.ServerViewController;
 import javafx.fxml.FXMLLoader;
 
 public class RegisterViewLoader implements ViewLoaderInterface
@@ -8,8 +9,10 @@ public class RegisterViewLoader implements ViewLoaderInterface
 	@Override
 	public FXMLLoader load()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		// load view
+		FXMLLoader loader = new FXMLLoader(ServerViewController.class
+				.getResource("../views/registerView.fxml"));
+		return loader;
 	}
 
 }

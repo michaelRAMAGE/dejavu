@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterViewController">
    <center>
       <GridPane prefHeight="323.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.0" minWidth="10.0" prefWidth="256.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="144.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,14 +30,24 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <TextField promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <PasswordField promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <TextField id="userNameTextField" fx:id="userNameTextField" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Label id="emptyFieldErrorLabel" fx:id="emptyFieldErrorLabel" alignment="BOTTOM_CENTER" text="No fields can be left blank! Try again. " textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label id="badCredentialsLabel" fx:id="badCredentialsLabel" alignment="BOTTOM_CENTER" text="Credentials are invalid. Try again." textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
+            <PasswordField id="passwordTextField" fx:id="passwordTextField" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>
             </PasswordField>
-            <Button mnemonicParsing="false" text="Sign Up" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Back to login" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Button id="registerButton" fx:id="registerButton" mnemonicParsing="false" onAction="#onRegister" text="Sign Up" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Button id="backToLoginButton" fx:id="backToLoginButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onBackToLogin" text="Back to login" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
          </children>
       </GridPane>
    </center>

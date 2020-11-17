@@ -169,13 +169,15 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	
 	// Add user using email and password 
 	public User addUser(String email, String password) { 
+		System.out.println("email to try: " + email);
 		if (!users.containsKey(email)) { 
+			System.out.println(users);
 			User new_user = new User(email, password);
 			users.put(email, new_user);
 			return new_user; 
 		}
 		else {
-			return users.get(email); 
+			return null; 
 		}
 	}
 	
