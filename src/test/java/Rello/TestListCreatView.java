@@ -22,7 +22,9 @@ import javafx.fxml.FXMLLoader;
 	import javafx.scene.Parent;
 	import javafx.scene.Scene;
 	import javafx.scene.layout.BorderPane;
-	import javafx.stage.Stage;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import loaders.ListCreateViewLoader;
 import utils.GuiTestHelper;
 	import utils.ServerHelper;
@@ -74,9 +76,23 @@ public class TestListCreatView
 	@Test
 	public void testCreateSubmitList(FxRobot robot) throws InterruptedException 
 	{
+
 		testHelper.enterTextInField(robot, "#newListNameTextField", "NewList");
 		robot.clickOn("#createListButton");
-		Thread.sleep(10000);
+		
+		int prev_children = robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size(); 
+
+		robot.clickOn("#onAddListButton"); // on board view
+
+		testHelper.enterTextInField(robot, "#newListNameTextField", "NewList");
+		robot.clickOn("#createListButton");
+
+		int expected_after_children = ++prev_children;
+		int actual_after_children = robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size();
+		System.out.println("exp " + Integer.toString(expected_after_children));
+		System.out.println("act " + Integer.toString(actual_after_children));
+		assert(expected_after_children == actual_after_children);
+		Thread.sleep(1000);
 	}
 	
 	@Test
