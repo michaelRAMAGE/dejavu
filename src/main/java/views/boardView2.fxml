@@ -44,7 +44,7 @@
             </HBox>
             <HBox id="boardManagementBar" prefHeight="75.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <TextField id="boardTitleTextField" fx:id="boardTitleTextField" prefHeight="26.0" prefWidth="120.0" text="OurPresentation" />
+                  <TextField id="boardTitleTextField" fx:id="boardTitleTextField" prefHeight="26.0" text="OurPresentation" />
                   <Button id="save" fx:id="save" mnemonicParsing="false" onAction="#onSave" text="Save" />
                   <Button id="addMembersButton" fx:id="addMembersButton" disable="true" mnemonicParsing="false" onAction="#onAddMembers" text="Add Members" />
                   <StackPane>

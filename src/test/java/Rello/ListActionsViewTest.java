@@ -6,7 +6,7 @@ import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-
+import java.util.ArrayList;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
@@ -59,13 +59,14 @@ public class ListActionsViewTest
     	
     	// Get data for model
     	int list_idx = 0; 
+    	ArrayList<List> lists = client.getUser().getBoard("Team Jim").getLists(); 
     	list = client.getUser().getBoard("Team Jim").getList(list_idx);
     	
     			
 		// Set on controller
 		cont.setStage(stage);
 		cont.setClient(client);
-		cont.setModel(list, list_idx);
+		cont.setModel(lists, list_idx);
 
 		// Stage and scene setting
     	Scene new_scene = new Scene(view);
@@ -73,10 +74,15 @@ public class ListActionsViewTest
 		stage.show();
 	}
 	
-
+	// Already tested in board view, createcard view, and listview
+	@Test
+	public void testAddCard(FxRobot robot) throws InterruptedException
+	{
+		robot.clickOn("#addCardButton");
+	}
 	
 	@Test
-	public void testEditList(FxRobot robot) throws InterruptedException
+	public void testMoveCard(FxRobot robot) throws InterruptedException
 	{
 		robot.clickOn("#addCardButton");
 	}

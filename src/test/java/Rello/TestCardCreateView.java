@@ -6,9 +6,9 @@ package Rello;
 	import java.rmi.AlreadyBoundException;
 	import java.rmi.NotBoundException;
 	import java.rmi.RemoteException;
+import java.util.ArrayList;
 
-
-	import org.assertj.core.api.Assertions;
+import org.assertj.core.api.Assertions;
 	import org.junit.jupiter.api.AfterAll;
 	import org.junit.jupiter.api.BeforeAll;
 	import org.junit.jupiter.api.Test;
@@ -28,6 +28,8 @@ import loaders.CardCreateViewLoader;
 import loaders.ListCreateViewLoader;
 import utils.GuiTestHelper;
 	import utils.ServerHelper;
+
+
 
 
 @ExtendWith(ApplicationExtension.class)
@@ -76,19 +78,40 @@ public class TestCardCreateView
 		stage.show();
 	}
 	
+
 	@Test
 	public void testCreateCardSubmit(FxRobot robot) throws InterruptedException 
 	{
 		// Do the adding
     	int list_cards_size = list.getCards().size(); // this will not update but use as ref
-		testHelper.enterTextInField(robot, "#nameTextField", "NewCard");
-		robot.clickOn("#createButton");
+    	String[] names = {"NewCard1", "NewCard2", "NewCard3"};
+		addCards(robot, names);	
 		Thread.sleep(1000);
 		
 		// See if it was added to list
-		int new_list_cards_size = list_cards_size++; 
-		String selector = "#" + Integer.toString(list_idx) + Integer.toString(new_list_cards_size); 
-		Assertions.assertThat(robot.lookup(selector)).isNotEqualTo(null);
+		int new_list_cards_size = list_cards_size + 1; 
+		String base_selector = "#" + Integer.toString(list_idx);
+		String selector; 
+		
+		selector = base_selector + Integer.toString(new_list_cards_size); 
+		assert(testHelper.checkSelectorFound(robot, selector) == true);
+		
+		selector = base_selector + Integer.toString(new_list_cards_size+1); 
+		assert(testHelper.checkSelectorFound(robot, selector) == true);
+		
+		selector = base_selector + Integer.toString(new_list_cards_size+2); 
+		assert(testHelper.checkSelectorFound(robot, selector) == true);
+	}
+	
+	public void addCards(FxRobot robot, String[] names) {
+		int amount = names.length; 
+		for (int i=0; i<amount-1; i++) {
+			testHelper.enterTextInField(robot, "#nameTextField", names[i]);
+			robot.clickOn("#createButton");
+			robot.clickOn("#addNewCardButton0");		
+		}
+		testHelper.enterTextInField(robot, "#nameTextField", names[amount-1]);
+		robot.clickOn("#createButton");	
 	}
 	
 	@Test
@@ -98,7 +121,6 @@ public class TestCardCreateView
 	}
 	
 	
-
 	@AfterAll
 	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {
 		serverHelper.closeServer();

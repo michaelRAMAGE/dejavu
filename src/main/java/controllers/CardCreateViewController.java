@@ -78,11 +78,6 @@ public class CardCreateViewController
 		CustomBoardViewController cont = loader.getController(); 
 		cont.setStage(stage);
 		cont.setClient(client);
-		ArrayList<Card> cards = client.getUser().getBoard(bname).getList(list_idx).getCards();
-		for (int i=0; i<cards.size(); i++) {
-			Card card = cards.get(i);
-			System.out.println(card.getName()); 
-		}
 		cont.setModel(client.getUser().getBoard(bname)); // send newest version back
 		Scene s = new Scene(view);
 		stage.setScene(s);

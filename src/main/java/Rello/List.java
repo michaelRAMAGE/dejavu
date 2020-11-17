@@ -96,6 +96,11 @@ public class List implements Serializable
 		cards.add(new_card); 
 		return new_card; 
 	}
+	
+	public void moveCardInList(int from, int before) {
+		Card removed = cards.remove(from);
+		cards.add(before, removed);
+	}
 
 	public void moveCardIntraList(int old_idx, int new_idx) {
 		// index checking

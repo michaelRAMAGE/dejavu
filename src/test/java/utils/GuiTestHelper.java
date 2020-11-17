@@ -6,9 +6,11 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import org.assertj.core.api.Assertions;
 import org.testfx.api.FxRobot;
 
 import Rello.Client;
+import javafx.scene.control.TextField;
 
 
 public class GuiTestHelper
@@ -17,8 +19,18 @@ public class GuiTestHelper
 	
 	public void enterTextInField(FxRobot robot, String selector, String text) {
 		// User name entry
+		robot.lookup(selector).queryAs(TextField.class).clear();
 		robot.clickOn(selector);
 		robot.write(text);
+	}
+	
+	public boolean checkTextField(FxRobot robot, String selector, String result) {
+		return (robot.lookup(selector).queryAs(TextField.class).getText().equals(result));
+
+	}
+	
+	public boolean checkSelectorFound(FxRobot robot, String selector) {
+		return (robot.lookup(selector) != null);
 	}
 
 	public void signIn(FxRobot robot, String selector_username, String selector_password, String username, String password) {

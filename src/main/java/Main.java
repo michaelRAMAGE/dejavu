@@ -19,6 +19,10 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
+		// boot server
+		//.............
+		
+		// now when we open serverconnection
 		stage = primaryStage; 
 		// Initialize load for main server view
 		FXMLLoader loader = new FXMLLoader();

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MoveCardViewController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Move Card">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label id="currentCardInfoLabel" fx:id="currentCardInfoLabel11" text="Move CardA into the position of CardB">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label id="currentCardInfoLabel" fx:id="currentCardInfoLabel12" text="CardA">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ChoiceBox id="choiceBoxA" fx:id="choiceBoxA" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label id="currentCardInfoLabel" fx:id="currentCardInfoLabel121" text="CardB">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ChoiceBox id="choiceBoxB" fx:id="choiceBoxB" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="100.0">
+               <children>
+                  <Button id="cancelButton" fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+                  <Button id="saveButton" fx:id="saveButton" mnemonicParsing="false" onAction="#onSave" text="Submit" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

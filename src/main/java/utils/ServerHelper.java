@@ -18,7 +18,6 @@ public class ServerHelper
 		registry = LocateRegistry.createRegistry(1099); 
 		registry.rebind(bindname, Server.getInstance());
 	}
-	
 	public void closeServer() throws AccessException, RemoteException, NotBoundException {
 		registry.unbind(bindname);
 	}

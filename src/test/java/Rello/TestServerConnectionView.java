@@ -61,19 +61,19 @@ public class TestServerConnectionView
 		robot.clickOn("#defaultConnectButton");
 	}
 	
-	@Test
-	public void testCustomConnection(FxRobot robot) throws InterruptedException 
-	{
-		Thread.sleep(1000);
-		robot.clickOn("#customConnectButton");
-		robot.lookup("#errorMessageIPTextField");
-		
-		robot.clickOn("#customConnectButton");
-		
-		robot.write("127.0.0.1");
-		robot.clickOn("#customConnectButton");
-	}
-	
+//	@Test
+//	public void testCustomConnection(FxRobot robot) throws InterruptedException 
+//	{
+//		Thread.sleep(1000);
+//		robot.clickOn("#customConnectButton");
+//		robot.lookup("#errorMessageIPTextField");
+//		
+//		robot.clickOn("#customConnectButton");
+//		
+//		robot.write("127.0.0.1");
+//		robot.clickOn("#customConnectButton");
+//	}
+//	
 	@AfterAll
 	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {
 		serverHelper.closeServer();

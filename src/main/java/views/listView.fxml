@@ -22,7 +22,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button id="addNewCardButton" fx:id="addNewCardButton" mnemonicParsing="false" onAction="#onAddNewCard" text="Add new card" BorderPane.alignment="CENTER" />
+      <Button fx:id="addNewCardButton" mnemonicParsing="false" onAction="#onAddNewCard" text="Add new card" BorderPane.alignment="CENTER" />
    </bottom>
    <opaqueInsets>
       <Insets />

@@ -17,7 +17,7 @@ public class Card implements Serializable
 	public ArrayList<Component> components;  //OBS
 	public Board board;   //OBS
 	public HashMap<String, User> members;   //OBS
-	
+	public String description; // this was moved here because a card should have only one desc
 	
 	public Card()
 	{
@@ -25,6 +25,16 @@ public class Card implements Serializable
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
 	public String getName()
 	{
 		return name;

@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import loaders.CardCreateViewLoader;
 import loaders.CustomCardEditViewLoader;
@@ -24,8 +26,8 @@ import loaders.ListActionsViewLoader;
 public class ListViewController {
 
 	public List list;
-	public StringProperty list_name; 
 	public Stage stage;
+	public Stage modalStage; 
 	public Client client; 
 	public int list_idx; 
 	
@@ -44,10 +46,19 @@ public class ListViewController {
 	
 	public void setModel(List list, int list_idx) {
 		this.list = list; 
-		this.list_idx = list_idx; 
-		list_name = new SimpleStringProperty(list.getName());
-		list_name.bindBidirectional(listTitleTextField.textProperty());
+		listTitleTextField.setText(list.getName());
+		setIds(list_idx); 
 		loadCards(); 
+	}
+	
+	public void setIds(int list_idx) {
+		listTitleTextField.setId("listTitleTextField"+Integer.toString(list_idx));
+		addNewCardButton.setId("addNewCardButton"+Integer.toString(list_idx));
+		editListButton.setId("editListButton"+Integer.toString(list_idx));
+	}
+	
+	public void setModalStage(Stage stage) {
+		this.modalStage = modalStage;
 	}
 	
     @FXML
@@ -67,20 +78,27 @@ public class ListViewController {
 			Card card = cards.get(i); 
 			// Create buttons for flow pane
 			String custom_id = Integer.toString(list_idx) + Integer.toString(i);
+			System.out.println("Text: " + card.getName() + ", id: " + custom_id);
 			Button button = createCardButton(card.getName(), custom_id, new int[]{300, 26});
 			
+			int card_idx = i; 
 			button.setOnAction((ActionEvent event) -> { 
     			BorderPane view;
 				try
 				{
+					
 					FXMLLoader loader = (new CustomCardEditViewLoader()).load(); 
 					view = loader.load(); 
 					CustomCardEditViewController cont = loader.getController();
+					Stage popup = createModal(); 
+					
 					cont.setClient(client);
-					cont.setStage(stage);
+					cont.setStage(popup);
+					cont.setModel(list, list_idx, card_idx);
+					
 					Scene new_scene = new Scene(view);
-					stage.setScene(new_scene);	
-
+					popup.setScene(new_scene);
+					popup.show(); 
 				} catch (IOException e)
 				{
 					// TODO Auto-generated catch block
@@ -92,11 +110,9 @@ public class ListViewController {
 		}
 	}
 	
-
-
-    
     @FXML
     void onAddNewCard(ActionEvent event) throws IOException {
+    	System.out.println(addNewCardButton.getId());
 		// Load up card creation view
     	FXMLLoader createCardLoader = (new CardCreateViewLoader()).load();
 		BorderPane view = createCardLoader.load();
@@ -117,14 +133,28 @@ public class ListViewController {
 
     @FXML
     void onEditList(ActionEvent event) throws IOException {
+    	
     	FXMLLoader loader = (new ListActionsViewLoader()).load();
 		BorderPane view = loader.load();
+		
+    	Stage popup = createModal(); 
+
 		ListActionsViewController cont = loader.getController();
 		cont.setClient(client);
-		cont.setModel(list, list_idx);
+		
+		ArrayList<List> lists = client.getUser().getBoard(list.getBoard().getName()).getLists();  
+		cont.setModel(lists, list_idx); // pass in all lists and the current list of this list view
+		cont.setStage(popup);
     	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
-    	stage.show(); 
+    	popup.setScene(new_scene);	
+    	popup.show(); 
+   }
+    
+    public Stage createModal() {
+    	Stage popup = new Stage();
+    	popup.initModality(Modality.APPLICATION_MODAL);
+    	popup.initOwner(stage);
+    	return popup; 
     }
     
     // Creates a button to be rendered into a view 

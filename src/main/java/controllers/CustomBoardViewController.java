@@ -94,6 +94,7 @@ public class CustomBoardViewController
 		FXMLLoader loader = (new ServerViewLoader()).load(); 
 		BorderPane view = loader.load();
 		ServerViewController cont = loader.getController(); 
+//    	client.updateBoard(board, client.getUser()); // save to server on return 
 		cont.setStage(stage);
 		cont.setModel(Server.getInstance());
 		Scene new_scene = new Scene(view);
@@ -107,10 +108,12 @@ public class CustomBoardViewController
     	FXMLLoader loader = (new BoardListViewLoader()).load(); 
     	BorderPane view = loader.load(); 
     	BoardListViewController cont = loader.getController(); 
+//    	client.updateBoard(board, client.getUser()); // save to server on return 
     	cont.setClient(client);
     	cont.setStage(stage);
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
+    	stage.show(); 
     }
 
     public void setStage(Stage stage) { 
@@ -151,6 +154,8 @@ public class CustomBoardViewController
 		String custom_id = "list"+Integer.toString(list_idx);
 		listView.setId(custom_id);
 		ListViewController cont = loader.getController(); 
+		cont.setStage(stage);
+		cont.setClient(client);
 		cont.setModel(list, list_idx);
 		return listView; 
 	}	
