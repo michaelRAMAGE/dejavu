@@ -126,15 +126,27 @@ public class TestBoardListView
 		assert(robot.lookup("#boardListFlowPane")
     			.queryAs(javafx.scene.layout.FlowPane.class)
     			.getChildrenUnmodifiable().size() == should_be_size);
+		Thread.sleep(2000);
+
 	}
 	
 	
-//	@Test
-//	public void testRemoveBoard(FxRobot robot) throws InterruptedException 
-//	{		
-//		robot.clickOn("#addBoardButton"); 
-//		Thread.sleep(1000);
-//	}
+	@Test
+	public void testRemoveBoard(FxRobot robot) throws InterruptedException 
+	{		
+		int prev_children = robot.lookup("#boardListFlowPane").queryAs(FlowPane.class).getChildren().size(); 
+		robot.clickOn("#removeBoardButton").clickOn("#choiceBox");
+		robot.clickOn("Team Jim").clickOn("#saveButton"); 
+		Thread.sleep(1000);
+		
+		int expected_after_children = --prev_children;
+		int actual_after_children = robot.lookup("#boardListFlowPane").queryAs(FlowPane.class).getChildren().size();
+		System.out.println("exp " + Integer.toString(expected_after_children));
+		System.out.println("act " + Integer.toString(actual_after_children));
+		assert(expected_after_children == actual_after_children);
+
+		Thread.sleep(2000);
+	}
 	
 	@Test
 	public void logOut(FxRobot robot) throws InterruptedException 

@@ -135,10 +135,9 @@ public class ListViewController {
     	FXMLLoader loader = (new ListActionsViewLoader()).load();
 		BorderPane view = loader.load();
 		
-    	Stage popup = new Stage();
-    	popup.initModality(Modality.APPLICATION_MODAL);
-    	popup.initOwner(stage);
+    	Stage popup = createModal(); 
 
+    
 		ListActionsViewController cont = loader.getController();
 		cont.setStage(popup);
 		cont.setClient(client);

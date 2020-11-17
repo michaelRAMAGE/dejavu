@@ -17,11 +17,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import loaders.BoardCreateViewLoader;
 import loaders.BoardListViewLoader;
 import loaders.CustomBoardViewLoader;
 import loaders.LoginViewLoader;
+import loaders.RemoveBoardViewLoader;
 import loaders.ServerViewLoader;
 
 public class BoardListViewController {
@@ -45,6 +47,9 @@ public class BoardListViewController {
     private FlowPane boardListFlowPane;
 
     @FXML
+    private Button removeBoardButton;
+    
+    @FXML
     private Button addBoard;
 
     @FXML
@@ -62,7 +67,28 @@ public class BoardListViewController {
 		stage.setScene(new_scene);
 		stage.show();
     }
-
+    
+    @FXML
+    void onRemoveBoard(ActionEvent event) throws IOException {
+    	Stage popup = createModal(); 
+		FXMLLoader loader = (new RemoveBoardViewLoader()).load(); 
+		BorderPane view = loader.load();
+		RemoveBoardViewController cont = loader.getController(); 
+		cont.setStage(popup);
+		cont.setClient(client);
+		cont.setModel(user.getBoards());
+		Scene new_scene = new Scene(view);
+		popup.setScene(new_scene);
+		popup.show();
+    }
+    
+    public Stage createModal() {
+    	Stage popup = new Stage();
+    	popup.initModality(Modality.APPLICATION_MODAL);
+    	popup.initOwner(this.stage);
+    	return popup; 
+    }
+    
 
     @FXML
     void onLogoutUser(ActionEvent event) throws IOException {
