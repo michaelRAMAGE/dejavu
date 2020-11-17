@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -82,21 +83,21 @@ public class TestListView
 	}
 	
 	
-//	@Test
-//	public void testChangeListName(FxRobot robot) throws InterruptedException 
-//	{
-//		// check initial list name
-//		String list_s = "#list0";
-//		String text_field_s = "#listTitleTextField0";
-//		Assertions.assertThat(robot.lookup(list_s)).isNotEqualTo(null);
-//		assert(testHelper.checkTextField(robot, text_field_s, "Week2") == false);
-//		assert(testHelper.checkTextField(robot, text_field_s, "Week1") == true);
-//		
-//		// change list name and check if label was changed successfully
-//		testHelper.enterTextInField(robot, text_field_s, "Week0");
-//		assert(testHelper.checkTextField(robot, text_field_s, "Week0") == true);
-//		Thread.sleep(2000);
-//	}
+	@Test
+	public void testChangeListName(FxRobot robot) throws InterruptedException 
+	{
+		// check initial list name
+		String list_s = "#list0";
+		String text_field_s = "#listTitleTextField0";
+		Assertions.assertThat(robot.lookup(list_s)).isNotEqualTo(null);
+		assert(testHelper.checkTextField(robot, text_field_s, "Week2") == false);
+		assert(testHelper.checkTextField(robot, text_field_s, "Week1") == true);
+		
+		// change list name and check if label was changed successfully
+		testHelper.enterTextInField(robot, text_field_s, "Week0");
+		assert(testHelper.checkTextField(robot, text_field_s, "Week0") == true);
+		Thread.sleep(2000);
+	}
 	
 
 //	// this is tested in testcardcreate and boardview
@@ -108,43 +109,43 @@ public class TestListView
 //		addCard(robot, "NewCard2");	
 //		addCard(robot, "NewCard3");	
 //	}
+//	
 	
-	
-//	@Test
-//	public void testMoveCard(FxRobot robot) throws InterruptedException {
-//		
-//		addCard(robot, "NewCard1");	
-//		addCard(robot, "NewCard2");	
-//		addCard(robot, "NewCard3");	
-//		
-//		robot.clickOn("#editListButton0");
-//		robot.clickOn("#moveCardInListButton");
-//		
-//		robot.clickOn("#choiceBoxA").clickOn("1");
-//		robot.clickOn("#choiceBoxB").clickOn("3");
-//		robot.clickOn("#saveButton"); 
-//		
-//		assert(robot.lookup("#01").queryAs(Button.class).getText().equals("NewCard2") == true);
-//		assert(robot.lookup("#02").queryAs(Button.class).getText().equals("NewCard3") == true);
+	@Test
+	public void testMoveCard(FxRobot robot) throws InterruptedException {
+		
+		addCard(robot, "NewCard1");	
+		addCard(robot, "NewCard2");	
+		addCard(robot, "NewCard3");	
+		
+		robot.clickOn("#editListButton0");
+		robot.clickOn("#moveCardInListButton");
+		
+		robot.clickOn("#choiceBoxA").clickOn("1");
+		robot.clickOn("#choiceBoxB").clickOn("2");
+		robot.clickOn("#saveButton"); 
+		
+		assert(robot.lookup("#01").queryAs(Button.class).getText().equals("NewCard3") == true);
+		assert(robot.lookup("#02").queryAs(Button.class).getText().equals("NewCard2") == true);
 //		assert(robot.lookup("#03").queryAs(Button.class).getText().equals("NewCard1") == true);
-//		Thread.sleep(3500); // if not enough time given, checks will not have enough time to go through 
-//	}
-	
+		Thread.sleep(3500); // if not enough time given, checks will not have enough time to go through 
+	}
 
-//	@Test
-//	public void testRemoveCard(FxRobot robot) throws InterruptedException 
-//	{
-//		addCard(robot, "NewCard1");	
-//		addCard(robot, "NewCard2");	
-//		addCard(robot, "NewCard3");
-//		
-//		robot.clickOn("#01"); // list 0 card 1
-//		robot.clickOn("#removeCardButton");
-//		
+
+	@Test
+	public void testRemoveCard(FxRobot robot) throws InterruptedException 
+	{
+		Thread.sleep(2000);
+
+		robot.clickOn("#00"); // list 0 card 1
+		Thread.sleep(1000);
+		robot.clickOn("#removeCardButton");
+		
+		
 //		assert (robot.lookup("#01").queryAs(Button.class).getText().equals("NewCard1") == false);
-//		Thread.sleep(1000);
-//
-//	}
+		Thread.sleep(1000);
+
+	}
 	
 	@AfterAll
 	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {

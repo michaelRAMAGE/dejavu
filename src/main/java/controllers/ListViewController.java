@@ -37,7 +37,6 @@ public class ListViewController {
 	
 	public void setStage(Stage stage) {
 		this.stage = stage;
-    	System.out.println("lISTvIEWController setstage: " + stage); 
 
 	}
 	
@@ -76,7 +75,6 @@ public class ListViewController {
 			Card card = cards.get(i); 
 			// Create buttons for flow pane
 			String custom_id = Integer.toString(list_idx) + Integer.toString(i);
-//			System.out.println("Text: " + card.getName() + ", id: " + custom_id);
 			Button button = createCardButton(card.getName(), custom_id, new int[]{300, 26});
 			
 			int card_idx = i; 
@@ -89,7 +87,6 @@ public class ListViewController {
 					view = loader.load(); 
 					CustomCardEditViewController cont = loader.getController();
 					Stage popup = createModal(); 
-					System.out.println("creating button: " + popup);
 					
 					cont.setStage(popup);
 					cont.setClient(client);
@@ -97,7 +94,7 @@ public class ListViewController {
 					
 					Scene new_scene = new Scene(view);
 					popup.setScene(new_scene);
-//					popup.show(); 
+					popup.show(); 
 				} catch (IOException e)
 				{
 					// TODO Auto-generated catch block
