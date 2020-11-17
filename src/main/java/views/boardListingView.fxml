@@ -34,6 +34,7 @@
          </BorderPane.margin>
          <children>
             <Button id="addBoardButton" fx:id="addBoard" mnemonicParsing="false" onAction="#onAddBoard" text="Add Board" />
+            <Button id="addBoardButton" fx:id="addBoard1" mnemonicParsing="false" onAction="#onAddBoard" text="Remove Board" />
             <Button id="logoutUserButton" fx:id="logoutUser" mnemonicParsing="false" onAction="#onLogoutUser" text="Logout" />
          </children>
       </VBox>

@@ -71,7 +71,8 @@ public class TestBoardListView
     	String password = "jim123";
     	boolean login_success = client.loginUser(email, password);
     	assert(login_success == true); 
-    	
+		user_test_boards = client.user.getBoards(); // gte user boards 
+
     	// Load the view
     	BorderPane view = loader.load(); 
     	cont = loader.getController(); 
@@ -86,7 +87,6 @@ public class TestBoardListView
 	@Test
 	public void testLoadUserBoards(FxRobot robot) throws InterruptedException {
 		Thread.sleep(1000);
-		user_test_boards = client.user.getBoards(); // gte user boards 
 		
     	// Get the desired flow pane for BoardListView
 		FlowPane board_list_flow_pane = robot.lookup("#boardListFlowPane").queryAs(javafx.scene.layout.FlowPane.class);
@@ -109,13 +109,32 @@ public class TestBoardListView
 		robot.clickOn("#" + test_board.boardID); 
 	}
 	
-	// this is tested in testboard create view (too?)
+	// this is tested in testboardcreateview too
 	@Test
 	public void testAddBoard(FxRobot robot) throws InterruptedException 
 	{		
+    	int boards_size = user_test_boards.size(); // this will not update but use as ref
+
 		robot.clickOn("#addBoardButton"); 
+		testHelper.enterTextInField(robot, "#nameTextField", "NewBoard");
+		robot.clickOn("#createButton");
+		
 		Thread.sleep(1000);
+		
+		int should_be_size = ++boards_size; 
+		System.out.println(boards_size);
+		assert(robot.lookup("#boardListFlowPane")
+    			.queryAs(javafx.scene.layout.FlowPane.class)
+    			.getChildrenUnmodifiable().size() == should_be_size);
 	}
+	
+	
+//	@Test
+//	public void testRemoveBoard(FxRobot robot) throws InterruptedException 
+//	{		
+//		robot.clickOn("#addBoardButton"); 
+//		Thread.sleep(1000);
+//	}
 	
 	@Test
 	public void logOut(FxRobot robot) throws InterruptedException 
