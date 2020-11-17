@@ -16,3 +16,6 @@ be there because that scene is expected to be in the foreground, however
 it might not be in the foreground due to another test doing something.
 In non gui tests, we just use before each and set the scene each time,
 but I am not sure @Start does this.
+
+
+All implemented functionality is also tested, with the exception of what has been mentioned and perhaps some other very small thing that never made it back on my mind. 
