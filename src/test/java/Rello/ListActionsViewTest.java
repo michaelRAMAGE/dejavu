@@ -74,6 +74,9 @@ public class ListActionsViewTest
 		stage.show();
 	}
 	
+	// The functionality here is really tested on TestListView, other tests require 
+	// these atomic structures to work
+	
 	// Already tested in board view, createcard view, and listview
 	@Test
 	public void testAddCard(FxRobot robot) throws InterruptedException
@@ -81,6 +84,7 @@ public class ListActionsViewTest
 		robot.clickOn("#addCardButton");
 	}
 	
+	// List view tests this
 	@Test
 	public void testMoveCard(FxRobot robot) throws InterruptedException
 	{

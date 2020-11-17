@@ -3,7 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Rello.Card;
+import Rello.Board;
 import Rello.Client;
 import Rello.List;
 import javafx.collections.FXCollections;
@@ -19,48 +19,49 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
 
-public class MoveCardViewController {
-	
-	Stage modalStage;
-	Stage stage; 
+public class MoveListViewController {
+
 	Client client;
-	List list; 
+	Stage stage;
+	ArrayList<List> lists; 
 	int list_idx; 
 	
-	public void setStage(Stage stage) {
-		this.stage = stage; 
-	}
-	
-	public void setClient(Client client)
+    public void setClient(Client client)
 	{
 		this.client = client;
 	}
 
-	public void setModel(List list, int list_idx)
+	public void setStage(Stage stage)
 	{
-		this.list = list;
-		ObservableList<Integer> obs_cards = FXCollections.observableArrayList();
-		for (int i=0; i<list.getCards().size(); i++) {
-			obs_cards.add(i);
-		}
-		choiceBoxA.setItems(obs_cards);
-		choiceBoxB.setItems(obs_cards);
+		this.stage = stage;
 	}
 
-	@FXML
+	public void setModel(ArrayList<List> lists, int list_idx)
+	{
+		this.lists = lists;
+		this.list_idx = list_idx; 
+		currentListLabel.setText(Integer.toString(list_idx) + ", " + lists.get(list_idx).getName());
+		ObservableList<String> obs_list = FXCollections.observableArrayList();
+		for (int i=0; i<lists.size(); i++) {
+			obs_list.add(Integer.toString(i) + ", " + lists.get(list_idx).getName()); // index, name
+		}
+		choiceBox.setItems(obs_list); 
+	}
+
+    @FXML
     private Label currentCardInfoLabel11;
 
     @FXML
     private Label currentCardInfoLabel12;
 
     @FXML
-    private ChoiceBox<Integer> choiceBoxA;
+    private Label currentListLabel;
 
     @FXML
     private Label currentCardInfoLabel121;
 
     @FXML
-    private ChoiceBox<Integer> choiceBoxB;
+    private ChoiceBox<String> choiceBox;
 
     @FXML
     private Button cancelButton;
@@ -70,17 +71,20 @@ public class MoveCardViewController {
 
     @FXML
     void onCancel(ActionEvent event) {
-    	stage.hide(); 
+    	stage.hide();
     }
 
     @FXML
     void onSave(ActionEvent event) throws IOException {
-    	int startIdx = choiceBoxA.getValue();
-    	int endIdx = choiceBoxB.getValue(); 
-    
+    	String targetIndexString = choiceBox.getValue(); 
+    	String[] targetIndexSplit = targetIndexString.split(",");
+    	int targetIndex = Integer.parseInt(targetIndexSplit[0]);
+    	
     	// Modify local list and then set it on client to pass back
-    	list.moveCardInList(startIdx, endIdx);
-    	client.getUser().getBoard(list.getBoard().getName()).getLists().set(list_idx, list);  
+    	Board board = lists.get(list_idx).getBoard();
+    	board.moveList(list_idx, targetIndex);
+    	
+    	client.getUser().replaceBoard(board.getName(), board);  
     	stage.hide(); 
     	
     	Stage main_stage = (Stage) stage.getOwner();
@@ -92,11 +96,12 @@ public class MoveCardViewController {
     	CustomBoardViewController cont = loader.getController();
     
     	cont.setClient(client);
-    	cont.setModel(client.getUser().getBoard(list.getBoard().getName()));
+    	cont.setModel(board);
     	cont.setStage(main_stage);
     	Scene new_scene = new Scene(view);
     	main_stage.setScene(new_scene);	
     	main_stage.show();
     }
+
 
 }
