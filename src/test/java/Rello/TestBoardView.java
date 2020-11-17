@@ -111,7 +111,6 @@ public class TestBoardView
 		robot.clickOn("#save");
 		
 		// check name after the change 
-		
 		Thread.sleep(1000);
 	}
 	
