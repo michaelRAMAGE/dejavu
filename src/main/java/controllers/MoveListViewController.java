@@ -43,7 +43,7 @@ public class MoveListViewController {
 		currentListLabel.setText(Integer.toString(list_idx) + ", " + lists.get(list_idx).getName());
 		ObservableList<String> obs_list = FXCollections.observableArrayList();
 		for (int i=0; i<lists.size(); i++) {
-			obs_list.add(Integer.toString(i) + ", " + lists.get(list_idx).getName()); // index, name
+			obs_list.add(Integer.toString(i) + ", " + lists.get(i).getName()); // index, name
 		}
 		choiceBox.setItems(obs_list); 
 	}
@@ -84,20 +84,22 @@ public class MoveListViewController {
     	Board board = lists.get(list_idx).getBoard();
     	board.moveList(list_idx, targetIndex);
     	
+
     	client.getUser().replaceBoard(board.getName(), board);  
+    	Stage main_stage = (Stage) stage.getOwner();
+
     	stage.hide(); 
     	
-    	Stage main_stage = (Stage) stage.getOwner();
     	// reload the main stage to reflect changes
 		FXMLLoader loader = (new CustomBoardViewLoader()).load(); 
 
     	// Load the view
     	BorderPane view = loader.load(); 
     	CustomBoardViewController cont = loader.getController();
-    
+    	
+    	cont.setStage(main_stage);
     	cont.setClient(client);
     	cont.setModel(board);
-    	cont.setStage(main_stage);
     	Scene new_scene = new Scene(view);
     	main_stage.setScene(new_scene);	
     	main_stage.show();

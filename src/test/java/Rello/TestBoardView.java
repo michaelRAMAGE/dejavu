@@ -21,6 +21,7 @@ import controllers.CustomBoardViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
 import utils.GuiTestHelper;
@@ -59,54 +60,80 @@ public class TestBoardView
     	// Load the view
     	BorderPane view = loader.load(); 
     	cont = loader.getController(); 
+    	System.out.println("Setting main stage: " + stage);
+    	cont.setStage(stage);
     	cont.setClient(client);
     	board = client.getUser().getBoard("Team Jim");
     	cont.setModel(board);
-    	cont.setStage(stage);
+    	
+
+    	
+
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
     	stage.show();
 	}
-//	
-//	@Test 
-//	public void testDeepCheckLists(FxRobot robot) throws InterruptedException, IOException {
-//		Thread.sleep(1000);
-//		ArrayList<List> lists = board.getLists();	
-//		for (int i=0; i<lists.size(); i++) {
-//			List list = lists.get(i);
-//			ArrayList<Card> cards = list.getCards();
-//			String list_selector = "list"+Integer.toString(i);
-//			Assertions.assertThat(robot.lookup(list_selector)).isNotEqualTo(null);
-//			for (int j=0; j<cards.size(); j++) {
-//				Card card = cards.get(j);
-//				String card_selector = "#" + Integer.toString(i) + Integer.toString(j);
-//				Assertions.assertThat(robot.lookup(card_selector)).isNotEqualTo(null);
-//			}	
-//		}
-//	}
-//	
-//	@Test 
-//	public void testAddList(FxRobot robot) throws InterruptedException, IOException {
-//		// Do the adding
-//		robot.clickOn("#onAddListButton");
-//		Thread.sleep(1000);
-//		
-//		// adding lists is checked in add list test
-//		
-//	}
 	
+	@Test 
+	public void testDeepCheckLists(FxRobot robot) throws InterruptedException, IOException {
+		Thread.sleep(1000);
+		ArrayList<List> lists = board.getLists();	
+		for (int i=0; i<lists.size(); i++) {
+			List list = lists.get(i);
+			ArrayList<Card> cards = list.getCards();
+			String list_selector = "list"+Integer.toString(i);
+			Assertions.assertThat(robot.lookup(list_selector)).isNotEqualTo(null);
+			for (int j=0; j<cards.size(); j++) {
+				Card card = cards.get(j);
+				String card_selector = "#" + Integer.toString(i) + Integer.toString(j);
+				Assertions.assertThat(robot.lookup(card_selector)).isNotEqualTo(null);
+			}	
+		}
+	}
+	
+	@Test 
+	public void testAddList(FxRobot robot) throws InterruptedException, IOException {
+		// Do the adding
+		robot.clickOn("#onAddListButton");
+		Thread.sleep(1000);
+		
+		// adding lists is checked in add list test
+		
+	}
+
 	@Test 
 	public void testNameChange(FxRobot robot) throws InterruptedException, IOException {
 		testHelper.enterTextInField(robot,"#boardTitleTextField", "NewBoardName");
 		robot.clickOn("#save");
+		
+		// check name after the change 
+		
 		Thread.sleep(1000);
 	}
 	
-	// willl not be implemented
-	@Test 
-	public void testAddMembers() throws InterruptedException, IOException {
+	@Test
+	public void testMoveList(FxRobot robot) throws InterruptedException {
+		Thread.sleep(6000);
+
+		robot.clickOn("#editListButton0");
+		robot.clickOn("#moveListButton");
+		assert(robot.lookup("#currentListLabel").queryAs(javafx.scene.control.Label.class).getText().equals("0, Week1") == true);
+
+		robot.clickOn("#choiceBoxB").clickOn("1, Week2");
+		robot.clickOn("#saveButton");
 		
+		Assertions.assertThat(robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size()).isEqualTo(4);
+	    assert(testHelper.checkTextField(robot, "#listTitleTextField1", "Week1") == true);
+
+
+		Thread.sleep(6000);
 	}
+	
+//	// willl not be implemented
+//	@Test 
+//	public void testAddMembers() throws InterruptedException, IOException {
+//		
+//	}
 	
 	@AfterAll
 	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {

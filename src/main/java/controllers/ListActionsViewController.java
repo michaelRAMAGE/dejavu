@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.CardCreateViewLoader;
 import loaders.MoveCardViewLoader;
+import loaders.MoveListViewLoader;
 
 public class ListActionsViewController {
 
@@ -22,7 +23,6 @@ public class ListActionsViewController {
 	ArrayList<List> lists; 
 	List list; 
 	int list_idx;
-	public Stage modalStage; 
 	
 	public void setStage(Stage stage) {
 		this.stage = stage; 
@@ -37,10 +37,7 @@ public class ListActionsViewController {
 		this.list = lists.get(list_idx);
 	}
 	
-	public void setModalStage(Stage modalStage) {
-		this.modalStage = modalStage;
-	}
-	
+
     @FXML
     private Button addCardButton;
 
@@ -56,17 +53,32 @@ public class ListActionsViewController {
     	FXMLLoader createCardLoader = (new CardCreateViewLoader()).load();
 		BorderPane view = createCardLoader.load();
 		CardCreateViewController cont = createCardLoader.getController(); 
+		
 		cont.setStage(stage);
 		cont.setClient(client);
 		cont.setModel(list, list_idx);
+		
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
     	stage.show(); 
     }
     
     @FXML
-    void onMoveList(ActionEvent event) {
-    	
+    void onMoveList(ActionEvent event) throws IOException {
+    	FXMLLoader loader = (new MoveListViewLoader()).load();
+		BorderPane view = loader.load();
+		MoveListViewController cont = loader.getController(); 
+
+		cont.setStage(stage);		
+		cont.setClient(client);
+		cont.setModel(lists, list_idx);
+    	Stage main_stage = (Stage) stage.getOwner();
+    	if (main_stage == null) {
+    		System.out.println("main stage is null");
+    	}
+	  	Scene new_scene = new Scene(view);
+    	stage.setScene(new_scene);	
+    	stage.show(); 
     }
     
     @FXML
@@ -78,7 +90,6 @@ public class ListActionsViewController {
 		cont.setStage(stage);
 		cont.setClient(client);
 		cont.setModel(list, list_idx);
-//		cont.setModalStage(modalStage);
 		
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	

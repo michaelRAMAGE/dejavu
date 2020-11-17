@@ -82,13 +82,22 @@ public class ListActionsViewTest
 	public void testAddCard(FxRobot robot) throws InterruptedException
 	{
 		robot.clickOn("#addCardButton");
+		Thread.sleep(2000);
 	}
 	
 	// List view tests this
 	@Test
 	public void testMoveCard(FxRobot robot) throws InterruptedException
 	{
-		robot.clickOn("#addCardButton");
+		robot.clickOn("#moveCardInListButton");
+		Thread.sleep(2000);
+	}
+	
+	// test move list functionality testing is on TestBoardView
+	@Test
+	public void testMoveList(FxRobot robot) throws InterruptedException {
+		robot.clickOn("#moveListButton");
+		Thread.sleep(2000);
 	}
 
 	@AfterAll

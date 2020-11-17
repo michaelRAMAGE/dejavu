@@ -188,12 +188,8 @@ public class Board implements Serializable
 	}
 	
 	public void moveList(int old_idx, int new_idx) {
-		if (new_idx < lists.size()) {
-			lists.add(new_idx, lists.get(old_idx)); 
-		}
-		else {
-			lists.add(lists.get(old_idx)); 			
-		}
+		List list_to_move = lists.remove(old_idx);
+		lists.add(new_idx, list_to_move);
 	}
 	
 	public List addList(String name) {

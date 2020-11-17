@@ -67,9 +67,9 @@ public class CustomBoardViewController
     	FXMLLoader loader = (new ListCreateViewLoader()).load();
     	BorderPane view = loader.load(); 
     	ListCreateViewController cont = loader.getController(); 
+    	cont.setStage(stage);
     	cont.setClient(client);
 		cont.setModel(board); 
-    	cont.setStage(stage);
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);
     }
@@ -81,12 +81,8 @@ public class CustomBoardViewController
 
     @FXML
     void onSave(ActionEvent event) {
-    	String new_name = boardTitleTextField.getText(); 
-//		System.out.println("Before: " + client.getUser().getBoard(bname.get()).getName()); 
-//    	boardTitleTextField.setText(board.getName());
-		
+    	String new_name = boardTitleTextField.getText(); 		
 		client.getUser().getBoard(board.getName()).setName(new_name);
-		System.out.println("After: " + client.getUser().getBoard(new_name).getName()); 
     }
     
     @FXML
@@ -109,8 +105,8 @@ public class CustomBoardViewController
     	BorderPane view = loader.load(); 
     	BoardListViewController cont = loader.getController(); 
 //    	client.updateBoard(board, client.getUser()); // save to server on return 
+    	cont.setStage(this.stage);
     	cont.setClient(client);
-    	cont.setStage(stage);
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
     	stage.show(); 
@@ -118,6 +114,7 @@ public class CustomBoardViewController
 
     public void setStage(Stage stage) { 
     	this.stage = stage;
+    	System.out.println("Set stage in CustomBoardViewController: " + stage);
     }
     
     public void setClient(Client client) {
@@ -148,13 +145,12 @@ public class CustomBoardViewController
 	}
 	
 	public BorderPane createListView(List list, int list_idx) throws IOException { 
-		System.out.println("creating list");
 		FXMLLoader loader = (new ListViewLoader()).load(); 
 		BorderPane listView = loader.load();
 		String custom_id = "list"+Integer.toString(list_idx);
 		listView.setId(custom_id);
 		ListViewController cont = loader.getController(); 
-		cont.setStage(stage);
+		cont.setStage(this.stage);
 		cont.setClient(client);
 		cont.setModel(list, list_idx);
 		return listView; 
