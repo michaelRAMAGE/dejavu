@@ -133,6 +133,7 @@ public class CustomBoardViewController
 		ArrayList<List> lists = this.board.getLists();
 		for (int i=0; i<lists.size(); i++) {
 			List list = lists.get(i);
+			System.out.println(list.getName() + ": " + i);
 			BorderPane listview = createListView(list, i);
 			addListViewToContainer(listview); 
 		}
@@ -151,8 +152,8 @@ public class CustomBoardViewController
 		listView.setId(custom_id);
 		ListViewController cont = loader.getController(); 
 		cont.setStage(this.stage);
-		cont.setClient(client);
 		cont.setModel(list, list_idx);
+		cont.setClient(client);
 		return listView; 
 	}	
 }

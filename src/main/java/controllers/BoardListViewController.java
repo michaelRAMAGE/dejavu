@@ -126,6 +126,7 @@ public class BoardListViewController {
 					CustomBoardViewController cont = loader.getController(); 
 	    			cont.setStage(stage);
 	    			cont.setClient(client);
+	    			cont.setModel(curr_board);
 
 				} catch (IOException e)
 				{

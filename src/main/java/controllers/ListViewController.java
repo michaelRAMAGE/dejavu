@@ -46,6 +46,8 @@ public class ListViewController {
 	
 	public void setModel(List list, int list_idx) {
 		this.list = list; 
+		this.list_idx = list_idx; 
+		System.out.println("Set list view controller model: " + list.getName() + " : " + list_idx);
 		listTitleTextField.setText(list.getName());
 		setIds(list_idx); 
 		loadCards(); 
@@ -129,16 +131,20 @@ public class ListViewController {
 
     @FXML
     void onEditList(ActionEvent event) throws IOException {
+    	System.out.println("Editing list: " + list.getName() + ":" + list_idx);
+    	
     	FXMLLoader loader = (new ListActionsViewLoader()).load();
 		BorderPane view = loader.load();
 		
     	Stage popup = createModal(); 
 
-    
 		ListActionsViewController cont = loader.getController();
 		cont.setStage(popup);
 		cont.setClient(client);
+		
 		ArrayList<List> lists = client.getUser().getBoard(list.getBoard().getName()).getLists();  
+		
+		System.out.println();
 		cont.setModel(lists, list_idx); // pass in all lists and the current list of this list view
 		
     	Scene new_scene = new Scene(view);

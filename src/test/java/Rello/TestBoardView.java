@@ -20,6 +20,7 @@ import org.testfx.framework.junit5.Start;
 import controllers.CustomBoardViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -129,6 +130,23 @@ public class TestBoardView
 				.getChildren().size()).isEqualTo(4);
 	    assert(testHelper.checkTextField(robot, "#listTitleTextField1", "Week1") == true);
 		Thread.sleep(3000);
+	}
+	
+	@Test
+	public void testRemoveList(FxRobot robot) throws InterruptedException {
+		int prev_lists = robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size();
+		
+		robot.clickOn("#editListButton2");
+		robot.clickOn("#removeListButton");
+
+		Thread.sleep(1000);
+
+		int after_expected = --prev_lists;
+		int after_actual = robot.lookup("#listViewStorageContainer").queryAs(HBox.class).getChildren().size();
+		assert(after_expected == after_actual); 
+		
+//		Assertions.assertThat(robot.lookup("#listTitleTextField0").queryAs(TextField.class))
+
 	}
 	
 	// willl not be implemented

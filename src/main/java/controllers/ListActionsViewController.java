@@ -13,16 +13,17 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.CardCreateViewLoader;
+import loaders.CustomBoardViewLoader;
 import loaders.MoveCardViewLoader;
 import loaders.MoveListViewLoader;
 
 public class ListActionsViewController {
 
 	Stage stage;
-	Client client;
-	ArrayList<List> lists; 
-	List list; 
-	int list_idx;
+	public Client client;
+	public ArrayList<List> lists; 
+	public List list; 
+	public int list_idx;
 	
 	public void setStage(Stage stage) {
 		this.stage = stage; 
@@ -35,6 +36,9 @@ public class ListActionsViewController {
 	public void setModel(ArrayList<List> lists, int list_idx) {
 		this.lists = lists;
 		this.list = lists.get(list_idx);
+		this.list_idx = list_idx;
+		
+		System.out.print("List actions of " + list.getName() + ":" + list_idx);
 	}
 	
 
@@ -47,6 +51,10 @@ public class ListActionsViewController {
     @FXML
     private Button moveCardInListButton;
     
+
+    @FXML
+    private Button removeListButton;
+    
     @FXML
     void onAddCard(ActionEvent event) throws IOException {
 		// Load up card creation view
@@ -56,7 +64,7 @@ public class ListActionsViewController {
 		
 		cont.setStage(stage);
 		cont.setClient(client);
-		cont.setModel(list, list_idx);
+		cont.setModel(this.list, this.list_idx);
 		
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
@@ -73,9 +81,6 @@ public class ListActionsViewController {
 		cont.setClient(client);
 		cont.setModel(lists, list_idx);
     	Stage main_stage = (Stage) stage.getOwner();
-    	if (main_stage == null) {
-    		System.out.println("main stage is null");
-    	}
 	  	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
     	stage.show(); 
@@ -95,4 +100,29 @@ public class ListActionsViewController {
     	stage.setScene(new_scene);	
     	stage.show(); 
     }
+    
+    @FXML
+    void onRemoveList(ActionEvent event) throws IOException {
+    	Stage main_stage = (Stage) stage.getOwner();
+    	stage.hide();
+    	
+    	// remove list and update it accordingly
+    	System.out.println("Removing list: " + lists.get(this.list_idx).getName() + ": " + this.list_idx);
+    	lists.remove(this.list_idx);
+    	client.getUser().getBoard(list.getBoard().getName()).setLists(lists);
+    	
+    	// load board again
+		FXMLLoader loader = (new CustomBoardViewLoader()).load();
+		BorderPane view = loader.load();
+		CustomBoardViewController cont = loader.getController(); 
+		
+		cont.setStage(main_stage);
+		cont.setClient(client);
+		cont.setModel(client.getUser().getBoard(list.getBoard().getName())); // send newest version back
+		
+		Scene s = new Scene(view);
+		main_stage.setScene(s);
+		main_stage.show(); 
+    }
+
 }

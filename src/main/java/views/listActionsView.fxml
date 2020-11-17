@@ -27,8 +27,7 @@
             <Button id="addCardButton" fx:id="addCardButton" mnemonicParsing="false" onAction="#onAddCard" text="Add Card" />
             <Button id="moveListButton" fx:id="moveListButton" mnemonicParsing="false" onAction="#onMoveList" text="Move List" />
             <Button id="moveCardInListButton" fx:id="moveCardInListButton" mnemonicParsing="false" onAction="#onMoveCardInList" text="Move card in list" />
-            <Button disable="true" mnemonicParsing="false" text="Copy List" />
-            <Button disable="true" mnemonicParsing="false" text="Move All Cards in This List" />
+            <Button id="removeListButton" fx:id="removeListButton" mnemonicParsing="false" onAction="#onRemoveList" text="Remove list" />
          </children>
       </VBox>
    </center>
