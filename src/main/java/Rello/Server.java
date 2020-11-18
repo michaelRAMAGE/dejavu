@@ -177,6 +177,20 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			return new_user; 
 		}
 		else {
+			return users.get(email); 
+		}
+	}
+	
+	// Add user using email and password 
+	public User registerUser(String email, String password) { 
+		System.out.println("email to try: " + email);
+		if (!users.containsKey(email)) { 
+			System.out.println(users);
+			User new_user = new User(email, password);
+			users.put(email, new_user);
+			return new_user; 
+		}
+		else {
 			return null; 
 		}
 	}
@@ -316,5 +330,17 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	{
 		// TODO Auto-generated method stub
 //		System.out.println("Method called from client.");
+	}
+
+	@Override
+	public User removeBoard(Board board, User user) throws RemoteException
+	{
+		for (User u : users.values()) {
+			if (u.getBoards().containsKey(board.getName())) {
+				u.removeBoard(board.getName());		
+			}
+		}
+		board_index.remove(board.getName());
+		return users.get(user.getEmail());
 	}
 }

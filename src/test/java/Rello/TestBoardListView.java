@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
@@ -24,11 +25,15 @@ import controllers.BoardListViewController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import loaders.BoardListViewLoader;
 import loaders.SaveChangesViewLoader;
 import utils.GuiTestHelper;
@@ -133,9 +138,18 @@ public class TestBoardListView
 	public void testRemoveBoard(FxRobot robot) throws InterruptedException 
 	{		
 		int prev_children = robot.lookup("#boardListFlowPane").queryAs(FlowPane.class).getChildren().size(); 
-		robot.clickOn("#removeBoardButton").clickOn("#choiceBox");
-		robot.clickOn("Team Jim").clickOn("#saveButton"); 
-		Thread.sleep(1000);
+		robot.clickOn("#removeBoardButton");
+		List<Window> stages = robot.listWindows();
+		robot.targetWindow(0).clickOn("#choiceBox").clickOn("Team Jim");
+//		robot.clickOn(stages.get(1));
+//		robot.clickOn(stages.get(1));
+
+		Thread.sleep(1000); 
+		// thread issues when set directly
+		//		robot.lookup("#choiceBox").queryAs(ChoiceBox.class).setValue("Team Jim");
+		Thread.sleep(1000); 
+		robot.clickOn("#saveButton"); 
+
 		
 		int expected_after_children = --prev_children;
 		int actual_after_children = robot.lookup("#boardListFlowPane").queryAs(FlowPane.class).getChildren().size();

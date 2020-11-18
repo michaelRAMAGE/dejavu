@@ -1,5 +1,6 @@
 package loaders;
 
+import Rello.Client;
 import controllers.LoginViewController;
 import controllers.ServerViewController;
 import javafx.fxml.FXMLLoader;
@@ -8,11 +9,12 @@ import javafx.scene.layout.BorderPane;
 
 public class LoginViewLoader implements ViewLoaderInterface
 {
+	FXMLLoader loader; 
+	
 	@Override
 	public FXMLLoader load()
 	{
-		// load view
-		FXMLLoader loader = new FXMLLoader(ServerViewController.class
+		loader = new FXMLLoader(ServerViewController.class
 				.getResource("../views/loginView.fxml"));
 		return loader;
 	}

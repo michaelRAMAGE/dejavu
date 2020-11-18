@@ -85,31 +85,15 @@ public class CustomBoardViewController
 		client.getUser().getBoard(board.getName()).setName(new_name);
     }
     
+    // deprecated. user must exit board to board list and then can exit application if desired 
     @FXML
     void onExitApplication(ActionEvent event) throws IOException {
-		FXMLLoader loader = (new ServerViewLoader()).load(); 
-		BorderPane view = loader.load();
-		ServerViewController cont = loader.getController(); 
-//    	client.updateBoard(board, client.getUser()); // save to server on return 
-		cont.setStage(stage);
-		cont.setModel(Server.getInstance());
-		Scene new_scene = new Scene(view);
-		stage.setScene(new_scene);
-		stage.show();
     }
 
     @FXML
     void onGoBackToBoardList(ActionEvent event) throws IOException {
-    	// return to previous page
-    	FXMLLoader loader = (new BoardListViewLoader()).load(); 
-    	BorderPane view = loader.load(); 
-    	BoardListViewController cont = loader.getController(); 
-//    	client.updateBoard(board, client.getUser()); // save to server on return 
-    	cont.setStage(this.stage);
-    	cont.setClient(client);
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
-    	stage.show(); 
+    	SaveChangesViewTransition saveChangesView = new SaveChangesViewTransition(stage, client, board); 
+    	saveChangesView.showView();
     }
 
     public void setStage(Stage stage) { 
@@ -141,7 +125,7 @@ public class CustomBoardViewController
 
 	public void addListViewToContainer(BorderPane listView) { 
 		int insert_idx = listViewStorageContainer.getChildren().indexOf(addMembersButton);
-		if (insert_idx != 0) { insert_idx = insert_idx - 1; };  
+		if (insert_idx != 0) { insert_idx = insert_idx - 1; }
 		listViewStorageContainer.getChildren().add(listView); 
 	}
 	

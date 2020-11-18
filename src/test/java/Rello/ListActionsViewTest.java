@@ -75,7 +75,8 @@ public class ListActionsViewTest
 	}
 	
 	// The functionality here is really tested on TestListView, other tests require 
-	// these atomic structures to work
+	// these atomic structures to work. Therefore, the views buttons are tested to see
+	// if they are here and clickable
 	
 	// Already tested in board view, createcard view, and listview
 	@Test

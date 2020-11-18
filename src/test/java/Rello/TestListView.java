@@ -135,7 +135,6 @@ public class TestListView
 		
 		assert(robot.lookup("#01").queryAs(Button.class).getText().equals("NewCard3") == true);
 		assert(robot.lookup("#02").queryAs(Button.class).getText().equals("NewCard2") == true);
-//		assert(robot.lookup("#03").queryAs(Button.class).getText().equals("NewCard1") == true);
 		Thread.sleep(3500); // if not enough time given, checks will not have enough time to go through 
 	}
 

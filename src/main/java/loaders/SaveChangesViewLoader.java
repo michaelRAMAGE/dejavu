@@ -10,7 +10,7 @@ public class SaveChangesViewLoader implements ViewLoaderInterface
 	public FXMLLoader load()
 	{
     	FXMLLoader loader = new FXMLLoader(SaveChangesViewController.class
-    			.getResource("../views/saveBoardChangesView.fxml"));
+    			.getResource("../views/saveChangesView.fxml"));
 		return loader; 
 	}
 

@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import org.testfx.framework.junit5.Stop;
 import controllers.ServerViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import utils.ServerHelper;
@@ -59,6 +61,8 @@ public class TestServerConnectionView
 	{
 		Thread.sleep(1000);
 		robot.clickOn("#defaultConnectButton");
+		Assertions.assertThat(robot.lookup("#signInButton").queryAs(Button.class)).isNotEqualTo(null);
+		Thread.sleep(1000);
 	}
 	
 //	@Test

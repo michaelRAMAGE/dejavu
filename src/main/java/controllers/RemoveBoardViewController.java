@@ -70,6 +70,8 @@ public class RemoveBoardViewController {
     	stage.hide();
 
     	client.getUser().removeBoard(choiceBox.getValue());
+    	client.removeBoard(boards.get(choiceBox.getValue()), client.getUser());
+    	
     	FXMLLoader loader = (new BoardListViewLoader()).load();
     	BorderPane view = loader.load(); 
     	BoardListViewController cont = loader.getController(); 
@@ -79,5 +81,4 @@ public class RemoveBoardViewController {
     	main_stage.setScene(new_scene);
     	main_stage.show(); 
     }
-
 }

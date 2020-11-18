@@ -157,11 +157,19 @@ public class TestBoardView
 		}
 	}
 	
-	// willl not be implemented
+// will not be implemented
 //	@Test 
 //	public void testAddMembers() throws InterruptedException, IOException {
 //		
 //	}
+	
+	// TestSaveBoardChanges does more extensive testing on this. 
+	// This just demonstrates the button has a function. 
+	@Test
+	public void testBackToBoardList(FxRobot robot) throws InterruptedException {
+		robot.clickOn("#goBackToBoardListButton"); 
+		Thread.sleep(5000);
+	}
 	
 	@AfterAll
 	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {

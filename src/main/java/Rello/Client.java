@@ -63,7 +63,7 @@ public class Client {
 		if (SS == null) {
 			return false; 
 		}
-		User user_in = SS.addUser(email, password); 
+		User user_in = SS.registerUser(email, password); 
 		if (user_in == null) {
 			return false;
 		}
@@ -89,6 +89,18 @@ public class Client {
 			return false; 
 		}
 		User user_in = SS.createBoard(bname, user);
+		if (user_in == null) {
+			return false;
+		}
+		user = user_in; 
+		return true; 
+	}
+	
+	public boolean removeBoard(Board board, User user) throws RemoteException {
+		if (SS == null) {
+			return false; 
+		}
+		User user_in = SS.removeBoard(board, user);
 		if (user_in == null) {
 			return false;
 		}

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomBoardViewController">
+<BorderPane stylesheets="@basetheme.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="@basetheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomBoardViewController">
    <center>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -19,7 +19,7 @@
                <content>
                   <HBox id="listViewStorageContainer" fx:id="listViewStorageContainer" pickOnBounds="false" prefHeight="500.0" prefWidth="1000.0" scaleShape="false" spacing="25.0" style="-fx-border-color: transparent; -fx-border-width: 0;">
                      <children>
-                        <Button id="onAddListButton" fx:id="addListButton" mnemonicParsing="false" onAction="#onAddList" text="Add new list" />
+                        <Button id="onAddListButton" fx:id="addListButton" mnemonicParsing="false" onAction="#onAddList" prefWidth="100.0" text="Add new list" />
                      </children>
                   </HBox>
                </content>

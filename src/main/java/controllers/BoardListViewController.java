@@ -82,6 +82,7 @@ public class BoardListViewController {
 		popup.show();
     }
     
+    
     public Stage createModal() {
     	Stage popup = new Stage();
     	popup.initModality(Modality.APPLICATION_MODAL);
@@ -89,7 +90,6 @@ public class BoardListViewController {
     	return popup; 
     }
     
-
     @FXML
     void onLogoutUser(ActionEvent event) throws IOException {
 		FXMLLoader loader = (new LoginViewLoader()).load(); 
@@ -127,6 +127,10 @@ public class BoardListViewController {
 	    			cont.setStage(stage);
 	    			cont.setClient(client);
 	    			cont.setModel(curr_board);
+	    			
+	    			Scene s = new Scene(view);
+	    			stage.setScene(s);
+	    			stage.show();
 
 				} catch (IOException e)
 				{

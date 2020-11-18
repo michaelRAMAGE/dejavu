@@ -69,6 +69,7 @@ public class LoginViewController {
     	cont.setClient(client);
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
+    	stage.show(); 
     }
     
     
