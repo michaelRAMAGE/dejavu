@@ -60,7 +60,7 @@ public class BoardCreateViewController {
 		String new_board_name = nameTextField.getText();
 		if (nameTextField.getText() != "") {
 			client.getUser().createBoard(new_board_name);
-//				client.updateBoard(board, client.getUser());
+			client.createBoard(new_board_name, client.getUser());
 			switchToBoardListView(); 		
 		}
 	}

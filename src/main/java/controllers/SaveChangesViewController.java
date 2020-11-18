@@ -41,7 +41,9 @@ public class SaveChangesViewController {
     @FXML           
     void onDoNotSaveChanges(ActionEvent event) throws IOException {
     	// just go back to board list view 
-		boardListView = new BoardListViewTransition(stage, client);
+    	Stage main_stage = (Stage) stage.getOwner(); 
+    	stage.hide(); 
+		boardListView = new BoardListViewTransition(main_stage, client); // something
 		boardListView.showView(); 
     }
 

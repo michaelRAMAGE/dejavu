@@ -67,6 +67,7 @@ public class ServerViewController {
 		// Construct a client, connect them to host server 
 		String host = "localhost:1099"; // local host with default rmi registry port
 		String bind_name = "Server"; // name of reference to remote stub
+		
     	client = new Client(host, bind_name); // construct the client
 
     	// Set xml output name
@@ -91,6 +92,7 @@ public class ServerViewController {
 		
 		Scene new_scene = new Scene(view);
 		stage.setScene(new_scene);
+		stage.show(); 
 	}
     
 }

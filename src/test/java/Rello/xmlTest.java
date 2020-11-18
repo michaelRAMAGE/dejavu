@@ -18,6 +18,7 @@ class xmlTest
 	@BeforeEach
 	void setUp() throws Exception
 	{	
+		users.setXMLFileName("non_testing_users.xml");
 		System.out.println("setting up");
 		jim = users.addUser("jim@gmail.com","jim123");
 		alfred = users.addUser("alfred@gmail.com","alfred123");

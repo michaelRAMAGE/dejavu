@@ -46,9 +46,10 @@ public class ListCreateViewController  {
 		FXMLLoader loader = (new CustomBoardViewLoader()).load(); 
 		BorderPane view = loader.load(); 
 		CustomBoardViewController cont = loader.getController();
+		cont.setStage(stage);
 		cont.setClient(client);
 		cont.setModel(board);
-		cont.setStage(stage);
+
 		Scene new_scene = new Scene(view);
 		stage.setScene(new_scene);	
     }

@@ -1,14 +1,21 @@
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 import Rello.Server;
+import Rello.User;
 import controllers.ServerViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import utils.ServerHelper;
 
 public class Main extends Application
 {
-
+	ServerHelper local;
+	Server server;
 	static Scene s;
 	static Stage stage; 
 
@@ -19,8 +26,15 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-		// boot server
-		//.............
+		// boot server -- testing		
+		local = new ServerHelper();
+		server = local.bootServer("non_test_users.xml");
+		User user = server.getUser("jim@gmail.com");
+		if (user == null) {
+			System.out.println("null");
+		}
+
+		// Server is no longer used to start server
 		
 		// now when we open serverconnection
 		stage = primaryStage; 
@@ -31,8 +45,8 @@ public class Main extends Application
 		ServerViewController cont = loader.getController(); 
 		
 		// Set model for server
-		cont.setModel(Server.getInstance()); // will need to think about how to deal with singleton
 		cont.setStage(primaryStage); // will need to think about how to deal with singleton
+		cont.setModel(server); // will need to think about how to deal with singleton
 		
 		// Set up initial scene
 		s = new Scene(view);
@@ -43,6 +57,12 @@ public class Main extends Application
 		s = new_scene; 
 		stage.setScene(s);
 		stage.show();
+	}
+	
+	@Override
+	public void stop() throws AccessException, RemoteException, NotBoundException {
+		local.closeServer("non_test_users.xml");
+		stage.close();
 	}
 
 }

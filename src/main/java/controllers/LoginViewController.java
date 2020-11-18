@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.BoardListViewLoader;
+import loaders.RegisterViewLoader;
+import loaders.ServerViewLoader;
 import loaders.ViewLoaderInterface;
 
 public class LoginViewController {
@@ -23,9 +25,6 @@ public class LoginViewController {
 	public Client client; 
 	public Stage stage; 
 	
-	public LoginViewController() {
-		super(); 
-	}
 	
 	public void setClient(Client client)
 	{
@@ -47,11 +46,17 @@ public class LoginViewController {
 
     @FXML
     private Button signInButton;
+    @FXML
+    private Button goToRegister;
 
-
+    @FXML
+    private Button backToServerViewButton;
+    
     @FXML
     void onSignInClick(ActionEvent event) throws IOException {
     	boolean success = client.loginUser(userName.getText(), userPass.getText());
+    	
+    	client.tester();
     	System.out.println("Login success: " + success);
     	incNamePassLabel.setVisible(!success);	
     	if (success) {
@@ -60,6 +65,15 @@ public class LoginViewController {
     	userName.clear();
     	userPass.clear(); 
     }
+    
+    @FXML
+    void onBackToServerVIew(ActionEvent event) throws IOException {
+//    	FXMLLoader loader = (new ServerViewLoader()).load(); 
+//    	BorderPane view = loader.load();
+//    	ServerViewController cont = loader.getController(); 
+//    	cont.setStage(stage);
+    }
+
     
     void loadBoardListView() throws IOException {
     	FXMLLoader loader = (new BoardListViewLoader()).load();
@@ -70,9 +84,17 @@ public class LoginViewController {
     	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
     	stage.show(); 
+    }    
+    
+    @FXML
+    void onGoToRegister(ActionEvent event) throws IOException {
+    	FXMLLoader loader = (new RegisterViewLoader()).load();
+    	BorderPane view = loader.load(); 
+    	RegisterViewController cont = loader.getController(); 
+    	cont.setStage(stage);
+    	cont.setClient(client);
+    	Scene new_scene = new Scene(view);
+    	stage.setScene(new_scene);	
+    	stage.show(); 
     }
-    
-    
-    
-    
 }

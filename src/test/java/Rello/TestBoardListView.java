@@ -133,7 +133,8 @@ public class TestBoardListView
 		Thread.sleep(2000);
 	}
 	
-	
+	// this will fail sometimes because the robot sees team jim on two different stages and chooses
+	// the wrong one sometimes (i thought targetwindow worked but not always)
 	@Test
 	public void testRemoveBoard(FxRobot robot) throws InterruptedException 
 	{		

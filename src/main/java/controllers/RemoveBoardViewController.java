@@ -70,7 +70,9 @@ public class RemoveBoardViewController {
     	stage.hide();
 
     	client.getUser().removeBoard(choiceBox.getValue());
-    	client.removeBoard(boards.get(choiceBox.getValue()), client.getUser());
+    	System.out.println(boards.get(choiceBox.getValue()));
+
+    	client.removeBoard(client.getUser().getBoard(choiceBox.getValue()), client.getUser());
     	
     	FXMLLoader loader = (new BoardListViewLoader()).load();
     	BorderPane view = loader.load(); 

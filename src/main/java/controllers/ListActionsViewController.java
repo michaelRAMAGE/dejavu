@@ -101,9 +101,7 @@ public class ListActionsViewController {
     
     @FXML
     void onRemoveList(ActionEvent event) throws IOException {
-    	Stage main_stage = (Stage) stage.getOwner();
-    	stage.hide();
-    	
+
     	// remove list and update it accordingly
     	lists.remove(this.list_idx);
     	client.getUser().getBoard(list.getBoard().getName()).setLists(lists);
@@ -113,6 +111,9 @@ public class ListActionsViewController {
 		BorderPane view = loader.load();
 		CustomBoardViewController cont = loader.getController(); 
 		
+    	Stage main_stage = (Stage) stage.getOwner();
+    	stage.hide();
+    	
 		cont.setStage(main_stage);
 		cont.setClient(client);
 		cont.setModel(client.getUser().getBoard(list.getBoard().getName())); // send newest version back

@@ -29,6 +29,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	
 	// Different servers have different xmls
 	private static String SERIALIZED_FILE_NAME = "users.xml"; // xml storage file name || ip_data.xml 
+
+	private static String SAVE_SERIALIZED_FILE_NAME = "users.xml"; // xml storage file name || ip_data.xml 
 	
 	// pivot of our board model (main data store)
 	private static HashMap<String, User> users; // global users hashmap --> stored to xml/retrieved from xml
@@ -44,7 +46,22 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		users = new HashMap<String, User>(); 
 		board_index = new HashMap<String, Board>(); 
 		setAllData(); 
+
+
 	}
+	
+	// Private constructor 
+	private Server(String read_from) throws RemoteException 
+	{ 
+		super(); 
+		setXMLFileName(read_from); 
+		users = new HashMap<String, User>(); 
+		board_index = new HashMap<String, Board>(); 
+		setAllData(); 
+		System.out.println(SERIALIZED_FILE_NAME);
+		System.out.println(users);
+	}
+	
 	
 	// Static method to get single class instance
 	public static synchronized Server getInstance() {
@@ -60,6 +77,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		}  
 		return uniqueInstance; 
 	}
+	
+	// Static method to get single class instance
+	public static synchronized Server getInstance(String read_from) {
+		if (uniqueInstance == null) {
+			try
+			{
+				uniqueInstance = new Server(read_from);
+			} catch (RemoteException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		}  
+		return uniqueInstance; 
+	}
 
 	// Reset single class instance
 	public void resetInstance() {
@@ -67,6 +99,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		users = null; 
 		board_index = null; 
 		registry = null; 
+		SERIALIZED_FILE_NAME = "users.xml";
 	}
 	
 	// Boot server with default name binding
@@ -116,6 +149,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	@Override
 	public User loginUser(String email, String password) throws RemoteException {
 		User user_obj = authenticateUser(email, password); // if authenticated, returns user, otherwise null
+		System.out.println(email + " : " + password);
+		System.out.println("on server: " + users.get(email));
+		System.out.println("on server: " + getUsers());
+		System.out.println(this);
+
+
 		return user_obj; 
 	}
 	
@@ -268,7 +307,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	
 	// Read users from disk
 	public static HashMap<String, User> readFromDisk() { // read from XML 
-		if (users != null) { // only recover on restart 
+
 			XMLDecoder decoder=null;		
 			
 			File file = new File(SERIALIZED_FILE_NAME);
@@ -284,8 +323,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			@SuppressWarnings("unchecked")
 			HashMap<String, User> all_users = (HashMap<String, User>) decoder.readObject(); // object is hashmap<email, users>	
 			return all_users; 
-		}
-		return new HashMap<String, User>(); 
+
  
 	}
 	
@@ -329,13 +367,14 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	public void tester() throws RemoteException
 	{
 		// TODO Auto-generated method stub
-//		System.out.println("Method called from client.");
+		System.out.println("Method called from client.");
 	}
 
 	@Override
 	public User removeBoard(Board board, User user) throws RemoteException
 	{
 		for (User u : users.values()) {
+			System.out.println("user removing board: " + u);
 			if (u.getBoards().containsKey(board.getName())) {
 				u.removeBoard(board.getName());		
 			}

@@ -110,17 +110,20 @@ public class ListViewController {
 	
     @FXML
     void onAddNewCard(ActionEvent event) throws IOException {
+    	
+    	Stage popup = createModal();
+    	
     	System.out.println(addNewCardButton.getId());
 		// Load up card creation view
     	FXMLLoader createCardLoader = (new CardCreateViewLoader()).load();
 		BorderPane view = createCardLoader.load();
 		CardCreateViewController cont = createCardLoader.getController(); 
-		cont.setStage(stage);
+		cont.setStage(popup);
 		cont.setClient(client);
 		cont.setModel(list, list_idx);
     	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
-    	stage.show();
+    	popup.setScene(new_scene);	// null pointer
+    	popup.show();
     }
 
     // alter this

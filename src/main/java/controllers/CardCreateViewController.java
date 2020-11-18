@@ -72,15 +72,25 @@ public class CardCreateViewController
 	}
 		
 	void switchToBoardView() throws IOException {
+		
+		Stage main_view = (Stage) stage.getOwner();
+		if (main_view == null) {
+			main_view = stage;
+		}
+		else {
+			stage.hide(); 
+		}
+
+		
 		String bname = this.board.getName();
 		FXMLLoader loader = (new CustomBoardViewLoader()).load();
 		BorderPane view = loader.load();
 		CustomBoardViewController cont = loader.getController(); 
-		cont.setStage(stage);
+		cont.setStage(main_view);
 		cont.setClient(client);
 		cont.setModel(client.getUser().getBoard(bname)); // send newest version back
 		Scene s = new Scene(view);
-		stage.setScene(s);
-		stage.show(); 
+		main_view.setScene(s);
+		main_view.show(); 
 	}
 }
