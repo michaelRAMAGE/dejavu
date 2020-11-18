@@ -154,7 +154,8 @@ class serverTest
 		boolean user_updated = client.updateBoard(client.user.getBoard("newtestboard2"), client.user);
 		assertTrue(user_updated == true); // successfully received updated user object from server
 		assertTrue(Server.getBoardsIndex().get(test_board_id) != null); // check that board was updated on server board index
-		
+		assertTrue(Server.getBoardsIndex().get(test_board_id).getOwner().getEmail().equals("jim@gmail.com")); // check that board was updated on server board index
+
 		// clear boards
 		client.user.getBoards().clear();
 		Server.getBoardsIndex().clear();
