@@ -16,3 +16,7 @@ be there because that scene is expected to be in the foreground, however
 it might not be in the foreground due to another test doing something.
 In non gui tests, we just use before each and set the scene each time,
 but I am not sure @Start does this.
+On a last note, custom connection was not tested. Our client does construct rmi ooup for custom but 
+this has not been tested for obvious reasons. 
+
+All implemented functionality is also tested, with the exception of what has been mentioned and perhaps some other very small thing that never made it back on my mind. 
