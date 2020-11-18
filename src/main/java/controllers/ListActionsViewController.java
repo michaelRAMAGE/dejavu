@@ -37,8 +37,6 @@ public class ListActionsViewController {
 		this.lists = lists;
 		this.list = lists.get(list_idx);
 		this.list_idx = list_idx;
-		
-		System.out.print("List actions of " + list.getName() + ":" + list_idx);
 	}
 	
 
@@ -107,7 +105,6 @@ public class ListActionsViewController {
     	stage.hide();
     	
     	// remove list and update it accordingly
-    	System.out.println("Removing list: " + lists.get(this.list_idx).getName() + ": " + this.list_idx);
     	lists.remove(this.list_idx);
     	client.getUser().getBoard(list.getBoard().getName()).setLists(lists);
     	

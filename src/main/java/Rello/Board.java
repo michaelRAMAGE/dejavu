@@ -45,7 +45,6 @@ public class Board implements Serializable
 		}
 		else {
 			System.out.println("We will just randomly generate");
-			
 		}
 		
 	}

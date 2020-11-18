@@ -103,7 +103,6 @@ public class TestBoardListView
 	@Test
 	public void testClickAUserBoard(FxRobot robot) throws InterruptedException 
 	{
-		Thread.sleep(1000);
 		user_test_boards = client.user.getBoards(); // gte user boards 
 		Board test_board = user_test_boards.get("Team Jim"); 
 		robot.clickOn("#" + test_board.boardID); 
@@ -127,7 +126,6 @@ public class TestBoardListView
     			.queryAs(javafx.scene.layout.FlowPane.class)
     			.getChildrenUnmodifiable().size() == should_be_size);
 		Thread.sleep(2000);
-
 	}
 	
 	
@@ -152,6 +150,9 @@ public class TestBoardListView
 	public void logOut(FxRobot robot) throws InterruptedException 
 	{
 		robot.clickOn("#logoutUserButton"); 
+		Assertions.assertThat((robot.lookup("#signInButton").queryAs(javafx.scene.control.Button.class)))
+		.isNotEqualTo(null);
+		
 		Thread.sleep(1000);
 	}
 	

@@ -47,7 +47,6 @@ public class ListViewController {
 	public void setModel(List list, int list_idx) {
 		this.list = list; 
 		this.list_idx = list_idx; 
-		System.out.println("Set list view controller model: " + list.getName() + " : " + list_idx);
 		listTitleTextField.setText(list.getName());
 		setIds(list_idx); 
 		loadCards(); 
@@ -57,6 +56,7 @@ public class ListViewController {
 		listTitleTextField.setId("listTitleTextField"+Integer.toString(list_idx));
 		addNewCardButton.setId("addNewCardButton"+Integer.toString(list_idx));
 		editListButton.setId("editListButton"+Integer.toString(list_idx));
+		cardContainer.setId("cardContainer"+Integer.toString(list_idx));
 	}
 	
 	
@@ -131,7 +131,6 @@ public class ListViewController {
 
     @FXML
     void onEditList(ActionEvent event) throws IOException {
-    	System.out.println("Editing list: " + list.getName() + ":" + list_idx);
     	
     	FXMLLoader loader = (new ListActionsViewLoader()).load();
 		BorderPane view = loader.load();
