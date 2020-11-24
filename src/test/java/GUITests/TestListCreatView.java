@@ -28,6 +28,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import loaders.ListCreateViewLoader;
+import template.ListCreateView;
 import utils.GuiTestHelper;
 	import utils.ServerHelper;
 
@@ -43,36 +44,14 @@ public class TestListCreatView
 	@BeforeAll
 	static void setup() throws RemoteException, MalformedURLException, AlreadyBoundException {
 		serverHelper.bootServer();
-		
-		// Construct Client object
-		String host = "localhost:1099"; // local host with default rmi registry port
-		String bind_name = "Server"; // name of reference to remote stub
-    	client = new Client(host, bind_name); // construct the client
+		client = testHelper.initializeTestData("jim@gmail.com", "jim123");
 	}
 	
 	@Start // Before 
 	private void start(Stage stage) throws IOException 
 	{ 	
-		// Initialize 
-		FXMLLoader loader = (new ListCreateViewLoader()).load(); 
-		
-    	// Log user in on Client object and make sure login is successful
-    	String email = "jim@gmail.com";
-    	String password = "jim123";
-    	boolean login_success = client.loginUser(email, password);
-    	assert(login_success == true); 
-    	
-		// Login pane
-		Parent view = loader.load(); 
-		ListCreateViewController cont = loader.getController(); 
-		cont.setStage(stage); // because stage is static, we do not need to do this (make static on main)?	
-		cont.setClient(client);
     	Board board = client.getUser().getBoard("Team Jim");
-
-    	cont.setModel(board);
-		Scene new_scene = new Scene(view);
-		stage.setScene(new_scene);
-		stage.show();
+		(new ListCreateView(stage, client, board)).load(); 
 	}
 	
 	@Test

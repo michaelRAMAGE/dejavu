@@ -37,6 +37,7 @@ import javafx.stage.Stage;
 import loaders.CardCreateViewLoader;
 import loaders.ListCreateViewLoader;
 import loaders.ListViewLoader;
+import template.ListView;
 import utils.GuiTestHelper;
 import utils.ServerHelper;
 
@@ -61,28 +62,15 @@ public class TestListView
     	String email = "jim@gmail.com";
     	String password = "jim123";
     	client = testHelper.initializeTestData(email, password);
-    	assert(client != null); 
-    	
     	Board board = client.getUser().getBoard("Team Jim");
     	list_idx = 0; 
     	list = board.getList(list_idx);
 	}
 	
-	@Start // Before 
+	@Start 
 	private void start(Stage stage) throws IOException 
 	{ 	
-		// Initialize 
-		FXMLLoader loader = (new ListViewLoader()).load(); 
-		
-		// Login pane
-		Parent view = loader.load(); 
-		ListViewController cont = loader.getController(); 
-		cont.setStage(stage); // because stage is static, we do not need to do this (make static on main)?	
-		cont.setClient(client); 
-    	cont.setModel(list, list_idx);
-		Scene new_scene = new Scene(view);
-		stage.setScene(new_scene);
-		stage.show();
+		new ListView(client, stage, list, list_idx).load(); 
 	}
 
 	public void addCard(FxRobot robot, String card_name) {
