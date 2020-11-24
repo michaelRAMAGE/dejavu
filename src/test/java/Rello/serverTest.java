@@ -135,6 +135,9 @@ class serverTest
 		User user = client.getUser(); 
 		assertTrue(user != null);
 		
+		assert(client.getUser().getBoard("testboard2") == null);
+		// ^^ not on client, not on server. can only check server given a board idx
+		
 		// Create board
 		client.createBoard("testboard2", user);
 		
