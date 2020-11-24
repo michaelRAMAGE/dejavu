@@ -26,6 +26,7 @@ import controllers.CustomBoardViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -71,43 +72,39 @@ public class TestBoardCSS
     	assert(client != null); 
 	}
 	
+	
 	@Test 
-	public void testBoardCSS(FxRobot robot) throws InterruptedException, IOException {
+	public void testAddModification(FxRobot robot) throws InterruptedException, IOException {
 		robot.clickOn("#styleBoardButton");
 		Thread.sleep(1000);
-		
+				
 		setCardStyle(robot, "Background", "yellow");
-
-		Thread.sleep(1000);
+		robot.clickOn("#addChangeButton");
 		
-		assert(robot.lookup(".CardNode").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
-		assert(robot.lookup("#00").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
+		setListStyle(robot, "Background", "orange");
+		robot.clickOn("#addChangeButton");	
+		
+		robot.clickOn("#onSubmitButton");	
+		
+		Thread.sleep(3000);
+		
+		// Check all cards get their style (existing before change and new after change)
+//		assert(robot.lookup("#cardsContainer0").queryAs(Button.class).getStyle().equals("-fx-background-color: orange;"));
 
-		// add a card, ensure they are colored yellow until changed again
+		assert(robot.lookup("#00").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
+		
 		testHelper.addCard(robot, "card1");
 		assert(robot.lookup("#01").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
-
+		
 		testHelper.addCard(robot, "card2");
 		assert(robot.lookup("#02").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
-
 		
-		// Restyle again
-		robot.clickOn("#styleBoardButton");
+	}
 
-		setCardStyle(robot, "TextFill", "blue");
-		testHelper.addCard(robot, "card1");
-		testHelper.addCard(robot, "card2");
-		
-		
-		// Now test out list style
-		robot.clickOn("#styleBoardButton");
-		setListStyle(robot, "Background", "orange");
-
-		Thread.sleep(2000);
+	void addToOutList(FxRobot robot) {
 		
 	}
 	
-
 	void setCardStyle (FxRobot robot, String property, String value) {
 		// Select node
 		robot.clickOn("#nodeChoiceBox").clickOn("CardNode");
@@ -118,8 +115,6 @@ public class TestBoardCSS
 		// Enter property value for property type (later handle bad inputs)
 		robot.clickOn("#propertyValue").write(value);
 		
-		// Submit
-		robot.clickOn("#onSubmitButton");
 	}
 	
 
@@ -133,8 +128,7 @@ public class TestBoardCSS
 		// Enter property value for property type (later handle bad inputs)
 		robot.clickOn("#propertyValue").write(value);
 		
-		// Submit
-		robot.clickOn("#onSubmitButton");
+
 	}
 	
 	@AfterAll

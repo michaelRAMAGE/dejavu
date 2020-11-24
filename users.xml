@@ -1,409 +1,445 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_261" class="java.beans.XMLDecoder">
-	<object class="java.util.HashMap">
-		<void method="put">
-			<string>odysseus@gmail.com</string>
-			<object class="Rello.User" id="User0">
-				<void class="Rello.User" method="getField">
-					<string>email</string>
-					<void method="set">
-						<object idref="User0" />
-						<string>odysseus@gmail.com</string>
-					</void>
-				</void>
-				<void class="Rello.User" method="getField">
-					<string>password</string>
-					<void method="set">
-						<object idref="User0" />
-						<string>odysseus123</string>
-					</void>
-				</void>
-				<void class="Rello.User" method="getField">
-					<string>boards</string>
-					<void method="set">
-						<object idref="User0" />
-						<object class="java.util.HashMap">
-							<void method="put">
-								<string>Team Jim</string>
-								<object class="Rello.Board" id="Board0">
-									<void class="Rello.Board" method="getField">
-										<string>boardID</string>
-										<void method="set">
-											<object idref="Board0" />
-											<string>34</string>
-										</void>
-									</void>
-									<void class="Rello.Board" method="getField">
-										<string>name</string>
-										<void method="set">
-											<object idref="Board0" />
-											<string>Team Jim</string>
-										</void>
-									</void>
-									<void class="Rello.Board" method="getField">
-										<string>owner</string>
-										<void method="set">
-											<object idref="Board0" />
-											<object class="Rello.User" id="User1">
-												<void class="Rello.User" method="getField">
-													<string>email</string>
-													<void method="set">
-														<object idref="User1" />
-														<string>jim@gmail.com</string>
-													</void>
-												</void>
-												<void class="Rello.User" method="getField">
-													<string>password</string>
-													<void method="set">
-														<object idref="User1" />
-														<string>jim123</string>
-													</void>
-												</void>
-												<void class="Rello.User" method="getField">
-													<string>boards</string>
-													<void method="set">
-														<object idref="User1" />
-														<object class="java.util.HashMap">
-															<void method="put">
-																<string>Team Jim</string>
-																<object idref="Board0" />
-															</void>
-														</object>
-													</void>
-												</void>
-											</object>
-										</void>
-									</void>
-									<void class="Rello.Board" method="getField">
-										<string>members</string>
-										<void method="set">
-											<object idref="Board0" />
-											<object class="java.util.HashMap">
-												<void method="put">
-													<string>odysseus@gmail.com</string>
-													<object idref="User0" />
-												</void>
-												<void method="put">
-													<string>alfred@gmail.com</string>
-													<object class="Rello.User" id="User2">
-														<void class="Rello.User" method="getField">
-															<string>email</string>
-															<void method="set">
-																<object idref="User2" />
-																<string>alfred@gmail.com</string>
-															</void>
-														</void>
-														<void class="Rello.User" method="getField">
-															<string>password</string>
-															<void method="set">
-																<object idref="User2" />
-																<string>alfred123</string>
-															</void>
-														</void>
-														<void class="Rello.User" method="getField">
-															<string>boards</string>
-															<void method="set">
-																<object idref="User2" />
-																<object class="java.util.HashMap">
-																	<void method="put">
-																		<string>Team Jim</string>
-																		<object idref="Board0" />
-																	</void>
-																</object>
-															</void>
-														</void>
-													</object>
-												</void>
-											</object>
-										</void>
-									</void>
-									<void class="Rello.Board" method="getField">
-										<string>lists</string>
-										<void method="set">
-											<object idref="Board0" />
-											<object class="java.util.ArrayList">
-												<void method="add">
-													<object class="Rello.List" id="List0">
-														<void class="Rello.List" method="getField">
-															<string>name</string>
-															<void method="set">
-																<object idref="List0" />
-																<string>Week1</string>
-															</void>
-														</void>
-														<void class="Rello.List" method="getField">
-															<string>cards</string>
-															<void method="set">
-																<object idref="List0" />
-																<object class="java.util.ArrayList">
-																	<void method="add">
-																		<object class="Rello.Card" id="Card0">
-																			<void class="Rello.Card" method="getField">
-																				<string>name</string>
-																				<void method="set">
-																					<object idref="Card0" />
-																					<string>CSC Homework PG 10</string>
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>labels</string>
-																				<void method="set">
-																					<object idref="Card0" />
-																					<object class="java.util.EnumMap">
-																						<class>Rello.Colors</class>
-																						<void method="put">
-																							<object class="java.lang.Enum"
-																								id="Colors0" method="valueOf">
-																								<class>Rello.Colors</class>
-																								<string>GREEN</string>
-																							</object>
-																							<object class="Rello.Label" id="Label0">
-																								<void class="Rello.Label" method="getField">
-																									<string>color</string>
-																									<void method="set">
-																										<object idref="Label0" />
-																										<object idref="Colors0" />
-																									</void>
-																								</void>
-																								<void class="Rello.Label" method="getField">
-																									<string>text</string>
-																									<void method="set">
-																										<object idref="Label0" />
-																										<string>complete</string>
-																									</void>
-																								</void>
-																							</object>
-																						</void>
-																					</object>
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>components</string>
-																				<void method="set">
-																					<object idref="Card0" />
-																					<object class="java.util.ArrayList">
-																						<void method="add">
-																							<object class="Rello.Description"
-																								id="Description0">
-																								<void class="Rello.Description"
-																									method="getField">
-																									<string>description</string>
-																									<void method="set">
-																										<object idref="Description0" />
-																										<string>Read from page 10 to 19</string>
-																									</void>
-																								</void>
-																							</object>
-																						</void>
-																					</object>
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>board</string>
-																				<void method="set">
-																					<object idref="Card0" />
-																					<object idref="Board0" />
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>members</string>
-																				<void method="set">
-																					<object idref="Card0" />
-																					<object class="java.util.HashMap" />
-																				</void>
-																			</void>
-																		</object>
-																	</void>
-																</object>
-															</void>
-														</void>
-														<void class="Rello.List" method="getField">
-															<string>board</string>
-															<void method="set">
-																<object idref="List0" />
-																<object idref="Board0" />
-															</void>
-														</void>
-													</object>
-												</void>
-												<void method="add">
-													<object class="Rello.List" id="List1">
-														<void class="Rello.List" method="getField">
-															<string>name</string>
-															<void method="set">
-																<object idref="List1" />
-																<string>Week2</string>
-															</void>
-														</void>
-														<void class="Rello.List" method="getField">
-															<string>cards</string>
-															<void method="set">
-																<object idref="List1" />
-																<object class="java.util.ArrayList">
-																	<void method="add">
-																		<object class="Rello.Card" id="Card1">
-																			<void class="Rello.Card" method="getField">
-																				<string>name</string>
-																				<void method="set">
-																					<object idref="Card1" />
-																					<string>CSC Homework PG 20</string>
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>labels</string>
-																				<void method="set">
-																					<object idref="Card1" />
-																					<object class="java.util.EnumMap">
-																						<class>Rello.Colors</class>
-																						<void method="put">
-																							<object idref="Colors0" />
-																							<object idref="Label0" />
-																						</void>
-																					</object>
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>components</string>
-																				<void method="set">
-																					<object idref="Card1" />
-																					<object class="java.util.ArrayList" />
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>board</string>
-																				<void method="set">
-																					<object idref="Card1" />
-																					<object idref="Board0" />
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>members</string>
-																				<void method="set">
-																					<object idref="Card1" />
-																					<object class="java.util.HashMap" />
-																				</void>
-																			</void>
-																		</object>
-																	</void>
-																</object>
-															</void>
-														</void>
-														<void class="Rello.List" method="getField">
-															<string>board</string>
-															<void method="set">
-																<object idref="List1" />
-																<object idref="Board0" />
-															</void>
-														</void>
-													</object>
-												</void>
-												<void method="add">
-													<object class="Rello.List" id="List2">
-														<void class="Rello.List" method="getField">
-															<string>name</string>
-															<void method="set">
-																<object idref="List2" />
-																<string>Week3</string>
-															</void>
-														</void>
-														<void class="Rello.List" method="getField">
-															<string>cards</string>
-															<void method="set">
-																<object idref="List2" />
-																<object class="java.util.ArrayList">
-																	<void method="add">
-																		<object class="Rello.Card" id="Card2">
-																			<void class="Rello.Card" method="getField">
-																				<string>name</string>
-																				<void method="set">
-																					<object idref="Card2" />
-																					<string>CSC Homework PG 30</string>
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>labels</string>
-																				<void method="set">
-																					<object idref="Card2" />
-																					<object class="java.util.EnumMap">
-																						<class>Rello.Colors</class>
-																						<void method="put">
-																							<object class="java.lang.Enum"
-																								id="Colors1" method="valueOf">
-																								<class>Rello.Colors</class>
-																								<string>RED</string>
-																							</object>
-																							<object class="Rello.Label" id="Label1">
-																								<void class="Rello.Label" method="getField">
-																									<string>color</string>
-																									<void method="set">
-																										<object idref="Label1" />
-																										<object idref="Colors1" />
-																									</void>
-																								</void>
-																								<void class="Rello.Label" method="getField">
-																									<string>text</string>
-																									<void method="set">
-																										<object idref="Label1" />
-																										<string>incomplete</string>
-																									</void>
-																								</void>
-																							</object>
-																						</void>
-																					</object>
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>components</string>
-																				<void method="set">
-																					<object idref="Card2" />
-																					<object class="java.util.ArrayList" />
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>board</string>
-																				<void method="set">
-																					<object idref="Card2" />
-																					<object idref="Board0" />
-																				</void>
-																			</void>
-																			<void class="Rello.Card" method="getField">
-																				<string>members</string>
-																				<void method="set">
-																					<object idref="Card2" />
-																					<object class="java.util.HashMap" />
-																				</void>
-																			</void>
-																		</object>
-																	</void>
-																</object>
-															</void>
-														</void>
-														<void class="Rello.List" method="getField">
-															<string>board</string>
-															<void method="set">
-																<object idref="List2" />
-																<object idref="Board0" />
-															</void>
-														</void>
-													</object>
-												</void>
-											</object>
-										</void>
-									</void>
-								</object>
-							</void>
-						</object>
-					</void>
-				</void>
-			</object>
-		</void>
-		<void method="put">
-			<string>alfred@gmail.com</string>
-			<object idref="User2" />
-		</void>
-		<void method="put">
-			<string>jim@gmail.com</string>
-			<object idref="User1" />
-		</void>
-	</object>
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>odysseus@gmail.com</string>
+   <object class="Rello.User" id="User0">
+    <void class="Rello.User" method="getField">
+     <string>email</string>
+     <void method="set">
+      <object idref="User0"/>
+      <string>odysseus@gmail.com</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>password</string>
+     <void method="set">
+      <object idref="User0"/>
+      <string>odysseus123</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>boards</string>
+     <void method="set">
+      <object idref="User0"/>
+      <object class="java.util.HashMap">
+       <void method="put">
+        <string>Team Jim</string>
+        <object class="Rello.Board" id="Board0">
+         <void class="Rello.Board" method="getField">
+          <string>boardID</string>
+          <void method="set">
+           <object idref="Board0"/>
+           <string>58</string>
+          </void>
+         </void>
+         <void class="Rello.Board" method="getField">
+          <string>name</string>
+          <void method="set">
+           <object idref="Board0"/>
+           <string>Team Jim</string>
+          </void>
+         </void>
+         <void class="Rello.Board" method="getField">
+          <string>owner</string>
+          <void method="set">
+           <object idref="Board0"/>
+           <object class="Rello.User" id="User1">
+            <void class="Rello.User" method="getField">
+             <string>email</string>
+             <void method="set">
+              <object idref="User1"/>
+              <string>jim@gmail.com</string>
+             </void>
+            </void>
+            <void class="Rello.User" method="getField">
+             <string>password</string>
+             <void method="set">
+              <object idref="User1"/>
+              <string>jim123</string>
+             </void>
+            </void>
+            <void class="Rello.User" method="getField">
+             <string>boards</string>
+             <void method="set">
+              <object idref="User1"/>
+              <object class="java.util.HashMap">
+               <void method="put">
+                <string>Team Jim</string>
+                <object idref="Board0"/>
+               </void>
+               <void method="put">
+                <string>TeamJim</string>
+                <object class="Rello.Board" id="Board1">
+                 <void class="Rello.Board" method="getField">
+                  <string>boardID</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <string>15</string>
+                  </void>
+                 </void>
+                 <void class="Rello.Board" method="getField">
+                  <string>name</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <string>TeamJim</string>
+                  </void>
+                 </void>
+                 <void class="Rello.Board" method="getField">
+                  <string>owner</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <object idref="User1"/>
+                  </void>
+                 </void>
+                 <void class="Rello.Board" method="getField">
+                  <string>members</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <object class="java.util.HashMap"/>
+                  </void>
+                 </void>
+                 <void class="Rello.Board" method="getField">
+                  <string>lists</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <object class="java.util.ArrayList"/>
+                  </void>
+                 </void>
+                </object>
+               </void>
+              </object>
+             </void>
+            </void>
+           </object>
+          </void>
+         </void>
+         <void class="Rello.Board" method="getField">
+          <string>members</string>
+          <void method="set">
+           <object idref="Board0"/>
+           <object class="java.util.HashMap">
+            <void method="put">
+             <string>odysseus@gmail.com</string>
+             <object idref="User0"/>
+            </void>
+            <void method="put">
+             <string>alfred@gmail.com</string>
+             <object class="Rello.User" id="User2">
+              <void class="Rello.User" method="getField">
+               <string>email</string>
+               <void method="set">
+                <object idref="User2"/>
+                <string>alfred@gmail.com</string>
+               </void>
+              </void>
+              <void class="Rello.User" method="getField">
+               <string>password</string>
+               <void method="set">
+                <object idref="User2"/>
+                <string>alfred123</string>
+               </void>
+              </void>
+              <void class="Rello.User" method="getField">
+               <string>boards</string>
+               <void method="set">
+                <object idref="User2"/>
+                <object class="java.util.HashMap">
+                 <void method="put">
+                  <string>Team Jim</string>
+                  <object idref="Board0"/>
+                 </void>
+                </object>
+               </void>
+              </void>
+             </object>
+            </void>
+           </object>
+          </void>
+         </void>
+         <void class="Rello.Board" method="getField">
+          <string>lists</string>
+          <void method="set">
+           <object idref="Board0"/>
+           <object class="java.util.ArrayList">
+            <void method="add">
+             <object class="Rello.List" id="List0">
+              <void class="Rello.List" method="getField">
+               <string>name</string>
+               <void method="set">
+                <object idref="List0"/>
+                <string>Week1</string>
+               </void>
+              </void>
+              <void class="Rello.List" method="getField">
+               <string>cards</string>
+               <void method="set">
+                <object idref="List0"/>
+                <object class="java.util.ArrayList">
+                 <void method="add">
+                  <object class="Rello.Card" id="Card0">
+                   <void class="Rello.Card" method="getField">
+                    <string>name</string>
+                    <void method="set">
+                     <object idref="Card0"/>
+                     <string>CSC Homework PG 10</string>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>labels</string>
+                    <void method="set">
+                     <object idref="Card0"/>
+                     <object class="java.util.EnumMap">
+                      <class>Rello.Colors</class>
+                      <void method="put">
+                       <object class="java.lang.Enum" id="Colors0" method="valueOf">
+                        <class>Rello.Colors</class>
+                        <string>GREEN</string>
+                       </object>
+                       <object class="Rello.Label" id="Label0">
+                        <void class="Rello.Label" method="getField">
+                         <string>color</string>
+                         <void method="set">
+                          <object idref="Label0"/>
+                          <object idref="Colors0"/>
+                         </void>
+                        </void>
+                        <void class="Rello.Label" method="getField">
+                         <string>text</string>
+                         <void method="set">
+                          <object idref="Label0"/>
+                          <string>complete</string>
+                         </void>
+                        </void>
+                       </object>
+                      </void>
+                     </object>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>components</string>
+                    <void method="set">
+                     <object idref="Card0"/>
+                     <object class="java.util.ArrayList">
+                      <void method="add">
+                       <object class="Rello.Description" id="Description0">
+                        <void class="Rello.Description" method="getField">
+                         <string>description</string>
+                         <void method="set">
+                          <object idref="Description0"/>
+                          <string>Read from page 10 to 19</string>
+                         </void>
+                        </void>
+                       </object>
+                      </void>
+                     </object>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>board</string>
+                    <void method="set">
+                     <object idref="Card0"/>
+                     <object idref="Board0"/>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>members</string>
+                    <void method="set">
+                     <object idref="Card0"/>
+                     <object class="java.util.HashMap"/>
+                    </void>
+                   </void>
+                  </object>
+                 </void>
+                </object>
+               </void>
+              </void>
+              <void class="Rello.List" method="getField">
+               <string>board</string>
+               <void method="set">
+                <object idref="List0"/>
+                <object idref="Board0"/>
+               </void>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="Rello.List" id="List1">
+              <void class="Rello.List" method="getField">
+               <string>name</string>
+               <void method="set">
+                <object idref="List1"/>
+                <string>Week2</string>
+               </void>
+              </void>
+              <void class="Rello.List" method="getField">
+               <string>cards</string>
+               <void method="set">
+                <object idref="List1"/>
+                <object class="java.util.ArrayList">
+                 <void method="add">
+                  <object class="Rello.Card" id="Card1">
+                   <void class="Rello.Card" method="getField">
+                    <string>name</string>
+                    <void method="set">
+                     <object idref="Card1"/>
+                     <string>CSC Homework PG 20</string>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>labels</string>
+                    <void method="set">
+                     <object idref="Card1"/>
+                     <object class="java.util.EnumMap">
+                      <class>Rello.Colors</class>
+                      <void method="put">
+                       <object idref="Colors0"/>
+                       <object idref="Label0"/>
+                      </void>
+                     </object>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>components</string>
+                    <void method="set">
+                     <object idref="Card1"/>
+                     <object class="java.util.ArrayList"/>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>board</string>
+                    <void method="set">
+                     <object idref="Card1"/>
+                     <object idref="Board0"/>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>members</string>
+                    <void method="set">
+                     <object idref="Card1"/>
+                     <object class="java.util.HashMap"/>
+                    </void>
+                   </void>
+                  </object>
+                 </void>
+                </object>
+               </void>
+              </void>
+              <void class="Rello.List" method="getField">
+               <string>board</string>
+               <void method="set">
+                <object idref="List1"/>
+                <object idref="Board0"/>
+               </void>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="Rello.List" id="List2">
+              <void class="Rello.List" method="getField">
+               <string>name</string>
+               <void method="set">
+                <object idref="List2"/>
+                <string>Week3</string>
+               </void>
+              </void>
+              <void class="Rello.List" method="getField">
+               <string>cards</string>
+               <void method="set">
+                <object idref="List2"/>
+                <object class="java.util.ArrayList">
+                 <void method="add">
+                  <object class="Rello.Card" id="Card2">
+                   <void class="Rello.Card" method="getField">
+                    <string>name</string>
+                    <void method="set">
+                     <object idref="Card2"/>
+                     <string>CSC Homework PG 30</string>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>labels</string>
+                    <void method="set">
+                     <object idref="Card2"/>
+                     <object class="java.util.EnumMap">
+                      <class>Rello.Colors</class>
+                      <void method="put">
+                       <object class="java.lang.Enum" id="Colors1" method="valueOf">
+                        <class>Rello.Colors</class>
+                        <string>RED</string>
+                       </object>
+                       <object class="Rello.Label" id="Label1">
+                        <void class="Rello.Label" method="getField">
+                         <string>color</string>
+                         <void method="set">
+                          <object idref="Label1"/>
+                          <object idref="Colors1"/>
+                         </void>
+                        </void>
+                        <void class="Rello.Label" method="getField">
+                         <string>text</string>
+                         <void method="set">
+                          <object idref="Label1"/>
+                          <string>incomplete</string>
+                         </void>
+                        </void>
+                       </object>
+                      </void>
+                     </object>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>components</string>
+                    <void method="set">
+                     <object idref="Card2"/>
+                     <object class="java.util.ArrayList"/>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>board</string>
+                    <void method="set">
+                     <object idref="Card2"/>
+                     <object idref="Board0"/>
+                    </void>
+                   </void>
+                   <void class="Rello.Card" method="getField">
+                    <string>members</string>
+                    <void method="set">
+                     <object idref="Card2"/>
+                     <object class="java.util.HashMap"/>
+                    </void>
+                   </void>
+                  </object>
+                 </void>
+                </object>
+               </void>
+              </void>
+              <void class="Rello.List" method="getField">
+               <string>board</string>
+               <void method="set">
+                <object idref="List2"/>
+                <object idref="Board0"/>
+               </void>
+              </void>
+             </object>
+            </void>
+           </object>
+          </void>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>alfred@gmail.com</string>
+   <object idref="User2"/>
+  </void>
+  <void method="put">
+   <string>jim@gmail.com</string>
+   <object idref="User1"/>
+  </void>
+ </object>
 </java>

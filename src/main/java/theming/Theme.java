@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+
+
 
 public class Theme implements Serializable
 {
@@ -112,4 +115,52 @@ public class Theme implements Serializable
     	}
     	return css; 
     }
-}
+    
+    public void diffProps(String in_node_name, ThemeNode in_node) {
+    	if (nodes.get(in_node_name) == null) { // node does not exist
+    		return;
+    	}
+    	else {
+    		String diffed_string = in_node_name + "{"; 
+    		// existing properties on the node with this name
+    		String[] str_css = nodes.get(in_node_name).nodeProperty().split(";");
+    		List<String> css = new ArrayList<String>();
+    		css = Arrays.asList(str_css);
+    		
+    		// properties on incoming object 
+    		String[] str_in_css = in_node.nodeProperty().split(";");
+    		List<String> in_css = new ArrayList<String>();
+    		in_css = Arrays.asList(str_in_css);
+    		
+    		// Take everything props has that in_props does not have and put on in_props
+    		for (String str : css) {
+    			
+    			String[] prop_pair = str.split(":");
+    			
+    			String prop_name = prop_pair[0];
+    			String prop_value = prop_pair[1];
+    			
+    			for (String in_str : in_css) {
+    				String[] in_prop_pair = in_str.split(":");
+    				if (prop_name.equals(in_prop_pair[0])) { // take the newest value
+    					diffed_string += prop_name + ": " + in_prop_pair[1] + ";";
+
+    				}
+    				else {
+    					diffed_string += prop_name + ": " + in_prop_pair[1] + ";";
+    				}
+    			}
+    			
+    			// is it in the in_css? if not, append it
+    			System.out.println("pair...");
+    			System.out.println(prop_name);
+    			System.out.println(prop_value);
+    		
+    			
+    		
+    			
+    		}
+    		
+    	}
+    }
+ }

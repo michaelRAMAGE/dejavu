@@ -139,7 +139,8 @@ public class CustomBoardViewController
 			
 			// strapping styling in
 			if (board.getTheme().getNodes().get(".ListNode") != null) {
-				listview.setStyle(list.getBoard().getTheme().getNodes().get(".ListNode").nodeProperty());
+				listview.setStyle(board.getTheme().getNodes().get(".ListNode").nodeProperty());
+				System.out.println(board.getTheme().getNodes());
 			}
 			
 			addListViewToContainer(listview); 

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import theming.Theme;
+
 class xmlTest
 {
 	Server users = Server.getInstance(); // start users
@@ -18,7 +20,7 @@ class xmlTest
 	@BeforeEach
 	void setUp() throws Exception
 	{	
-		users.setXMLFileName("non_testing_users.xml");
+		users.setXMLFileName("users.xml");
 		System.out.println("setting up");
 		jim = users.addUser("jim@gmail.com","jim123");
 		alfred = users.addUser("alfred@gmail.com","alfred123");
@@ -30,6 +32,8 @@ class xmlTest
 	void testReadXML()
 	{
 		team_jim = jim.createBoard("Team Jim");
+		System.out.println(team_jim.getTheme());
+		
 		// add members
 		team_jim.addMember(alfred, jim); 
 		team_jim.addMember(odysseus, jim);

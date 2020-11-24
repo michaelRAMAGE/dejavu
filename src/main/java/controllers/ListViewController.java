@@ -83,17 +83,14 @@ public class ListViewController {
 			Card card = cards.get(i); 
 			// Create buttons for flow pane
 			String custom_id = Integer.toString(list_idx) + Integer.toString(i);
-			System.out.println(card.getName() + " : " + custom_id);
 			Button button = createCardButton(card.getName(), custom_id, new int[]{300, 26});
 			int card_idx = i; 
 		
 			
 
-			System.out.println(stage.getStyle());
 			button.getStyleClass().add("CardNode"); // add a styling for card nodes
 
 			
-			System.out.println("just added style class");
 			
 			button.setOnAction((ActionEvent event) -> { 
 				try

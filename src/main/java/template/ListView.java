@@ -37,9 +37,7 @@ public class ListView extends ViewLoaderTemplate
 		listView = loader.load();
 //		listView.getStylesheets().add("views/tempfile.css"); // tempfile for now 
 
-		System.out.println("list view: " + listView.getStyleClass()); 
-		System.out.println("list view: " + listView.getStyle()); 
-		
+
 //		listView.getStyleClass().add(".ListNode"); // add ListNode class for styling
 		
 		cont = loader.getController(); 
