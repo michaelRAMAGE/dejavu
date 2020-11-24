@@ -125,6 +125,7 @@ public class boardCSSController implements Initializable{
     	this.board = board; 
     	
     	ListViewPane.setItems(modificationsmssg); // set the prop
+    	System.out.println(ListViewPane.getChildrenUnmodifiable().size());
 		
 		// clean this up later
 		ObservableList<String> obs_prop_name_index = FXCollections.observableArrayList();

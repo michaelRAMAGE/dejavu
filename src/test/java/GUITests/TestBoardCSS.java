@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
-import org.assertj.core.api.Assertions;
+import org.testfx.assertions.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -72,60 +72,10 @@ public class TestBoardCSS
     	assert(client != null); 
 	}
 	
-//	@Test 
-//	public void testStyleAdding(FxRobot robot) throws InterruptedException, IOException {
-//		Thread.sleep(2000);
-//
-//		robot.clickOn("#styleBoardButton");
-//		Thread.sleep(5000);
-//				
-//		setCardStyle(robot, "Background", "yellow");
-//		robot.clickOn("#addChangeButton");
-//		Thread.sleep(2000);
-//
-//		setListStyle(robot, "Background", "orange");
-//		robot.clickOn("#addChangeButton");	
-//		Thread.sleep(2000);
-//
-//		System.out.println(robot.lookup("#ListViewPane").queryAs(ListView.class).getChildrenUnmodifiable().size());
-////		robot.listWindows().get(0).hide();
-//
-//	}
 	
-	@Test 
-	public void testAddModification(FxRobot robot) throws InterruptedException, IOException {
-		Thread.sleep(2000);
-
-		robot.clickOn("#styleBoardButton");
-		Thread.sleep(5000);
-				
-		setCardStyle(robot, "Background", "yellow");
-		robot.clickOn("#addChangeButton");
-		Thread.sleep(2000);
-
-		setListStyle(robot, "Background", "orange");
-		robot.clickOn("#addChangeButton");	
-		Thread.sleep(2000);
-
-		robot.clickOn("#onSubmitButton");	
-		
-		Thread.sleep(3000);
-		
-		// Check all cards get their style (existing before change and new after change)
-		assert(robot.lookup("#list0").queryAs(BorderPane.class).getStyle().equals("-fx-background-color: orange;"));
-
-		assert(robot.lookup("#00").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
-		
-		testHelper.addCard(robot, "card1");
-		assert(robot.lookup("#01").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
-		
-		testHelper.addCard(robot, "card2");
-		assert(robot.lookup("#02").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
-		
-	}
-
-	void addToOutList(FxRobot robot) {
-		
+	// Test helpers 
+	ListView<String> getMods(FxRobot robot) {
+		return (ListView<String>) robot.lookup("#ListViewPane").queryAll().iterator().next();
 	}
 	
 	void setCardStyle (FxRobot robot, String property, String value) {
@@ -140,7 +90,6 @@ public class TestBoardCSS
 		
 	}
 	
-
 	void setListStyle (FxRobot robot, String property, String value) {
 		// Select node
 		robot.clickOn("#nodeChoiceBox").clickOn("ListNode");
@@ -150,9 +99,54 @@ public class TestBoardCSS
 		
 		// Enter property value for property type (later handle bad inputs)
 		robot.clickOn("#propertyValue").write(value);
-		
-
 	}
+	
+	@Test 
+	public void testStyleAdding(FxRobot robot) throws InterruptedException, IOException {
+
+		robot.clickOn("#styleBoardButton");
+		
+		ListView<String> mods = getMods(robot); 
+		Assertions.assertThat(mods).isEmpty(); 
+		
+		setCardStyle(robot, "Background", "yellow");
+		robot.clickOn("#addChangeButton");
+
+		setListStyle(robot, "Background", "orange");
+		robot.clickOn("#addChangeButton");	
+
+		mods = getMods(robot); 
+		Assertions.assertThat(mods).hasExactlyNumItems(2);
+		
+		robot.clickOn("#onSubmitButton");	
+	}
+	
+	@Test 
+	public void testAddModification(FxRobot robot) throws InterruptedException, IOException {
+		// add testing to test before mods
+		robot.clickOn("#styleBoardButton");
+
+		setCardStyle(robot, "Background", "yellow");
+		robot.clickOn("#addChangeButton");
+
+		setListStyle(robot, "Background", "orange");
+		robot.clickOn("#addChangeButton");	
+
+		robot.clickOn("#onSubmitButton");	
+		assert(robot.lookup("#list0").queryAs(BorderPane.class).getStyle().equals("-fx-background-color: orange;"));
+
+		// Check all cards get their style (existing before change and new after change)
+		assert(robot.lookup("#00").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
+		
+		testHelper.addCard(robot, "card1");
+		assert(robot.lookup("#01").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
+		
+		testHelper.addCard(robot, "card2");
+		assert(robot.lookup("#02").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
+		
+	}
+
+
 	
 	@AfterAll
 	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {
