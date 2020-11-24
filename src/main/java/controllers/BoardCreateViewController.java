@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.BoardListViewLoader;
+import template.BoardListView;
 
 public class BoardCreateViewController {
 	
@@ -66,14 +67,7 @@ public class BoardCreateViewController {
 	}
 		
 	void switchToBoardListView() throws IOException {
-		FXMLLoader loader = (new BoardListViewLoader()).load();
-		BorderPane view = loader.load();
-		BoardListViewController cont = loader.getController(); 
-		cont.setStage(stage);
-		cont.setClient(client);
-		Scene s = new Scene(view);
-		stage.setScene(s);
-		stage.show(); 
+		(new BoardListView(stage, client)).load();
 	}
 }
 

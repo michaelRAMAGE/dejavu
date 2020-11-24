@@ -1,0 +1,7 @@
+.label { 
+	-fx-text-fill: "black"; 
+}
+
+HBox {
+	-fx-background-color: #bfbfbf;
+}

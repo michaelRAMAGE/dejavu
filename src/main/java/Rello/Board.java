@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import theming.Theme;
 
 public class Board implements Serializable
 {
@@ -19,7 +20,18 @@ public class Board implements Serializable
 	public User owner; 
 	public HashMap<String, User> members;  //OBS
 	public ArrayList<List> lists;  //OBS
+	public Theme theme; 
 	
+	public Theme getTheme()
+	{
+		return theme;
+	}
+
+	public void setTheme(Theme theme)
+	{
+		this.theme = theme;
+	}
+
 	public Board()
 	{
 		super();
@@ -32,7 +44,7 @@ public class Board implements Serializable
 		this.members = new HashMap<String, User>();
 		this.lists = new ArrayList<List>();
 		this.boardID = generateID(); 
-		
+		this.theme = new Theme("default_theme");
 	}
 	
 	public Board(String name, String id, User owner) {

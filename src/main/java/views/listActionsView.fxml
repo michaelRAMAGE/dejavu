@@ -7,28 +7,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@basetheme.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListActionsViewController">
-   <top>
-      <Label text="List Actions" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets top="50.0" />
-         </BorderPane.margin>
-      </Label>
-   </top>
-   <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="50.0" left="59.0" right="50.0" top="50.0" />
-         </BorderPane.margin>
-         <children>
-            <Button id="addCardButton" fx:id="addCardButton" mnemonicParsing="false" onAction="#onAddCard" text="Add Card" />
-            <Button id="moveListButton" fx:id="moveListButton" mnemonicParsing="false" onAction="#onMoveList" text="Move List" />
-            <Button id="moveCardInListButton" fx:id="moveCardInListButton" mnemonicParsing="false" onAction="#onMoveCardInList" text="Move card in list" />
-            <Button id="removeListButton" fx:id="removeListButton" mnemonicParsing="false" onAction="#onRemoveList" text="Remove list" />
-         </children>
-      </VBox>
-   </center>
+<BorderPane stylesheets="@basetheme.css"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.ListActionsViewController">
+	<top>
+		<Label text="List Actions" BorderPane.alignment="CENTER">
+			<font>
+				<Font size="24.0" />
+			</font>
+			<BorderPane.margin>
+				<Insets top="50.0" />
+			</BorderPane.margin>
+		</Label>
+	</top>
+	<center>
+		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+			spacing="20.0" BorderPane.alignment="CENTER">
+			<BorderPane.margin>
+				<Insets bottom="50.0" left="59.0" right="50.0" top="50.0" />
+			</BorderPane.margin>
+			<children>
+				<Button id="addCardButton" fx:id="addCardButton"
+					mnemonicParsing="false" onAction="#onAddCard" text="Add Card" />
+				<Button id="moveListButton" fx:id="moveListButton"
+					mnemonicParsing="false" onAction="#onMoveList" text="Move List" />
+				<Button id="moveCardInListButton"
+					fx:id="moveCardInListButton" mnemonicParsing="false"
+					onAction="#onMoveCardInList" text="Move card in list" />
+				<Button id="removeListButton" fx:id="removeListButton"
+					mnemonicParsing="false" onAction="#onRemoveList" text="Remove list" />
+			</children>
+		</VBox>
+	</center>
 </BorderPane>

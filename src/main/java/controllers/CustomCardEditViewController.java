@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
+import template.CustomBoardView;
 
 public class CustomCardEditViewController {
 
@@ -86,22 +87,13 @@ public class CustomCardEditViewController {
     void switchToBoardView() throws IOException {
     	// update client with local list
 //    	client.getUser().getBoard(list.getBoard().getName()).getList(list_idx).setCards(list.getCards());
-    	client.getUser().replaceBoard(list.getBoard().getName(), list.getBoard()); // easier way to do above save ^
+//    	client.getUser().replaceBoard(list.getBoard().getName(), list.getBoard()); // easier way to do above save ^
     	
-    	// Rerender board 
-		FXMLLoader loader = (new CustomBoardViewLoader()).load();
-		BorderPane view = loader.load();
-		CustomBoardViewController cont = loader.getController(); 
-		
 		Stage main_stage = (Stage) stage.getOwner(); 
 		stage.hide(); // hide modal
-		
-		cont.setStage(main_stage);
-		cont.setClient(client);
-		cont.setModel(list.getBoard()); // send newest version back
-		Scene s = new Scene(view);
-		main_stage.setScene(s);
-		main_stage.show(); 
+    	
+    	// Rerender board 
+		new CustomBoardView(main_stage, client, list.getBoard()).load();
     }
 
 }

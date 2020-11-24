@@ -18,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import loaders.LoginViewLoader;
+import template.LoginView;
 
 public class ServerViewController {
 
@@ -65,7 +66,7 @@ public class ServerViewController {
 		System.out.println("Default connection clicked");
 		
 		// Construct a client, connect them to host server 
-		String host = "localhost:1099"; // local host with default rmi registry port
+		String host = "localhost:2099"; // local host with default rmi registry port
 		String bind_name = "Server"; // name of reference to remote stub
 		
     	client = new Client(host, bind_name); // construct the client
@@ -74,25 +75,7 @@ public class ServerViewController {
 //    	server.setXMLFileName("default_server.xml");
     	
     	// Load client login view
-		loadClientLogin(); 
+    	(new LoginView(stage, client)).load(); 
     }
-     
-    
-    // Load a login view for the new client
-	public void loadClientLogin() throws IOException {
-		
-		// load view
-		FXMLLoader loader = (new LoginViewLoader()).load(); 
-		
-		// Login pane
-		BorderPane view = loader.load(); 
-		LoginViewController cont = loader.getController(); 
-		cont.setClient(client);
-		cont.setStage(stage); // because stage is static, we do not need to do this (make static on main)?
-		
-		Scene new_scene = new Scene(view);
-		stage.setScene(new_scene);
-		stage.show(); 
-	}
     
 }

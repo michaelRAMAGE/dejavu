@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+	prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.boardCSSController">
+	<top>
+		<Label contentDisplay="CENTER" text="Change appearance"
+			BorderPane.alignment="CENTER">
+			<font>
+				<Font size="19.0" />
+			</font>
+		</Label>
+	</top>
+	<center>
+		<GridPane prefHeight="317.0" prefWidth="580.0"
+			BorderPane.alignment="CENTER">
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES"
+					maxWidth="214.0" minWidth="10.0" prefWidth="117.0" />
+				<ColumnConstraints hgrow="SOMETIMES"
+					maxWidth="319.0" minWidth="10.0" prefWidth="162.0" />
+				<ColumnConstraints hgrow="SOMETIMES"
+					maxWidth="308.0" minWidth="10.0" prefWidth="200.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints maxHeight="277.0" minHeight="10.0"
+					prefHeight="73.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="277.0" minHeight="10.0"
+					prefHeight="41.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="181.0" minHeight="10.0"
+					prefHeight="126.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="173.0" minHeight="10.0"
+					prefHeight="138.0" vgrow="SOMETIMES" />
+			</rowConstraints>
+			<children>
+				<ChoiceBox id="nodeChoiceBox" fx:id="nodeChoiceBox1"
+					prefWidth="125.0" GridPane.halignment="CENTER"
+					GridPane.rowIndex="2" />
+				<Label alignment="CENTER" contentDisplay="CENTER" text="Node"
+					GridPane.halignment="CENTER" GridPane.rowIndex="1">
+					<font>
+						<Font size="17.0" />
+					</font>
+				</Label>
+				<ChoiceBox id="propertyChoiceBox"
+					fx:id="propertyChoiceBox" prefWidth="150.0"
+					GridPane.columnIndex="1" GridPane.halignment="CENTER"
+					GridPane.rowIndex="2" />
+				<Label contentDisplay="CENTER" text="Property Name"
+					GridPane.columnIndex="1" GridPane.halignment="CENTER"
+					GridPane.rowIndex="1">
+					<font>
+						<Font size="17.0" />
+					</font>
+				</Label>
+				<Button id="onSubmitButton" fx:id="onSubmitButton"
+					mnemonicParsing="false" onAction="#onSubmit" text="Submit"
+					GridPane.columnIndex="2" GridPane.halignment="RIGHT"
+					GridPane.rowIndex="3" GridPane.valignment="TOP">
+					<GridPane.margin>
+						<Insets right="15.0" />
+					</GridPane.margin>
+				</Button>
+				<TextField id="propertyValue" fx:id="propertyValue"
+					prefHeight="26.0" prefWidth="252.0" GridPane.columnIndex="2"
+					GridPane.rowIndex="2">
+					<GridPane.margin>
+						<Insets right="10.0" />
+					</GridPane.margin>
+				</TextField>
+				<Label text="Property Value" GridPane.columnIndex="2"
+					GridPane.halignment="CENTER" GridPane.rowIndex="1">
+					<font>
+						<Font size="17.0" />
+					</font>
+				</Label>
+			</children>
+			<BorderPane.margin>
+				<Insets left="20.0" />
+			</BorderPane.margin>
+		</GridPane>
+	</center>
+</BorderPane>

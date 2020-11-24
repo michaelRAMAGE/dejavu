@@ -1,4 +1,4 @@
-package Rello;
+package GUITests;
 
 	import java.io.IOException;
 	import java.net.MalformedURLException;
@@ -17,6 +17,8 @@ import org.assertj.core.api.Assertions;
 	import org.testfx.framework.junit5.ApplicationExtension;
 	import org.testfx.framework.junit5.Start;
 
+import Rello.Client;
+import Rello.List;
 import controllers.CardCreateViewController;
 import controllers.ListCreateViewController;
 import javafx.fxml.FXMLLoader;

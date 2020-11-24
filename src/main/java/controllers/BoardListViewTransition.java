@@ -13,6 +13,7 @@ public class BoardListViewTransition
 {
 	public Stage stage;
 	public Client client; 
+	
 	public BoardListViewTransition(Stage stage, Client client) {
 		this.stage = stage;
 		this.client = client; 

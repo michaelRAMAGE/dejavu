@@ -1,4 +1,4 @@
-package Rello;
+package GUITests;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -19,6 +19,9 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import Rello.Board;
+import Rello.Client;
+import Rello.List;
 import controllers.CardCreateViewController;
 import controllers.ListCreateViewController;
 import controllers.ListViewController;

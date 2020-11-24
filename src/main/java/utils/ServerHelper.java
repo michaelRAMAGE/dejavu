@@ -16,14 +16,14 @@ public class ServerHelper
 
 	public Server bootServer() throws AccessException, RemoteException {
 		server = Server.getInstance();
-		registry = LocateRegistry.createRegistry(1099); 
+		registry = LocateRegistry.createRegistry(2099); 
 		registry.rebind(bindname, server);
 		return server; 
 	}
 	
 	public Server bootServer(String read_from) throws AccessException, RemoteException {
 		server = Server.getInstance(read_from);
-		registry = LocateRegistry.createRegistry(1099); 
+		registry = LocateRegistry.createRegistry(2099); 
 		registry.rebind(bindname, server);
 		System.out.println(server);
 		return server; 

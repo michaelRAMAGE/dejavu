@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
+import template.CustomBoardView;
 
 public class CardCreateViewController
 {
@@ -74,23 +75,15 @@ public class CardCreateViewController
 	void switchToBoardView() throws IOException {
 		
 		Stage main_view = (Stage) stage.getOwner();
-		if (main_view == null) {
+		
+		if (main_view == null) { // forget why i did this
 			main_view = stage;
 		}
 		else {
 			stage.hide(); 
 		}
-
 		
 		String bname = this.board.getName();
-		FXMLLoader loader = (new CustomBoardViewLoader()).load();
-		BorderPane view = loader.load();
-		CustomBoardViewController cont = loader.getController(); 
-		cont.setStage(main_view);
-		cont.setClient(client);
-		cont.setModel(client.getUser().getBoard(bname)); // send newest version back
-		Scene s = new Scene(view);
-		main_view.setScene(s);
-		main_view.show(); 
+		new CustomBoardView(main_view, client, client.getUser().getBoard(bname)).load(); 
 	}
 }

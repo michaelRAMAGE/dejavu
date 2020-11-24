@@ -16,6 +16,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.BoardListViewLoader;
 import loaders.LoginViewLoader;
+import template.BoardListView;
+import template.LoginView;
 
 public class RegisterViewController
 {
@@ -53,13 +55,7 @@ public class RegisterViewController
     
     @FXML
     void onBackToLogin(ActionEvent event) throws IOException {
-    	FXMLLoader loader = (new LoginViewLoader()).load();
-    	BorderPane view = loader.load(); 
-    	LoginViewController cont = loader.getController(); 
-    	cont.setStage(stage);
-    	cont.setClient(client);
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
+    	(new LoginView(stage, client)).load(); 
     }
 
     @FXML
@@ -90,12 +86,6 @@ public class RegisterViewController
     }
     
     void loadBoardListView() throws IOException {
-    	FXMLLoader loader = (new BoardListViewLoader()).load();
-    	BorderPane view = loader.load(); 
-    	BoardListViewController cont = loader.getController(); 
-    	cont.setStage(stage);
-    	cont.setClient(client);
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
+    	(new BoardListView(stage, client)).load();
     }
 }

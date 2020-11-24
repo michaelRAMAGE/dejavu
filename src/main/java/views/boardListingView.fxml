@@ -8,35 +8,49 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@basetheme.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BoardListViewController">
-   <center>
-      <FlowPane id="boardListFlowPane" fx:id="boardListFlowPane" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="50.0" right="50.0" />
-         </BorderPane.margin>
-      </FlowPane>
-   </center>
-   <top>
-      <VBox alignment="CENTER" prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Your Boards">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-   </top>
-   <bottom>
-      <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="30.0" left="50.0" right="50.0" />
-         </BorderPane.margin>
-         <children>
-            <Button id="addBoardButton" fx:id="addBoard" mnemonicParsing="false" onAction="#onAddBoard" text="Add Board" />
-            <Button id="removeBoardButton" fx:id="removeBoardButton" mnemonicParsing="false" onAction="#onRemoveBoard" text="Remove Board" />
-            <Button id="logoutUserButton" fx:id="logoutUser" mnemonicParsing="false" onAction="#onLogoutUser" text="Logout" />
-         </children>
-      </VBox>
-   </bottom>
+<BorderPane stylesheets="@basetheme.css"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.BoardListViewController">
+	<center>
+		<FlowPane id="boardListFlowPane" fx:id="boardListFlowPane"
+			hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0"
+			BorderPane.alignment="CENTER">
+			<BorderPane.margin>
+				<Insets bottom="10.0" left="50.0" right="50.0" />
+			</BorderPane.margin>
+		</FlowPane>
+	</center>
+	<top>
+		<VBox alignment="CENTER" prefHeight="50.0" prefWidth="100.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<Label alignment="CENTER" contentDisplay="CENTER"
+					text="Your Boards">
+					<font>
+						<Font size="24.0" />
+					</font>
+				</Label>
+			</children>
+		</VBox>
+	</top>
+	<bottom>
+		<VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="100.0"
+			spacing="10.0" BorderPane.alignment="CENTER">
+			<BorderPane.margin>
+				<Insets bottom="30.0" left="50.0" right="50.0" />
+			</BorderPane.margin>
+			<children>
+				<Button id="addBoardButton" fx:id="addBoard"
+					mnemonicParsing="false" onAction="#onAddBoard" text="Add Board" />
+				<Button id="removeBoardButton" fx:id="removeBoardButton"
+					mnemonicParsing="false" onAction="#onRemoveBoard"
+					text="Remove Board" />
+				<Button id="logoutUserButton" fx:id="logoutUser"
+					mnemonicParsing="false" onAction="#onLogoutUser" text="Logout" />
+			</children>
+		</VBox>
+	</bottom>
 </BorderPane>

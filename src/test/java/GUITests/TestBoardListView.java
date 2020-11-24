@@ -1,4 +1,4 @@
-package Rello;
+package GUITests;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -21,6 +21,8 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import Rello.Board;
+import Rello.Client;
 import controllers.BoardListViewController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;

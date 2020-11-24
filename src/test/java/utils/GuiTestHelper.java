@@ -44,7 +44,7 @@ public class GuiTestHelper
 	
 	public Client initializeTestData(String email, String password) throws MalformedURLException, RemoteException {
 		// Construct Client object
-		String host = "localhost:1099"; // local host with default rmi registry port
+		String host = "localhost:2099"; // local host with default rmi registry port
 		String bind_name = "Server"; // name of reference to remote stub
 		Client client = new Client(host, bind_name);
 		// Log a user in
@@ -53,5 +53,11 @@ public class GuiTestHelper
     		return null;
     	}
     	return client; 
+	}
+	
+	public void addCard(FxRobot robot, String card_name) {
+		robot.clickOn("#addNewCardButton0");
+		enterTextInField(robot, "#nameTextField", card_name);
+		robot.clickOn("#createButton");
 	}
 }

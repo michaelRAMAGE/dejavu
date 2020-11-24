@@ -10,48 +10,64 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane stylesheets="@basetheme.css" prefHeight="450.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomCardEditViewController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="TOP_LEFT">
-         <children>
-            <Label text="Description:" />
-            <TextArea id="descriptionTextField" fx:id="descriptionTextField" maxHeight="75.0" prefHeight="200.0" prefWidth="200.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
-               <children>
-                  <Label text="Labels:" />
-                  <Button id="addLabelButton" fx:id="addLabelButton" mnemonicParsing="false" onAction="#onAddLabel" text="Add" />
-               </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </HBox>
-            <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0">
-               <children>
-                  <Button disable="true" mnemonicParsing="false" style="-fx-background-color: #63C5DA;" text="MAT" />
-               </children>
-            </FlowPane>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" />
-         </BorderPane.margin>
-      </VBox>
-   </center>
-   <top>
-      <HBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField id="cardNameTextField" fx:id="cardNameTextField" alignment="CENTER" maxWidth="125.0" text="&lt;Card Name&gt;" />
-         </children>
-         <BorderPane.margin>
-            <Insets left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-      </HBox>
-   </top>
-   <bottom>
-      <VBox alignment="CENTER" prefHeight="75.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button id="removeCardButton" fx:id="removeCardButton" mnemonicParsing="false" onAction="#onRemoveCard" text="Remove card" />
-            <Button id="saveButton" fx:id="saveButton" mnemonicParsing="false" onAction="#onSave" text="Save" />
-         </children>
-      </VBox>
-   </bottom>
+<BorderPane stylesheets="@basetheme.css" prefHeight="450.0"
+	prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.CustomCardEditViewController">
+	<center>
+		<VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0"
+			BorderPane.alignment="TOP_LEFT">
+			<children>
+				<Label text="Description:" />
+				<TextArea id="descriptionTextField"
+					fx:id="descriptionTextField" maxHeight="75.0" prefHeight="200.0"
+					prefWidth="200.0" />
+				<HBox alignment="CENTER_LEFT" prefHeight="30.0"
+					prefWidth="200.0" spacing="10.0">
+					<children>
+						<Label text="Labels:" />
+						<Button id="addLabelButton" fx:id="addLabelButton"
+							mnemonicParsing="false" onAction="#onAddLabel" text="Add" />
+					</children>
+					<VBox.margin>
+						<Insets top="20.0" />
+					</VBox.margin>
+				</HBox>
+				<FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0"
+					vgap="10.0">
+					<children>
+						<Button disable="true" mnemonicParsing="false"
+							style="-fx-background-color: #63C5DA;" text="MAT" />
+					</children>
+				</FlowPane>
+			</children>
+			<BorderPane.margin>
+				<Insets bottom="10.0" left="10.0" right="10.0" />
+			</BorderPane.margin>
+		</VBox>
+	</center>
+	<top>
+		<HBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="200.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<TextField id="cardNameTextField"
+					fx:id="cardNameTextField" alignment="CENTER" maxWidth="125.0"
+					text="&lt;Card Name&gt;" />
+			</children>
+			<BorderPane.margin>
+				<Insets left="5.0" right="5.0" top="5.0" />
+			</BorderPane.margin>
+		</HBox>
+	</top>
+	<bottom>
+		<VBox alignment="CENTER" prefHeight="75.0" prefWidth="100.0"
+			spacing="10.0" BorderPane.alignment="CENTER">
+			<children>
+				<Button id="removeCardButton" fx:id="removeCardButton"
+					mnemonicParsing="false" onAction="#onRemoveCard" text="Remove card" />
+				<Button id="saveButton" fx:id="saveButton"
+					mnemonicParsing="false" onAction="#onSave" text="Save" />
+			</children>
+		</VBox>
+	</bottom>
 </BorderPane>

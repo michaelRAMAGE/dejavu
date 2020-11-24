@@ -1,24 +1,20 @@
 package controllers;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 import Rello.Client;
 import Rello.Server;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import loaders.BoardListViewLoader;
-import loaders.RegisterViewLoader;
-import loaders.ServerViewLoader;
-import loaders.ViewLoaderInterface;
+import template.BoardListView;
+import template.RegisterView;
+import template.ServerView;
 
 public class LoginViewController {
 	
@@ -68,33 +64,16 @@ public class LoginViewController {
     
     @FXML
     void onBackToServerVIew(ActionEvent event) throws IOException {
-//    	FXMLLoader loader = (new ServerViewLoader()).load(); 
-//    	BorderPane view = loader.load();
-//    	ServerViewController cont = loader.getController(); 
-//    	cont.setStage(stage);
+    	(new ServerView(stage, Server.getInstance())).load(); // sserver is second arg, and we do not want that here so avoid
     }
 
     
     void loadBoardListView() throws IOException {
-    	FXMLLoader loader = (new BoardListViewLoader()).load();
-    	BorderPane view = loader.load(); 
-    	BoardListViewController cont = loader.getController(); 
-    	cont.setStage(stage);
-    	cont.setClient(client);
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
-    	stage.show(); 
+    	(new BoardListView(stage, client)).load();
     }    
     
     @FXML
     void onGoToRegister(ActionEvent event) throws IOException {
-    	FXMLLoader loader = (new RegisterViewLoader()).load();
-    	BorderPane view = loader.load(); 
-    	RegisterViewController cont = loader.getController(); 
-    	cont.setStage(stage);
-    	cont.setClient(client);
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
-    	stage.show(); 
+    	(new RegisterView(stage, client)).load();
     }
 }

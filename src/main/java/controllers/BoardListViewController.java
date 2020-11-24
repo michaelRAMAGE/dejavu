@@ -25,6 +25,10 @@ import loaders.CustomBoardViewLoader;
 import loaders.LoginViewLoader;
 import loaders.RemoveBoardViewLoader;
 import loaders.ServerViewLoader;
+import template.BoardCreateView;
+import template.CustomBoardView;
+import template.LoginView;
+import template.RemoveBoardView;
 
 public class BoardListViewController {
 	
@@ -57,29 +61,13 @@ public class BoardListViewController {
 
     @FXML
     void onAddBoard(ActionEvent event) throws IOException {
-		// Initialize 
-		FXMLLoader loader = (new BoardCreateViewLoader()).load(); 
-		BorderPane view = loader.load();
-		BoardCreateViewController cont = loader.getController(); 
-		cont.setClient(client);
-		cont.setStage(stage);
-		Scene new_scene = new Scene(view);
-		stage.setScene(new_scene);
-		stage.show();
+		(new BoardCreateView(stage, client)).load(); 
     }
     
     @FXML
     void onRemoveBoard(ActionEvent event) throws IOException {
     	Stage popup = createModal(); 
-		FXMLLoader loader = (new RemoveBoardViewLoader()).load(); 
-		BorderPane view = loader.load();
-		RemoveBoardViewController cont = loader.getController(); 
-		cont.setStage(popup);
-		cont.setClient(client);
-		cont.setModel(user.getBoards());
-		Scene new_scene = new Scene(view);
-		popup.setScene(new_scene);
-		popup.show();
+		(new RemoveBoardView(popup, client, user.getBoards())).load(); 
     }
     
     
@@ -92,15 +80,8 @@ public class BoardListViewController {
     
     @FXML
     void onLogoutUser(ActionEvent event) throws IOException {
-		FXMLLoader loader = (new LoginViewLoader()).load(); 
-		BorderPane view = loader.load();
-		LoginViewController cont = loader.getController(); 
-		cont.setStage(stage);
 		Client new_client = new Client(this.client.host, this.client.lookup_name);
-		cont.setClient(new_client);
-		Scene new_scene = new Scene(view);
-		stage.setScene(new_scene);
-		stage.show();
+		(new LoginView(stage, new_client)).load(); 
     }
     
     // Renders the flow pane for the BoardListView
@@ -108,30 +89,17 @@ public class BoardListViewController {
     	HashMap<String, Board> user_boards = user.getBoards();
     	
     	for (String bname : user_boards.keySet()) {
+    		
     		// Get board info 
     		Board curr_board = user_boards.get(bname);
     		String board_id = curr_board.boardID; 
-    		
-    		// Call the replaceAll() method 
-//            board_id = board_id.replaceAll("\\s", ""); 
+
     		// Create buttons for flow pane
     		Button button = createBoardListButton(bname, board_id, new int[]{80, 80});
     		button.setOnAction((ActionEvent event) -> { 
-    			System.out.println("clicked");
-    			FXMLLoader loader = (new CustomBoardViewLoader()).load();
-    			BorderPane view;
-				try
+    			try
 				{
-					view = loader.load();
-					CustomBoardViewController cont = loader.getController(); 
-	    			cont.setStage(stage);
-	    			cont.setClient(client);
-	    			cont.setModel(curr_board);
-	    			
-	    			Scene s = new Scene(view);
-	    			stage.setScene(s);
-	    			stage.show();
-
+					(new CustomBoardView(stage, client, curr_board)).load();
 				} catch (IOException e)
 				{
 					// TODO Auto-generated catch block

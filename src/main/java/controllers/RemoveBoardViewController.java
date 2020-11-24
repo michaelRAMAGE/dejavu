@@ -9,14 +9,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import loaders.BoardListViewLoader;
+import template.BoardListView;
 
 public class RemoveBoardViewController {
 
@@ -70,17 +67,10 @@ public class RemoveBoardViewController {
     	stage.hide();
 
     	client.getUser().removeBoard(choiceBox.getValue());
-    	System.out.println(boards.get(choiceBox.getValue()));
-
-    	client.removeBoard(client.getUser().getBoard(choiceBox.getValue()), client.getUser());
     	
-    	FXMLLoader loader = (new BoardListViewLoader()).load();
-    	BorderPane view = loader.load(); 
-    	BoardListViewController cont = loader.getController(); 
-    	cont.setStage(stage);
-    	cont.setClient(client);
-    	Scene new_scene = new Scene(view);
-    	main_stage.setScene(new_scene);
-    	main_stage.show(); 
+//    	System.out.println(boards.get(choiceBox.getValue()));
+//    	client.removeBoard(client.getUser().getBoard(choiceBox.getValue()), client.getUser()); // bug
+    	
+    	new BoardListView(main_stage, client).load(); 
     }
 }

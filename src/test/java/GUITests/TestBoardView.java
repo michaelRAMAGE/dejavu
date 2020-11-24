@@ -1,4 +1,4 @@
-package Rello;
+package GUITests;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -17,6 +17,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+
+import Rello.Board;
+import Rello.Card;
+import Rello.Client;
+import Rello.List;
 import controllers.CustomBoardViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

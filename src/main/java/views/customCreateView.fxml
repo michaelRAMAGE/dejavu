@@ -8,27 +8,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@basetheme.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardCreateViewController">
-   <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label id="ViewHelpText" fx:id="ViewHelpText" contentDisplay="CENTER" text="To add a Card, enter a name below:">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <TextField id="nameTextField" fx:id="nameTextField" alignment="CENTER" maxHeight="100.0" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" promptText="Card Name">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <Button id="cancelCreationButton" fx:id="cancelCreationButton" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
-                  <Button id="createButton" fx:id="createButton" mnemonicParsing="false" onAction="#onCreate" text="Create" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </center>
+<BorderPane stylesheets="@basetheme.css"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.CardCreateViewController">
+	<center>
+		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+			spacing="10.0" BorderPane.alignment="CENTER">
+			<children>
+				<Label id="ViewHelpText" fx:id="ViewHelpText"
+					contentDisplay="CENTER" text="To add a Card, enter a name below:">
+					<font>
+						<Font size="24.0" />
+					</font>
+				</Label>
+				<TextField id="nameTextField" fx:id="nameTextField"
+					alignment="CENTER" maxHeight="100.0" maxWidth="100.0"
+					minHeight="-Infinity" minWidth="-Infinity" promptText="Card Name">
+					<font>
+						<Font size="14.0" />
+					</font>
+				</TextField>
+				<HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0"
+					spacing="20.0">
+					<children>
+						<Button id="cancelCreationButton"
+							fx:id="cancelCreationButton" mnemonicParsing="false"
+							onAction="#onCancel" text="Cancel" />
+						<Button id="createButton" fx:id="createButton"
+							mnemonicParsing="false" onAction="#onCreate" text="Create" />
+					</children>
+				</HBox>
+			</children>
+		</VBox>
+	</center>
 </BorderPane>

@@ -9,54 +9,68 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@basetheme.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MoveListViewController">
-   <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Move List">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label id="currentCardInfoLabel" fx:id="currentCardInfoLabel11" text="Move this list into the position of a Target List">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="currentCardInfoLabel12" text="Current list: ">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label id="currentListLabel" fx:id="currentListLabel" text="&lt;ListIdx, ListName&gt;">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label id="currentCardInfoLabel" fx:id="currentCardInfoLabel121" text="Target List">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ChoiceBox id="choiceBoxB" fx:id="choiceBox" prefWidth="150.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="100.0">
-               <children>
-                  <Button id="cancelButton" fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
-                  <Button id="saveButton" fx:id="saveButton" mnemonicParsing="false" onAction="#onSave" text="Submit" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </center>
+<BorderPane stylesheets="@basetheme.css"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.MoveListViewController">
+	<center>
+		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+			spacing="20.0" BorderPane.alignment="CENTER">
+			<children>
+				<Label text="Move List">
+					<font>
+						<Font size="24.0" />
+					</font>
+				</Label>
+				<Label id="currentCardInfoLabel"
+					fx:id="currentCardInfoLabel11"
+					text="Move this list into the position of a Target List">
+					<font>
+						<Font size="15.0" />
+					</font>
+				</Label>
+				<HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+					<children>
+						<Label fx:id="currentCardInfoLabel12" text="Current list: ">
+							<HBox.margin>
+								<Insets right="10.0" />
+							</HBox.margin>
+							<font>
+								<Font size="15.0" />
+							</font>
+						</Label>
+						<Label id="currentListLabel" fx:id="currentListLabel"
+							text="&lt;ListIdx, ListName&gt;">
+							<font>
+								<Font size="15.0" />
+							</font>
+						</Label>
+					</children>
+				</HBox>
+				<HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+					<children>
+						<Label id="currentCardInfoLabel"
+							fx:id="currentCardInfoLabel121" text="Target List">
+							<HBox.margin>
+								<Insets right="10.0" />
+							</HBox.margin>
+						</Label>
+						<ChoiceBox id="choiceBoxB" fx:id="choiceBox"
+							prefWidth="150.0" />
+					</children>
+				</HBox>
+				<HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0"
+					spacing="100.0">
+					<children>
+						<Button id="cancelButton" fx:id="cancelButton"
+							mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+						<Button id="saveButton" fx:id="saveButton"
+							mnemonicParsing="false" onAction="#onSave" text="Submit" />
+					</children>
+				</HBox>
+			</children>
+		</VBox>
+	</center>
 </BorderPane>

@@ -11,36 +11,68 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@basetheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginViewController">
-   <center>
-      <GridPane prefHeight="323.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label id="incorrectLoginLabel" fx:id="incNamePassLabel" alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="Incorrect Username or Password" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-            <Label text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <TextField id="usernameTextBox" fx:id="userName" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <PasswordField id="passwordTextBox" fx:id="userPass" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </PasswordField>
-            <Button id="signInButton" fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInClick" text="Sign in" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <Button id="goToRegister" fx:id="goToRegister" mnemonicParsing="false" onAction="#onGoToRegister" text="Go to signup" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <Button id="backToServerViewButton" fx:id="backToServerViewButton" mnemonicParsing="false" onAction="#onBackToServerVIew" text="Back to server view" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-         </children>
-      </GridPane>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+	prefWidth="600.0" stylesheets="@basetheme.css"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.LoginViewController">
+	<center>
+		<GridPane prefHeight="323.0" prefWidth="600.0"
+			BorderPane.alignment="CENTER">
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES"
+					minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES"
+					minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES"
+					minWidth="10.0" prefWidth="100.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+			</rowConstraints>
+			<children>
+				<Label id="incorrectLoginLabel" fx:id="incNamePassLabel"
+					alignment="BOTTOM_CENTER" contentDisplay="CENTER"
+					text="Incorrect Username or Password" textFill="RED"
+					visible="false" GridPane.columnIndex="1"
+					GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+				<Label text="Login" GridPane.columnIndex="1"
+					GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+					<font>
+						<Font size="36.0" />
+					</font>
+				</Label>
+				<TextField id="usernameTextBox" fx:id="userName"
+					promptText="Username" GridPane.columnIndex="1"
+					GridPane.rowIndex="1" GridPane.valignment="TOP" />
+				<PasswordField id="passwordTextBox" fx:id="userPass"
+					promptText="Password" GridPane.columnIndex="1"
+					GridPane.rowIndex="1" GridPane.valignment="CENTER">
+					<GridPane.margin>
+						<Insets top="10.0" />
+					</GridPane.margin>
+				</PasswordField>
+				<Button id="signInButton" fx:id="signInButton"
+					mnemonicParsing="false" onAction="#onSignInClick" text="Sign in"
+					GridPane.columnIndex="1" GridPane.halignment="RIGHT"
+					GridPane.rowIndex="2" GridPane.valignment="TOP" />
+				<Button id="goToRegister" fx:id="goToRegister"
+					mnemonicParsing="false" onAction="#onGoToRegister"
+					text="Go to signup" GridPane.columnIndex="1"
+					GridPane.halignment="LEFT" GridPane.rowIndex="2"
+					GridPane.valignment="TOP" />
+				<Button id="backToServerViewButton"
+					fx:id="backToServerViewButton" mnemonicParsing="false"
+					onAction="#onBackToServerVIew" text="Back to server view"
+					GridPane.columnIndex="1" GridPane.halignment="CENTER"
+					GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+			</children>
+		</GridPane>
+	</center>
 </BorderPane>

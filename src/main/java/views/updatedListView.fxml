@@ -9,48 +9,69 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="265.0" style="-fx-background-color: silver;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField cacheShape="false" text="List Name">
-               <font>
-                  <Font size="34.0" />
-               </font>
-            </TextField>
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Edit">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </top>
-   <center>
-      <VBox prefHeight="100.0" prefWidth="100.0" styleClass="cardbutton" stylesheets="@cardbutton.css" BorderPane.alignment="CENTER">
-         <children>
-            <CardPane>
-               <items>
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-pref-width: 300;" text="Card" />
-               </items>
-            </CardPane>
-         </children>
-      </VBox>
-   </center>
-   <bottom>
-      <Button mnemonicParsing="false" text="Add card" BorderPane.alignment="CENTER" />
-   </bottom>
-   <padding>
-      <Insets bottom="5.0" />
-   </padding>
+<BorderPane maxHeight="1.7976931348623157E308"
+	maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="500.0" prefWidth="265.0"
+	style="-fx-background-color: silver;"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<top>
+		<HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT"
+			prefHeight="50.0" BorderPane.alignment="CENTER">
+			<children>
+				<TextField cacheShape="false" text="List Name">
+					<font>
+						<Font size="34.0" />
+					</font>
+				</TextField>
+				<Button alignment="CENTER_RIGHT" mnemonicParsing="false"
+					text="Edit">
+					<HBox.margin>
+						<Insets right="10.0" />
+					</HBox.margin>
+				</Button>
+			</children>
+		</HBox>
+	</top>
+	<center>
+		<VBox prefHeight="100.0" prefWidth="100.0"
+			styleClass="cardbutton" stylesheets="@cardbutton.css"
+			BorderPane.alignment="CENTER">
+			<children>
+				<CardPane>
+					<items>
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+						<Button mnemonicParsing="false" prefWidth="100.0"
+							style="-fx-pref-width: 300;" text="Card" />
+					</items>
+				</CardPane>
+			</children>
+		</VBox>
+	</center>
+	<bottom>
+		<Button mnemonicParsing="false" text="Add card"
+			BorderPane.alignment="CENTER" />
+	</bottom>
+	<padding>
+		<Insets bottom="5.0" />
+	</padding>
 </BorderPane>

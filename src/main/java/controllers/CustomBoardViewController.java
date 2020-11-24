@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import loaders.BoardCreateViewLoader;
 import loaders.BoardListViewLoader;
@@ -28,6 +29,10 @@ import loaders.ListCreateViewLoader;
 import loaders.ListViewLoader;
 import loaders.SaveChangesViewLoader;
 import loaders.ServerViewLoader;
+import template.CustomBoardView;
+import template.ListCreateView;
+import template.ListView;
+import template.boardCSSView;
 
 public class CustomBoardViewController
 {
@@ -56,22 +61,52 @@ public class CustomBoardViewController
     @FXML
     private Button save;
     
+    @FXML
+    private Button styleBoardButton;
+
+    
     
     @FXML
     private HBox listViewStorageContainer;
 	public StringProperty bname;
     
+	
+	
+    public void setStage(Stage stage) { 
+    	this.stage = stage;
+    }
+    
+    public void setClient(Client client) {
+    	this.client = client; 
+    }
+    
+    public void setModel(Board board) throws IOException {
+    	this.board = board; 
+    	
+    	bname = new SimpleStringProperty(); 
+		bname.bindBidirectional(boardTitleTextField.textProperty());
+		
+		
+		loadAllListViews(); 
+    }
+    public Stage createModal() {
+    	Stage popup = new Stage();
+    	popup.initModality(Modality.APPLICATION_MODAL);
+    	popup.initOwner(stage);
+    	return popup; 
+    }
+    
+    
+    @FXML
+    void onStyleBoard(ActionEvent event) throws IOException {
+    	Stage popup = createModal(); 
+		new boardCSSView(popup, client, board).load();
+    }
+    
     
     @FXML
     void onAddList(ActionEvent event) throws IOException {
-    	FXMLLoader loader = (new ListCreateViewLoader()).load();
-    	BorderPane view = loader.load(); 
-    	ListCreateViewController cont = loader.getController(); 
-    	cont.setStage(stage);
-    	cont.setClient(client);
-		cont.setModel(board); 
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);
+    	new ListCreateView(stage, client, board).load();
     }
 
     // not going to be implemented in sprint 4
@@ -96,29 +131,17 @@ public class CustomBoardViewController
     	saveChangesView.showView();
     }
 
-    public void setStage(Stage stage) { 
-    	this.stage = stage;
-    	System.out.println("Set stage in CustomBoardViewController: " + stage);
-    }
-    
-    public void setClient(Client client) {
-    	this.client = client; 
-    }
-    
-    public void setModel(Board board) throws IOException {
-    	this.board = board; 
-    	bname = new SimpleStringProperty(); 
-		bname.bindBidirectional(boardTitleTextField.textProperty());
-		loadAllListViews(); 
-    }
-
-
 	public void loadAllListViews() throws IOException {
 		ArrayList<List> lists = this.board.getLists();
 		for (int i=0; i<lists.size(); i++) {
 			List list = lists.get(i);
-			System.out.println(list.getName() + ": " + i);
 			BorderPane listview = createListView(list, i);
+			
+			// strapping styling in
+			if (board.getTheme().getNodes().get(".ListNode") != null) {
+				listview.setStyle(list.getBoard().getTheme().getNodes().get(".ListNode").nodeProperty());
+			}
+			
 			addListViewToContainer(listview); 
 		}
 	}
@@ -126,19 +149,13 @@ public class CustomBoardViewController
 	public void addListViewToContainer(BorderPane listView) { 
 		int insert_idx = listViewStorageContainer.getChildren().indexOf(addMembersButton);
 		if (insert_idx != 0) { insert_idx = insert_idx - 1; }
-		listViewStorageContainer.getChildren().add(listView); 
+		listViewStorageContainer.getChildren().add(listView); // do we use show on all children()?????
 	}
 	
 	public BorderPane createListView(List list, int list_idx) throws IOException { 
-		FXMLLoader loader = (new ListViewLoader()).load(); 
-		BorderPane listView = loader.load();
-		String custom_id = "list"+Integer.toString(list_idx);
-		listView.setId(custom_id);
-		ListViewController cont = loader.getController(); 
-		cont.setStage(this.stage);
-		cont.setModel(list, list_idx);
-		cont.setClient(client);
-		return listView; 
+		ListView listView = new ListView(client, stage, list, list_idx); 
+		listView.load(); 
+		return listView.getListView(); 
 	}	
 }
 	

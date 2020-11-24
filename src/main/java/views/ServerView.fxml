@@ -7,27 +7,42 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@basetheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServerViewController">
-   <top>
-      <Label text="Server/Connection View" BorderPane.alignment="CENTER" />
-   </top>
-   <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button id="defaultConnectButton" fx:id="defaultConnectButton" mnemonicParsing="false" onAction="#onConnectDefault" text="Click to connect to default server (local host)" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label text="To connect to Server other than default, enter an IP address below" />
-                  <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0">
-                     <children>
-                        <TextField id="ipTextField" fx:id="ipTextField" />
-                        <Button id="customConnectButton" fx:id="customConnectButton" mnemonicParsing="false" onAction="#onConnectCustom" text="Enter IP" />
-                     </children>
-                  </HBox>
-                  <Label id="errorMessageIPTextField" fx:id="errorMessageIPTextField" text="This field cannot be blank. Try again!" textFill="#ff0101" visible="false" />
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+	prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controllers.ServerViewController">
+	<top>
+		<Label text="Server/Connection View"
+			BorderPane.alignment="CENTER" />
+	</top>
+	<center>
+		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+			spacing="25.0" BorderPane.alignment="CENTER">
+			<children>
+				<Button id="defaultConnectButton"
+					fx:id="defaultConnectButton" mnemonicParsing="false"
+					onAction="#onConnectDefault"
+					text="Click to connect to default server (local host)" />
+				<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+					<children>
+						<Label
+							text="To connect to Server other than default, enter an IP address below" />
+						<HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0">
+							<children>
+								<TextField id="ipTextField" fx:id="ipTextField" />
+								<Button id="customConnectButton"
+									fx:id="customConnectButton" mnemonicParsing="false"
+									onAction="#onConnectCustom" text="Enter IP" />
+							</children>
+						</HBox>
+						<Label id="errorMessageIPTextField"
+							fx:id="errorMessageIPTextField"
+							text="This field cannot be blank. Try again!" textFill="#ff0101"
+							visible="false" />
+					</children>
+				</VBox>
+			</children>
+		</VBox>
+	</center>
 </BorderPane>
