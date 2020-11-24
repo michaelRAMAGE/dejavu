@@ -78,7 +78,7 @@ public class ListActionsViewController {
 		cont.setStage(stage);		
 		cont.setClient(client);
 		cont.setModel(lists, list_idx);
-    	Stage main_stage = (Stage) stage.getOwner();
+    	    	
 	  	Scene new_scene = new Scene(view);
     	stage.setScene(new_scene);	
     	stage.show(); 

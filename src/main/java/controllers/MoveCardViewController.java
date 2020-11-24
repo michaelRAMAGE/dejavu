@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
+import template.CustomBoardView;
 
 public class MoveCardViewController {
 	
@@ -39,6 +40,7 @@ public class MoveCardViewController {
 	public void setModel(List list, int list_idx)
 	{
 		this.list = list;
+		this.list_idx = list_idx; 
 		ObservableList<Integer> obs_cards = FXCollections.observableArrayList();
 		for (int i=0; i<list.getCards().size(); i++) {
 			obs_cards.add(i);
@@ -81,22 +83,10 @@ public class MoveCardViewController {
     	// Modify local list and then set it on client to pass back
     	list.moveCardInList(startIdx, endIdx);
     	client.getUser().getBoard(list.getBoard().getName()).getLists().set(list_idx, list);  
-    	stage.hide(); 
-    	
     	Stage main_stage = (Stage) stage.getOwner();
-    	// reload the main stage to reflect changes
-		FXMLLoader loader = (new CustomBoardViewLoader()).load(); 
+    	stage.hide(); 
 
-    	// Load the view
-    	BorderPane view = loader.load(); 
-    	CustomBoardViewController cont = loader.getController();
-    
-    	cont.setClient(client);
-    	cont.setModel(client.getUser().getBoard(list.getBoard().getName()));
-    	cont.setStage(main_stage);
-    	Scene new_scene = new Scene(view);
-    	main_stage.setScene(new_scene);	
-    	main_stage.show();
+    	new CustomBoardView(main_stage, client, client.getUser().getBoard(list.getBoard().getName())).load(); 
     }
 
 }

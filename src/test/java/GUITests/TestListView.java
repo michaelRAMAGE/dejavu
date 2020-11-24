@@ -65,6 +65,7 @@ public class TestListView
     	Board board = client.getUser().getBoard("Team Jim");
     	list_idx = 0; 
     	list = board.getList(list_idx);
+    	System.out.println("list in test: " + list);
 	}
 	
 	@Start 
@@ -126,29 +127,25 @@ public class TestListView
 		
 		assert(robot.lookup("#01").queryAs(Button.class).getText().equals("NewCard3") == true);
 		assert(robot.lookup("#02").queryAs(Button.class).getText().equals("NewCard2") == true);
-		Thread.sleep(3500); // if not enough time given, checks will not have enough time to go through 
+//		Thread.sleep(3500); // if not enough time given, checks will not have enough time to go through 
 	}
 
 
 	@Test
 	public void testRemoveCard(FxRobot robot) throws InterruptedException 
 	{
-		Thread.sleep(2000);
 		
 		int before_size = robot.lookup("#cardContainer0").queryAs(VBox.class).getChildren().size(); 
 		robot.clickOn("#00"); // list 0 card 1
 		
-		Thread.sleep(1000);
 		
 		robot.clickOn("#removeCardButton");
 		
-		Thread.sleep(1000);
 		
 		int expected_after_size = --before_size;
 		int after_size = robot.lookup("#cardContainer0").queryAs(VBox.class).getChildren().size(); 
 		assert(expected_after_size == after_size);
 		
-		Thread.sleep(1000);
 
 	}
 	

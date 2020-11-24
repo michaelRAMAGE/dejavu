@@ -86,16 +86,14 @@ public class ListViewController {
 			Button button = createCardButton(card.getName(), custom_id, new int[]{300, 26});
 			int card_idx = i; 
 		
-			
-
 			button.getStyleClass().add("CardNode"); // add a styling for card nodes
 
-			
 			
 			button.setOnAction((ActionEvent event) -> { 
 				try
 				{
 					Stage popup = createModal(); 
+					System.out.println("List in lsitview: " + list);
 					new CustomCardEditView(popup, client, list, card_idx, card_idx).load(); 
 				} catch (IOException e)
 				{

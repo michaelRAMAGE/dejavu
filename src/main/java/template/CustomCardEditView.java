@@ -30,6 +30,9 @@ public class CustomCardEditView extends ViewLoaderTemplate
 		super();
 		this.stage = stage;
 		this.client = client;
+		this.list = list;
+		this.list_idx = list_idx;
+		this.card_idx = card_idx; 
 	}
 	
 	@Override
@@ -47,8 +50,6 @@ public class CustomCardEditView extends ViewLoaderTemplate
 		cont.setStage(stage);
 		cont.setClient(client);
 		cont.setModel(list, list_idx, card_idx);
-		
-
 	}
 
 	@Override

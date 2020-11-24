@@ -6,6 +6,7 @@ import Rello.Client;
 import Rello.List;
 import controllers.ListViewController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.ListViewLoader;
@@ -24,6 +25,7 @@ public class ListView extends ViewLoaderTemplate
 	public ListView(Client client, Stage stage, List list, int list_idx)
 	{
 		super();
+		System.out.println("stage set: " + stage);
 		this.stage = stage;
 		this.client = client;
 		this.list = list; 
@@ -36,10 +38,6 @@ public class ListView extends ViewLoaderTemplate
 		loader = (new ListViewLoader()).load(); 
 		listView = loader.load();
 //		listView.getStylesheets().add("views/tempfile.css"); // tempfile for now 
-
-
-//		listView.getStyleClass().add(".ListNode"); // add ListNode class for styling
-		
 		cont = loader.getController(); 
 	}
 
@@ -48,7 +46,6 @@ public class ListView extends ViewLoaderTemplate
 	{
 		String custom_id = "list" + Integer.toString(list_idx); // assigning an id
 		listView.setId(custom_id);
-		
 		cont.setStage(this.stage);
 		cont.setModel(list, list_idx);
 		cont.setClient(client);
@@ -57,8 +54,9 @@ public class ListView extends ViewLoaderTemplate
 	@Override
 	protected void present()
 	{
-		// TODO Auto-generated method stub
-
+    	Scene new_scene = new Scene(listView);
+    	stage.setScene(new_scene);	
+    	stage.show();
 	}
 
 	public Stage getStage()
