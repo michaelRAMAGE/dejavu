@@ -55,7 +55,7 @@ public class TestLoginView
 		LoginViewController cont = loader.getController(); 
 		
 		// Construct client
-		String host = "localhost:1099"; // local host with default rmi registry port
+		String host = "localhost:2099"; // local host with default rmi registry port
 		String bind_name = "Server"; // name of reference to remote stub
     	client = new Client(host, bind_name); // construct the client
 		

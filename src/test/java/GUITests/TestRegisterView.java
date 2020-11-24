@@ -43,7 +43,7 @@ public class TestRegisterView
 	@BeforeAll
 	static void setup() throws RemoteException, MalformedURLException, AlreadyBoundException {
 		serverHelper.bootServer();
-		String host = "localhost:1099"; // local host with default rmi registry port
+		String host = "localhost:2099"; // local host with default rmi registry port
 		String bind_name = "Server"; // name of reference to remote stub
     	client = new Client(host, bind_name); // construct the client
 	}
