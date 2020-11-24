@@ -35,7 +35,6 @@ class decoratorTest
 		assert(node.nodeProperty().equals("-fx-background-color: blue;-fx-font-size: 10;"));
 		
 		String css_block = node.getName() + "{" + node.nodeProperty() + "}";
-//		System.out.println(css_block);
 	}
 	
 	// Tests addNode on theme
@@ -98,7 +97,6 @@ class decoratorTest
 		node = new TextFill(node, "red");
 		dummy_board.getTheme().addNode(node_name, node);
 				
-//		System.out.println(dummy_board.getTheme().constructCSS()); 
 		assert(dummy_board.getTheme().constructCSS().equals(".CardNode{-fx-text-fill: red;-fx-background-color: blue;} ")); // extra space matters
 		
 		// -----------------------------

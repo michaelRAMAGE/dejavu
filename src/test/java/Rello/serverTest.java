@@ -141,6 +141,7 @@ class serverTest
 		// get the test board 
 		Board test_board = client.getUser().getBoard("testboard2"); 
 		String test_board_id = test_board.boardID; 
+		assert(Server.getBoardsIndex().get(test_board_id) != null);
 		
 		// make a change
 		test_board.setName("newtestboard2");
