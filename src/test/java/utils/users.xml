@@ -30,7 +30,7 @@
           <string>boardID</string>
           <void method="set">
            <object idref="Board0"/>
-           <string>11</string>
+           <string>85</string>
           </void>
          </void>
          <void class="Rello.Board" method="getField">
@@ -67,6 +67,46 @@
                <void method="put">
                 <string>Team Jim</string>
                 <object idref="Board0"/>
+               </void>
+               <void method="put">
+                <string>TeamJim</string>
+                <object class="Rello.Board" id="Board1">
+                 <void class="Rello.Board" method="getField">
+                  <string>boardID</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <string>15</string>
+                  </void>
+                 </void>
+                 <void class="Rello.Board" method="getField">
+                  <string>name</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <string>TeamJim</string>
+                  </void>
+                 </void>
+                 <void class="Rello.Board" method="getField">
+                  <string>owner</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <object idref="User1"/>
+                  </void>
+                 </void>
+                 <void class="Rello.Board" method="getField">
+                  <string>members</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <object class="java.util.HashMap"/>
+                  </void>
+                 </void>
+                 <void class="Rello.Board" method="getField">
+                  <string>lists</string>
+                  <void method="set">
+                   <object idref="Board1"/>
+                   <object class="java.util.ArrayList"/>
+                  </void>
+                 </void>
+                </object>
                </void>
               </object>
              </void>

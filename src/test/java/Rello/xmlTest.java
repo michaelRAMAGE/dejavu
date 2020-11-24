@@ -21,7 +21,6 @@ class xmlTest
 	void setUp() throws Exception
 	{	
 		users.setXMLFileName("users.xml");
-		System.out.println("setting up");
 		jim = users.addUser("jim@gmail.com","jim123");
 		alfred = users.addUser("alfred@gmail.com","alfred123");
 		odysseus = users.addUser("odysseus@gmail.com","odysseus123");
@@ -32,7 +31,6 @@ class xmlTest
 	void testReadXML()
 	{
 		team_jim = jim.createBoard("Team Jim");
-		System.out.println(team_jim.getTheme());
 		
 		// add members
 		team_jim.addMember(alfred, jim); 
@@ -48,6 +46,7 @@ class xmlTest
 		Card cschwk2 = week2list.addCard("CSC Homework PG 20");
 		Card cschwk3 = week3list.addCard("CSC Homework PG 30");
 		
+		
 		// create and add labels to cards
 		Colors green = Colors.GREEN; 
 		Colors red = Colors.RED; 
@@ -61,8 +60,13 @@ class xmlTest
 		Component desc1 = new Description("Read from page 10 to 19");
 		cschwk1.addComponent(desc1);
 
+		System.out.println(users.getUsers().get("jim@gmail.com").getBoard("Team Jim").getTheme());
+		
 		users.storeToDisk(); // store to disk
 		HashMap<String, User> disk_users = Server.readFromDisk(); // read from disk into variable 
+		
+		System.out.println(disk_users.get("jim@gmail.com").getBoard("Team Jim").getTheme());
+
 		
 		assertTrue(users.getUsers().size() == disk_users.size()); // check that the two have same siz
 		assertTrue(users.equals(disk_users)); // check when read back in	

@@ -47,6 +47,8 @@ public class GuiTestHelper
 		String host = "localhost:2099"; // local host with default rmi registry port
 		String bind_name = "Server"; // name of reference to remote stub
 		Client client = new Client(host, bind_name);
+		System.out.println(client);
+
 		// Log a user in
     	boolean login_success = client.loginUser(email, password);
     	if (!login_success) {

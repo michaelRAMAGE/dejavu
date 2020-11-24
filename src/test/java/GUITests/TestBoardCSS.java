@@ -72,24 +72,27 @@ public class TestBoardCSS
     	assert(client != null); 
 	}
 	
-	
 	@Test 
 	public void testAddModification(FxRobot robot) throws InterruptedException, IOException {
+		Thread.sleep(2000);
+
 		robot.clickOn("#styleBoardButton");
-		Thread.sleep(1000);
+		Thread.sleep(5000);
 				
 		setCardStyle(robot, "Background", "yellow");
 		robot.clickOn("#addChangeButton");
-		
+		Thread.sleep(2000);
+
 		setListStyle(robot, "Background", "orange");
 		robot.clickOn("#addChangeButton");	
-		
+		Thread.sleep(2000);
+
 		robot.clickOn("#onSubmitButton");	
 		
 		Thread.sleep(3000);
 		
 		// Check all cards get their style (existing before change and new after change)
-//		assert(robot.lookup("#cardsContainer0").queryAs(Button.class).getStyle().equals("-fx-background-color: orange;"));
+		assert(robot.lookup("#list0").queryAs(BorderPane.class).getStyle().equals("-fx-background-color: orange;"));
 
 		assert(robot.lookup("#00").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
 		

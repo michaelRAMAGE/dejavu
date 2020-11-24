@@ -20,6 +20,16 @@ public class Board implements Serializable
 	public User owner; 
 	public HashMap<String, User> members;  //OBS
 	public ArrayList<List> lists;  //OBS
+	public String getBoardID()
+	{
+		return boardID;
+	}
+
+	public void setBoardID(String boardID)
+	{
+		this.boardID = boardID;
+	}
+
 	public Theme theme; 
 	
 	public Theme getTheme()
@@ -58,7 +68,7 @@ public class Board implements Serializable
 		else {
 			System.out.println("We will just randomly generate");
 		}
-		
+		this.theme = new Theme("default_theme");
 	}
 	
 	

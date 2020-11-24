@@ -136,6 +136,8 @@ public class CustomBoardViewController
 		for (int i=0; i<lists.size(); i++) {
 			List list = lists.get(i);
 			BorderPane listview = createListView(list, i);
+			listview.setId("list" + Integer.toString(i));
+			System.out.println("list id: " + listview.getId());
 			
 			// strapping styling in
 			if (board.getTheme().getNodes().get(".ListNode") != null) {
