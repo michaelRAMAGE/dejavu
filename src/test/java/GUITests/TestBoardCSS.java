@@ -72,6 +72,26 @@ public class TestBoardCSS
     	assert(client != null); 
 	}
 	
+//	@Test 
+//	public void testStyleAdding(FxRobot robot) throws InterruptedException, IOException {
+//		Thread.sleep(2000);
+//
+//		robot.clickOn("#styleBoardButton");
+//		Thread.sleep(5000);
+//				
+//		setCardStyle(robot, "Background", "yellow");
+//		robot.clickOn("#addChangeButton");
+//		Thread.sleep(2000);
+//
+//		setListStyle(robot, "Background", "orange");
+//		robot.clickOn("#addChangeButton");	
+//		Thread.sleep(2000);
+//
+//		System.out.println(robot.lookup("#ListViewPane").queryAs(ListView.class).getChildrenUnmodifiable().size());
+////		robot.listWindows().get(0).hide();
+//
+//	}
+	
 	@Test 
 	public void testAddModification(FxRobot robot) throws InterruptedException, IOException {
 		Thread.sleep(2000);

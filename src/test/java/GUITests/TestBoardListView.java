@@ -38,6 +38,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import loaders.BoardListViewLoader;
 import loaders.SaveChangesViewLoader;
+import template.BoardListView;
 import utils.GuiTestHelper;
 import utils.ServerHelper;
 
@@ -61,34 +62,19 @@ public class TestBoardListView
 		serverHelper.bootServer();
 		
 		// Construct Client object
-		String host = "localhost:1099"; // local host with default rmi registry port
-		String bind_name = "Server"; // name of reference to remote stub
-    	client = new Client(host, bind_name); // construct the client
+		String host = "localhost:2099"; // local host with default rmi registry port
+    	String email = "jim@gmail.com";
+    	String password = "jim123";
+		client = testHelper.initializeTestData(email, password);
 	}
 	
 
 	@Start // Before 
 	private void start(Stage stage) throws IOException 
 	{ 
-		// Initialize 
-		FXMLLoader loader = (new BoardListViewLoader()).load(); 
-    	
-    	// Log user in on Client object and make sure login is successful
-    	String email = "jim@gmail.com";
-    	String password = "jim123";
-    	boolean login_success = client.loginUser(email, password);
-    	assert(login_success == true); 
 		user_test_boards = client.user.getBoards(); // gte user boards 
-
-    	// Load the view
-    	BorderPane view = loader.load(); 
-    	cont = loader.getController(); 
-    	cont.setClient(client);
-    	cont.setStage(stage);
-    	
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
-    	stage.show();
+		(new BoardListView(stage, client)).load(); 
+		
 	}
 	
 	@Test

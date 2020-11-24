@@ -38,7 +38,6 @@ public class boardCSSController implements Initializable{
 	private Client client;
 	private Stage stage;
 	
-	
     @FXML
     private ListView<String> ListViewPane;
 	ObservableList<String> modificationsmssg = FXCollections.observableArrayList();

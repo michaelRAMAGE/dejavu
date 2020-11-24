@@ -30,7 +30,7 @@
           <string>boardID</string>
           <void method="set">
            <object idref="Board0"/>
-           <string>11</string>
+           <string>35</string>
           </void>
          </void>
          <void class="Rello.Board" method="getField">
@@ -382,6 +382,20 @@
                </void>
               </void>
              </object>
+            </void>
+           </object>
+          </void>
+         </void>
+         <void class="Rello.Board" method="getField">
+          <string>theme</string>
+          <void method="set">
+           <object idref="Board0"/>
+           <object class="theming.Theme">
+            <void property="name">
+             <string>default_theme</string>
+            </void>
+            <void property="nodes">
+             <object class="java.util.HashMap"/>
             </void>
            </object>
           </void>

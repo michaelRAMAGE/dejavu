@@ -16,6 +16,12 @@ public class Theme implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 
+	public Theme()
+	{
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	static ArrayList<String> node_name_index = new ArrayList<String>(Arrays.asList("CardNode","ListNode"));
 	
 	static ArrayList<String> property_name_index = new ArrayList<String>(Arrays.asList("FontSize","FontFamily",
