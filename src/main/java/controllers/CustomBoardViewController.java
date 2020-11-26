@@ -42,6 +42,7 @@ public class CustomBoardViewController
 	public Client client; 
 
 	
+	
     @FXML
     private Button addListButton;
 
@@ -135,17 +136,18 @@ public class CustomBoardViewController
 		ArrayList<List> lists = this.board.getLists();
 		for (int i=0; i<lists.size(); i++) {
 			List list = lists.get(i);
-			BorderPane listview = createListView(list, i);
-			listview.setId("list" + Integer.toString(i));
-			System.out.println("list id: " + listview.getId());
+			String custom_id = "list" + Integer.toString(i);
+			ListView listview = new ListView(client, stage, list, i, custom_id);
+			listview.load();
 			
-			// strapping styling in
-			if (board.getTheme().getNodes().get(".ListNode") != null) {
-				listview.setStyle(board.getTheme().getNodes().get(".ListNode").nodeProperty());
-				System.out.println(board.getTheme().getNodes());
-			}
+			BorderPane p = listview.getListView();			
+//			// strapping styling in
+//			if (board.getTheme().getNodes().get(".ListNode") != null) {
+//				p.setStyle(board.getTheme().getNodes().get(".ListNode").nodeProperty());
+//				System.out.println(board.getTheme().getNodes());
+//			}			
 			
-			addListViewToContainer(listview); 
+			addListViewToContainer(p); 
 		}
 	}
 
@@ -155,11 +157,6 @@ public class CustomBoardViewController
 		listViewStorageContainer.getChildren().add(listView); // do we use show on all children()?????
 	}
 	
-	public BorderPane createListView(List list, int list_idx) throws IOException { 
-		ListView listView = new ListView(client, stage, list, list_idx); 
-		listView.load(); 
-		return listView.getListView(); 
-	}	
 }
 	
 

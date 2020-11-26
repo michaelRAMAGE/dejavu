@@ -27,10 +27,6 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-//		Application.setUserAgentStylesheet("views/basetheme.css");
-//		PlatformImpl.setDefaultPlatformUserAgentStylesheet();
-//		StyleManager.getInstance().addUserAgentStylesheet("views/basetheme.css");
-		
 		// boot server -- testing		
 		local = new ServerHelper();
 		server = local.bootServer("non_test_users.xml");

@@ -41,7 +41,7 @@ import template.stylesheetmanager.StylesheetManager;
 // when stylesheet manager not set in first construct, we get a live theme switch.
 
 
-public class CustomBoardView extends ViewLoaderTemplate
+public class CustomBoardViewswitched extends ViewLoaderTemplate
 {
 	// WE can load css from view or scene. Set as needed.	
 	private boolean run_view_css_loader = true;
@@ -56,15 +56,14 @@ public class CustomBoardView extends ViewLoaderTemplate
 	private StylesheetManager stylesheetManager; 
 	
 	// Constructor -- uses default css file
-	public CustomBoardView(Stage stage, Client client, Board board) {
+	public CustomBoardViewswitched(Stage stage, Client client, Board board) {
 		this.stage = stage;
 		this.client = client; 
 		this.board = board; 
-		this.stylesheetManager = new StylesheetManager(); 
 	}
 	
 	// Constructor -- receives a temp css file 
-	public CustomBoardView(Stage stage, Client client, Board board, File temp_css) {
+	public CustomBoardViewswitched(Stage stage, Client client, Board board, File temp_css) {
 		this.stage = stage;
 		this.client = client; 
 		this.board = board; 
@@ -72,7 +71,7 @@ public class CustomBoardView extends ViewLoaderTemplate
 	}
 	
 	// Constructor -- accepts stylesheet manager
-	public CustomBoardView(Stage stage, Client client, Board board, StylesheetManager stylesheetManager) {
+	public CustomBoardViewswitched(Stage stage, Client client, Board board, StylesheetManager stylesheetManager) {
 		this.stage = stage;
 		this.client = client; 
 		this.board = board; 
@@ -85,7 +84,7 @@ public class CustomBoardView extends ViewLoaderTemplate
 		FXMLLoader loader = (new CustomBoardViewLoader()).load(); 
 		view = loader.load(); 
 		
-		if (run_view_css_loader) {
+		if (run_view_css_loader  && stylesheetManager != null) {
 			stylesheetManager.loadCSS(view);	
 		}
 		
@@ -109,7 +108,7 @@ public class CustomBoardView extends ViewLoaderTemplate
 //		new_scene.setUserAgentStylesheet(base_read_path + initial_css1);
 //		new_scene.setUserAgentStylesheet("hackywaytotoggle");
 
-		if (run_scene_css_loader == true) {
+		if (run_scene_css_loader == true && stylesheetManager != null) {
 			stylesheetManager.loadCSS(new_scene);	
 		}
 		stage.setScene(new_scene);

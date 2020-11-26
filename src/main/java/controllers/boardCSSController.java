@@ -22,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import template.CustomBoardView;
+import template.stylesheetmanager.StylesheetManager;
 import theming.Background;
 import theming.CardNode;
 import theming.FontFamily;
@@ -125,7 +126,6 @@ public class boardCSSController implements Initializable{
     	this.board = board; 
     	
     	ListViewPane.setItems(modificationsmssg); // set the prop
-    	System.out.println(ListViewPane.getChildrenUnmodifiable().size());
 		
 		// clean this up later
 		ObservableList<String> obs_prop_name_index = FXCollections.observableArrayList();
@@ -159,52 +159,31 @@ public class boardCSSController implements Initializable{
     
     @FXML
     void onSubmit(ActionEvent event) throws IOException {
-    	System.out.println("On submit");
+    	System.out.println("Custom board view wants its css changed!");
     	System.out.println("Nodes existing: " + board.getTheme().getNodes());
-
-
-		String temp_url = writeToCSS(board.getTheme().constructCSS());
 		
 		// close popup, return to main stage 
     	Stage main_stage = (Stage) stage.getOwner();
     	stage.hide();
 		
-		new CustomBoardView(main_stage, client, board).load();
-    }
-
-    public String writeToCSS(String css) throws IOException {
-    	
-    	String path_name = "/home/ming/eclipse-workspace/DejaVuu/src/tempfile.css";
-    	File temp = new File(path_name); 
-    	
-		temp.delete();
-    	if (temp.createNewFile()) {
-    		 System.out.println("File created: " + temp.getName());
-    	}
-    	else {
-    		System.out.println("File already exists.");
-    	}
-
-    	FileWriter myWriter = new FileWriter(temp);
-    	myWriter.write(board.getTheme().constructCSS());
-    	myWriter.close(); 
-    	
-//    	    	File temp = new File(path_name); 
-//        temp.delete();
-//        temp.createNewFile();
-//        BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
-//        System.out.println("Writing out to file: " + board.getTheme().constructCSS());
-//        bw.write(board.getTheme().constructCSS());
-//        bw.close();
-//        
-//        String url = "tempfile.css";
-        
-//        String temp_url = temp.toURI().toString();
-//        System.out.println(temp_url);
-        return ""; 
-        
-        
-//        scene.getStylesheets().add(temp);
-    }
+    	// Load new styling on customboardview 
+    	String path_name = "/home/ming/eclipse-workspace/DejaVuu/src/main/java/views/tempfile.css";
+    	File temp_file = writeCSSFile(path_name, board.getTheme().constructCSS());
+    	StylesheetManager stylesheetManager = new StylesheetManager(temp_file); 
+		new CustomBoardView(main_stage, client, board, stylesheetManager).load();
+    } 
     
+    public File writeCSSFile(String full_read_path, String css) throws IOException {
+    	File actual_file = new File(full_read_path);
+    	System.out.println(actual_file.getPath());
+    	if (actual_file.exists() && actual_file.isFile()) {
+			System.out.println("file exists");
+    		actual_file.delete();
+    	}
+    	actual_file.createNewFile();
+    	BufferedWriter bw = new BufferedWriter(new FileWriter(actual_file));
+    	bw.write(css);
+    	bw.close(); 
+    	return actual_file; 
+    }
 }

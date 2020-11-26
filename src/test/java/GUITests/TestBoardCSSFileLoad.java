@@ -1,5 +1,9 @@
 package GUITests;
 
+
+
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.AccessException;
@@ -23,13 +27,18 @@ import Rello.Card;
 import Rello.Client;
 import Rello.List;
 import controllers.CustomBoardViewController;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
 import template.CustomBoardView;
@@ -39,7 +48,7 @@ import utils.ServerHelper;
 
 
 @ExtendWith(ApplicationExtension.class)
-public class TestBoardCSS
+public class TestBoardCSSFileLoad
 {
 	
 	// Helpers
@@ -60,22 +69,12 @@ public class TestBoardCSS
 	@Start // Before 
 	private void start(Stage stage) throws IOException 
 	{ 
-		// Initialize 
-    	
     	// Create client and log a user into client
 		client = testHelper.initializeTestData("jim@gmail.com", "jim123");
 		client.getUser().getBoard("Team Jim").setTheme(new Theme("dummy_theme"));
 
 		(new CustomBoardView(stage, client, client.getUser().getBoard("Team Jim"))).load(); 
-		
-		
     	assert(client != null); 
-	}
-	
-	
-	// Test helpers 
-	ListView<String> getMods(FxRobot robot) {
-		return (ListView<String>) robot.lookup("#ListViewPane").queryAll().iterator().next();
 	}
 	
 	void setCardStyle (FxRobot robot, String property, String value) {
@@ -87,6 +86,8 @@ public class TestBoardCSS
 		
 		// Enter property value for property type (later handle bad inputs)
 		robot.clickOn("#propertyValue").write(value);
+		robot.clickOn("#addChangeButton");	
+
 		
 	}
 	
@@ -99,55 +100,70 @@ public class TestBoardCSS
 		
 		// Enter property value for property type (later handle bad inputs)
 		robot.clickOn("#propertyValue").write(value);
-	}
-	
-	@Test 
-	public void testStyleAdding(FxRobot robot) throws InterruptedException, IOException {
-
-		robot.clickOn("#styleBoardButton");
-		
-		ListView<String> mods = getMods(robot); 
-		Assertions.assertThat(mods).isEmpty(); 
-		
-		setCardStyle(robot, "Background", "green");
-		robot.clickOn("#addChangeButton");
-
-		setListStyle(robot, "Background", "orange");
 		robot.clickOn("#addChangeButton");	
 
-		mods = getMods(robot); 
-		Assertions.assertThat(mods).hasExactlyNumItems(2);
-		
-		robot.clickOn("#onSubmitButton");	
-		Thread.sleep(1000);
 	}
 	
 	@Test 
-	public void testAddModification(FxRobot robot) throws InterruptedException, IOException {
-//		// add testing to test before mods
-//		robot.clickOn("#styleBoardButton");
-//
-//		setCardStyle(robot, "Background", "yellow");
-//		robot.clickOn("#addChangeButton");
-//
-//		setListStyle(robot, "Background", "orange");
-//		robot.clickOn("#addChangeButton");	
-//
-//		robot.clickOn("#onSubmitButton");	
-//		assert(robot.lookup("#list0").queryAs(BorderPane.class).getStyle().equals("-fx-background-color: orange;"));
-//
-//		// Check all cards get their style (existing before change and new after change)
-//		assert(robot.lookup("#00").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
-//		
-//		testHelper.addCard(robot, "card1");
-//		assert(robot.lookup("#01").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
-//		
-//		testHelper.addCard(robot, "card2");
-//		assert(robot.lookup("#02").queryAs(Button.class).getStyle().equals("-fx-background-color: yellow;"));
+	public void testStyleClass(FxRobot robot) throws InterruptedException, IOException {
+
+		// Initial style should be loaded in 
+		// -----
+	
+		// ROY in ROYGBIV (card and list each)
+		// R -- red 
+		robot.clickOn("#styleBoardButton");
+		setCardStyle(robot, "Background", "red");
+		setListStyle(robot, "Background", "black");
+		robot.clickOn("#onSubmitButton");
 		
+		@SuppressWarnings("unchecked")
+		FilteredList<Node> listChildren = 
+				robot.lookup("#listViewStorageContainer").queryAs(javafx.scene.Parent.class)
+				.getChildrenUnmodifiable().filtered(t -> t.getId().contains("list"));
+		
+		// All lists should have ListNode class
+		ArrayList<String> list_ids = new ArrayList<String>();
+		for (Node list : listChildren) {
+			System.out.println(list);
+			
+			String selector = list.getId(); 
+			assertTrue(list.getStyleClass().contains("ListNode"));
+			list_ids.add("#"+selector);
+		}
+		
+		System.out.println("list ids collected: " + list_ids);
+	
+		// All cards should have CardNode class
+		for (int c=0; c<list_ids.size(); c++) {			
+			ObservableList<Node> cards_with_style_class = robot.lookup("#cardContainer"+Integer.toString(c)).queryAs(VBox.class).getChildrenUnmodifiable();
+			for (Node card : cards_with_style_class) {
+				System.out.println(card);
+				
+				assertTrue(card.getStyleClass().contains("CardNode"));
+			}
+		}
+		
+		
+		
+		
+
+//		
+//		// O -- orange 
+//		robot.clickOn("#styleBoardButton");
+//		setCardStyle(robot, "Background", "orange");
+//		setListStyle(robot, "Background", "orange");
+//		robot.clickOn("#onSubmitButton");	
+//		
+//		// Y -- yellow
+//		robot.clickOn("#styleBoardButton");
+//		setCardStyle(robot, "Background", "yellow");
+//		setListStyle(robot, "Background", "yellow");
+//		robot.clickOn("#onSubmitButton");	
+
+		// File should be created 
+		// -----
 	}
-
-
 	
 	@AfterAll
 	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {

@@ -36,6 +36,8 @@ public class TestServerConnectionView
 
 	@BeforeAll
 	static void setup() throws RemoteException, MalformedURLException, AlreadyBoundException {
+		System.out.println("RUNNING TestServerConnectionView VIEW");
+
 		serverHelper.bootServer();
 	}
 	

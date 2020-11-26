@@ -5,13 +5,14 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 import Rello.Server;
 
 public class ServerHelper
 {
 	Server server; 
-	static Registry registry;
+	Registry registry;
 	String bindname = "Server";
 
 	public Server bootServer() throws AccessException, RemoteException {
@@ -32,6 +33,7 @@ public class ServerHelper
 	public void closeServer() throws AccessException, RemoteException, NotBoundException {
 		server.resetInstance();
 		registry.unbind(bindname);
+		registry = null;
 	}
 	public void closeServer(String save_to) throws AccessException, RemoteException, NotBoundException {
 		server.setXMLFileName(save_to);

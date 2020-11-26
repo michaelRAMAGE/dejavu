@@ -12,10 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import loaders.CardCreateViewLoader;
-import loaders.CustomBoardViewLoader;
 import loaders.MoveCardViewLoader;
 import loaders.MoveListViewLoader;
+import template.CardCreateView;
+import template.CustomBoardView;
 
 public class ListActionsViewController {
 
@@ -55,18 +55,11 @@ public class ListActionsViewController {
     
     @FXML
     void onAddCard(ActionEvent event) throws IOException {
-		// Load up card creation view
-    	FXMLLoader createCardLoader = (new CardCreateViewLoader()).load();
-		BorderPane view = createCardLoader.load();
-		CardCreateViewController cont = createCardLoader.getController(); 
-		
-		cont.setStage(stage);
-		cont.setClient(client);
-		cont.setModel(this.list, this.list_idx);
-		
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
-    	stage.show(); 
+		// Load up card creation vie
+    	new CardCreateView(stage, client, list, list_idx).load();
+//		cont.setStage(stage);
+//		cont.setClient(client);
+//		cont.setModel(this.list, this.list_idx);
     }
     
     @FXML
@@ -101,26 +94,15 @@ public class ListActionsViewController {
     
     @FXML
     void onRemoveList(ActionEvent event) throws IOException {
-
     	// remove list and update it accordingly
     	lists.remove(this.list_idx);
     	client.getUser().getBoard(list.getBoard().getName()).setLists(lists);
     	
     	// load board again
-		FXMLLoader loader = (new CustomBoardViewLoader()).load();
-		BorderPane view = loader.load();
-		CustomBoardViewController cont = loader.getController(); 
-		
     	Stage main_stage = (Stage) stage.getOwner();
     	stage.hide();
-    	
-		cont.setStage(main_stage);
-		cont.setClient(client);
-		cont.setModel(client.getUser().getBoard(list.getBoard().getName())); // send newest version back
-		
-		Scene s = new Scene(view);
-		main_stage.setScene(s);
-		main_stage.show(); 
+    			
+		new CustomBoardView(main_stage, client, client.getUser().getBoard(list.getBoard().getName())).load();
     }
 
 }

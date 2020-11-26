@@ -46,6 +46,8 @@ public class TestCardCreateView
 	
 	@BeforeAll
 	static void setup() throws RemoteException, MalformedURLException, AlreadyBoundException {
+		System.out.println("RUNNING TestCardCreateView VIEW");
+
 		serverHelper.bootServer();
 	}
 	
@@ -122,9 +124,8 @@ public class TestCardCreateView
 		robot.clickOn("#cancelCreationButton"); // just...add...nothing
 	}
 	
-	
 	@AfterAll
-	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {
+	static void tearDown() throws AccessException, RemoteException, NotBoundException, MalformedURLException {
 		serverHelper.closeServer();
 	}
 		

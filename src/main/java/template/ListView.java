@@ -20,16 +20,25 @@ public class ListView extends ViewLoaderTemplate
 	ListViewController cont;
 	private List list;
 	private int list_idx;
-	
+	private String custom_id; 
 	
 	public ListView(Client client, Stage stage, List list, int list_idx)
 	{
 		super();
-		System.out.println("stage set: " + stage);
 		this.stage = stage;
 		this.client = client;
 		this.list = list; 
 		this.list_idx = list_idx; 
+	}
+	
+	public ListView(Client client, Stage stage, List list, int list_idx, String custom_id)
+	{
+		super();
+		this.stage = stage;
+		this.client = client;
+		this.list = list; 
+		this.list_idx = list_idx; 
+		this.custom_id = custom_id; 
 	}
 
 	@Override
@@ -37,8 +46,9 @@ public class ListView extends ViewLoaderTemplate
 	{
 		loader = (new ListViewLoader()).load(); 
 		listView = loader.load();
-//		listView.getStylesheets().add("views/tempfile.css"); // tempfile for now 
+		listView.setId(custom_id);
 		cont = loader.getController(); 
+//		listView.getStyleClass().add("ListNode");
 	}
 
 	@Override
@@ -46,6 +56,7 @@ public class ListView extends ViewLoaderTemplate
 	{
 		String custom_id = "list" + Integer.toString(list_idx); // assigning an id
 		listView.setId(custom_id);
+		listView.getStyleClass().add("ListNode");
 		cont.setStage(this.stage);
 		cont.setModel(list, list_idx);
 		cont.setClient(client);

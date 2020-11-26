@@ -73,9 +73,6 @@ public class CustomCardEditViewController {
     @FXML
     void onSave(ActionEvent event) throws IOException {
     	// Set new card name
-    	System.out.println("list: " + list);
-    	System.out.println("list cards: " + list.getCards());
-    	System.out.println(list.getCards().get(card_idx));
     	list.getCards().get(card_idx).setName(cardNameTextField.getText());
     	
      	// Set new card description

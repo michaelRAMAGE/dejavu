@@ -5,30 +5,19 @@ import java.util.ArrayList;
 import Rello.Card;
 import Rello.Client;
 import Rello.List;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
-import loaders.CardCreateViewLoader;
-import loaders.CustomCardEditViewLoader;
-import loaders.ListActionsViewLoader;
 import template.CardCreateView;
 import template.CustomCardEditView;
 import template.ListActionsView;
-import theming.Background;
-import theming.CardNode;
-import theming.FontSize;
-import theming.ThemeNode;
 
 public class ListViewController {
 
@@ -41,7 +30,18 @@ public class ListViewController {
     @FXML
     private TextField listTitleTextField;
 
-	
+    @FXML
+    private BorderPane listRoot;    
+    
+    @FXML
+    private Button editListButton;
+
+    @FXML
+    private Button addNewCardButton;
+
+    @FXML
+    private VBox cardContainer;
+    
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
@@ -66,14 +66,7 @@ public class ListViewController {
 	}
 	
 	
-    @FXML
-    private Button editListButton;
 
-    @FXML
-    private Button addNewCardButton;
-
-    @FXML
-    private VBox cardContainer;
 
     
 	public void loadCards() {
@@ -87,13 +80,15 @@ public class ListViewController {
 			int card_idx = i; 
 		
 			button.getStyleClass().add("CardNode"); // add a styling for card nodes
-
+			
+//			listRoot.getStyleClass().add("ListNode"); // this does not work 
+//			
+//			cardContainer.getStyleClass().add("ListNode"); // this works
 			
 			button.setOnAction((ActionEvent event) -> { 
 				try
 				{
 					Stage popup = createModal(); 
-					System.out.println("List in lsitview: " + list);
 					new CustomCardEditView(popup, client, list, card_idx, card_idx).load(); 
 				} catch (IOException e)
 				{
@@ -103,9 +98,9 @@ public class ListViewController {
 			}); 
 			
 			// Add button to flow pane 
-			if (list.getBoard().getTheme().getNodes().get(".CardNode") != null) {
-				button.setStyle(list.getBoard().getTheme().getNodes().get(".CardNode").nodeProperty());
-			}
+//			if (list.getBoard().getTheme().getNodes().get(".CardNode") != null) {
+//				button.setStyle(list.getBoard().getTheme().getNodes().get(".CardNode").nodeProperty());
+//			}
 
 			cardContainer.getChildren().add(button);
 		}

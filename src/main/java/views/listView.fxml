@@ -8,23 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="1.7976931348623157E308"
-	maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-	minWidth="-Infinity" prefHeight="500.0" prefWidth="300.0"
-	style="-fx-background-color: silver;"
-	xmlns="http://javafx.com/javafx/11.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controllers.ListViewController">
+<BorderPane fx:id="listRoot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListViewController">
 	<top>
-		<HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT"
-			prefHeight="50.0" spacing="135.0" BorderPane.alignment="CENTER">
+		<HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" spacing="135.0" BorderPane.alignment="CENTER">
 			<children>
-				<TextField id="listTitleTextField"
-					fx:id="listTitleTextField"
-					onInputMethodTextChanged="#onChangeListTitle" prefHeight="26.0" />
-				<Button fx:id="editListButton" alignment="CENTER_RIGHT"
-					minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-					onAction="#onEditList" text="Edit">
+				<TextField id="listTitleTextField" fx:id="listTitleTextField" onInputMethodTextChanged="#onChangeListTitle" prefHeight="26.0" />
+				<Button fx:id="editListButton" alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onEditList" text="Edit">
 					<HBox.margin>
 						<Insets right="10.0" />
 					</HBox.margin>
@@ -33,9 +22,7 @@
 		</HBox>
 	</top>
 	<bottom>
-		<Button fx:id="addNewCardButton" mnemonicParsing="false"
-			onAction="#onAddNewCard" text="Add new card"
-			BorderPane.alignment="CENTER" />
+		<Button fx:id="addNewCardButton" mnemonicParsing="false" onAction="#onAddNewCard" text="Add new card" BorderPane.alignment="CENTER" />
 	</bottom>
 	<opaqueInsets>
 		<Insets />
@@ -44,14 +31,11 @@
 		<Insets bottom="10.0" left="10.0" right="10.0" />
 	</padding>
 	<center>
-		<VBox maxWidth="1.7976931348623157E308" prefHeight="500.0"
-			prefWidth="200.0" BorderPane.alignment="CENTER">
+		<VBox maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 			<children>
 				<ScrollPane prefHeight="500.0" prefWidth="200.0">
 					<content>
-						<VBox id="cardContainer" fx:id="cardContainer"
-							maxWidth="1.7976931348623157E308" minWidth="-Infinity"
-							prefHeight="415.0" prefWidth="260.0" spacing="10.0">
+						<VBox id="cardContainer" fx:id="cardContainer" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="415.0" prefWidth="260.0" spacing="10.0">
 							<padding>
 								<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 							</padding>

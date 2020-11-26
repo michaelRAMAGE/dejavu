@@ -39,6 +39,8 @@ public class TestBoardCreateView
 	
 	@BeforeAll
 	static void setup() throws RemoteException, MalformedURLException, AlreadyBoundException {
+		System.out.println("RUNNING TestBoardCreateView VIEW");
+
 		serverHelper.bootServer();
 	}
 	
@@ -96,7 +98,7 @@ public class TestBoardCreateView
 	}
 
 	@AfterAll
-	static void done() throws AccessException, RemoteException, NotBoundException, MalformedURLException {
+	static void tearDown() throws AccessException, RemoteException, NotBoundException, MalformedURLException {
 		serverHelper.closeServer();
 	}
 }

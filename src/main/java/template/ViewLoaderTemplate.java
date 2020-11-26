@@ -1,5 +1,6 @@
 package template;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public abstract class ViewLoaderTemplate
@@ -14,6 +15,6 @@ public abstract class ViewLoaderTemplate
 
 	protected abstract void setData() throws IOException;
 	
-	protected abstract void present(); // this will be same for all but requires view and those differ
+	protected abstract void present() throws FileNotFoundException; // this will be same for all but requires view and those differ
 		
 }
