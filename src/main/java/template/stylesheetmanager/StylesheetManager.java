@@ -28,7 +28,7 @@ public class StylesheetManager
 	private static HashMap<String, String> css_files = cssMap();
 	
 	// CSS file to add to stylesheet and to read from 
-	private File temp_css; 
+	private static File temp_css; 
 	
 	/** This constructor is called when default css should be used.
 		(Look at the constructor's in CustomBoardView.java) 

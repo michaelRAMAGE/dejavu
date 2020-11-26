@@ -53,14 +53,16 @@ public class CustomBoardView extends ViewLoaderTemplate
 	private CustomBoardViewController cont;
 	private Client client;
 	private Board board; 
-	private StylesheetManager stylesheetManager; 
+	private static StylesheetManager stylesheetManager; 
 	
 	// Constructor -- uses default css file
 	public CustomBoardView(Stage stage, Client client, Board board) {
 		this.stage = stage;
 		this.client = client; 
 		this.board = board; 
-		this.stylesheetManager = new StylesheetManager(); 
+		if (stylesheetManager == null) {
+			this.stylesheetManager = new StylesheetManager(); 
+		}
 	}
 	
 	// Constructor -- receives a temp css file 

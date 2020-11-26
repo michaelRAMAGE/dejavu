@@ -88,7 +88,6 @@ public class boardCSSController implements Initializable{
 		
 		else if (prop_selected.equals("FontSize")) {
 			node  = new FontSize(node, prop_value_entered);
-
 		}
 		else { }
 	

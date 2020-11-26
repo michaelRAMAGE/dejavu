@@ -65,10 +65,6 @@ public class ListViewController {
 		cardContainer.setId("cardContainer"+Integer.toString(list_idx));
 	}
 	
-	
-
-
-    
 	public void loadCards() {
 		ArrayList<Card> cards = this.list.getCards(); 
 		for (int i=0; i<cards.size(); i++) { 
