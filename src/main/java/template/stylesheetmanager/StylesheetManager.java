@@ -132,7 +132,7 @@ public class StylesheetManager
 	}
 	
 	/**
-	 * Loads css on javafx.scene.Parent objects
+	 * Loads css on objects wrapped with StylesheetWrapperInterface
 	 * @param s - a wrapped object that is derived from StylesheetWrapperInterface
 	 * @param full_css_path
 	 */
@@ -142,8 +142,7 @@ public class StylesheetManager
 		
 //		System.out.println("Get cached image: " + StyleManager.getInstance().getCachedImage(full_css_path));
 
-		
-		
+	
 		// clear, load (should dodge caching,...right?)
 		// WAS I EVER EVEN DODING THE CACHE??? I WAS NOT USING URI STRINGS 
 //		s.getStylesheets().remove(getClass().getResource("/" + full_css_path).toExternalForm()); 	
@@ -152,6 +151,7 @@ public class StylesheetManager
 //		s.getStylesheets().add(getClass().getResource("/" + full_css_path).toExternalForm()); 	
 		s.getStylesheets().add(full_css_path); 	
 
+		// -------------------- REST IS EXPERIMENTING WITH JAVAFX SOURCE CLASSES -----------------------
 		o("Stylesheets of " + s + ", after: " + s.getStylesheets());
 		
 //		StyleManager.getInstance();
