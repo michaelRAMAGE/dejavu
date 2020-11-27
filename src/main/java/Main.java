@@ -30,7 +30,6 @@ public class Main extends Application
 		// boot server -- testing		
 		local = new ServerHelper();
 		server = local.bootServer("non_test_users.xml");
-		
 		stage = primaryStage; 
 		new ServerView(stage, server).load();
 	}

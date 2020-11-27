@@ -58,7 +58,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		users = new HashMap<String, User>(); 
 		board_index = new HashMap<String, Board>(); 
 		setAllData(); 
-		System.out.println(SERIALIZED_FILE_NAME);
 		System.out.println(users);
 	}
 	

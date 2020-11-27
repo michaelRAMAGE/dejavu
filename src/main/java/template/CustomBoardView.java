@@ -40,7 +40,6 @@ import template.stylesheetmanager.StylesheetManager;
 
 // when stylesheet manager not set in first construct, we get a live theme switch.
 
-
 public class CustomBoardView extends ViewLoaderTemplate
 {
 	// WE can load css from view or scene. Set as needed.	
@@ -61,7 +60,7 @@ public class CustomBoardView extends ViewLoaderTemplate
 		this.client = client; 
 		this.board = board; 
 		if (stylesheetManager == null) {
-			this.stylesheetManager = new StylesheetManager(); 
+			stylesheetManager = new StylesheetManager(); 
 		}
 	}
 	
@@ -74,11 +73,11 @@ public class CustomBoardView extends ViewLoaderTemplate
 	}
 	
 	// Constructor -- accepts stylesheet manager
-	public CustomBoardView(Stage stage, Client client, Board board, StylesheetManager stylesheetManager) {
+	public CustomBoardView(Stage stage, Client client, Board board, StylesheetManager in_stylesheetManager) {
 		this.stage = stage;
 		this.client = client; 
 		this.board = board; 
-		this.stylesheetManager = stylesheetManager; 
+		stylesheetManager = in_stylesheetManager; 
 	}
 	
 	@Override
@@ -106,11 +105,7 @@ public class CustomBoardView extends ViewLoaderTemplate
 	protected void present() throws FileNotFoundException
 	{
 		Scene new_scene = new Scene(view);
-		
-		// can i reset cache like this?
-//		new_scene.setUserAgentStylesheet(base_read_path + initial_css1);
-//		new_scene.setUserAgentStylesheet("hackywaytotoggle");
-
+	
 		if (run_scene_css_loader == true) {
 			stylesheetManager.loadCSS(new_scene);	
 		}

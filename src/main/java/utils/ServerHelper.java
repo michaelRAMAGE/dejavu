@@ -5,28 +5,30 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
 
+import ENV.EnvHandler;
 import Rello.Server;
 
 public class ServerHelper
 {
-	Server server; 
-	Registry registry;
-	String bindname = "Server";
+	private Server server; 
+	private Registry registry;
+	static private HashMap<String, String> env_vars = EnvHandler.getEnvVars(); 
+	public String bindname = env_vars.get("RMI_BIND_NAME");
+	public int port = Integer.parseInt(env_vars.get("RMI_PORT"));
 
 	public Server bootServer() throws AccessException, RemoteException {
 		server = Server.getInstance();
-		registry = LocateRegistry.createRegistry(2099); 
+		registry = LocateRegistry.createRegistry(port); 
 		registry.rebind(bindname, server);
 		return server; 
 	}
 	
 	public Server bootServer(String read_from) throws AccessException, RemoteException {
 		server = Server.getInstance(read_from);
-		registry = LocateRegistry.createRegistry(2099); 
+		registry = LocateRegistry.createRegistry(port); 
 		registry.rebind(bindname, server);
-		System.out.println(server);
 		return server; 
 	}
 	

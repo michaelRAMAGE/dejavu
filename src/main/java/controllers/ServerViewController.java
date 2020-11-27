@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.HashMap;
 
+import ENV.EnvHandler;
 import Rello.Client;
 import Rello.Server;
 import javafx.event.ActionEvent;
@@ -22,9 +24,10 @@ import template.LoginView;
 
 public class ServerViewController {
 
-	static Server server; 
-	static Client client; 
-	static Stage stage; 
+	Server server; 
+	Client client; 
+	Stage stage; 
+	static HashMap<String, String> env_vars = EnvHandler.getEnvVars();
 	
 	public void setModel(Server server_model) {
 		server = server_model; 
@@ -66,8 +69,8 @@ public class ServerViewController {
 		System.out.println("Default connection clicked");
 		
 		// Construct a client, connect them to host server 
-		String host = "localhost:2099"; // local host with default rmi registry port
-		String bind_name = "Server"; // name of reference to remote stub
+		String host = env_vars.get("RMI_HOST") + ":" + env_vars.get("RMI_PORT");
+		String bind_name = env_vars.get("RMI_BIND_NAME"); // name of reference to remote stub
 		
     	client = new Client(host, bind_name); // construct the client
 

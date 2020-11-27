@@ -1,52 +1,22 @@
 package utils;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 
 import org.testfx.api.FxRobot;
+
+import ENV.EnvHandler;
 import Rello.Client;
 import javafx.scene.control.TextField;
 
 
 public class GuiTestHelper
 {
-	static private String ENV_PATH = "ENV_VARS.txt";
-	static private HashMap<String, String> env_vars = readInVars(); 
+	static private HashMap<String, String> env_vars = EnvHandler.getEnvVars(); 
 	
 	public GuiTestHelper() {}
 	
-	private static HashMap<String, String> readInVars()
-	{
-		HashMap<String, String> in_env_vars = new HashMap<String, String>(); 
-		BufferedReader reader; 
-		try
-		{
-			reader = new BufferedReader(new FileReader(
-					ENV_PATH
-			));
-			String line = reader.readLine();
-			while (line != null) {
-				String[] key_value = line.split("=");
-				in_env_vars.put(key_value[0], key_value[1]);
-				line = reader.readLine();
-			}
-			reader.close(); 
-		} 
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		return in_env_vars;
-	}
-
 	public void enterTextInField(FxRobot robot, String selector, String text) {
 		// User name entry
 		robot.lookup(selector).queryAs(TextField.class).clear();
@@ -93,25 +63,6 @@ public class GuiTestHelper
 		enterTextInField(robot, "#nameTextField", card_name);
 		robot.clickOn("#createButton");
 	}
-	
-	public static String getENV_PATH()
-	{
-		return ENV_PATH;
-	}
 
-	public static void setENV_PATH(String eNV_PATH)
-	{
-		ENV_PATH = eNV_PATH;
-	}
-
-	public static HashMap<String, String> getEnv_vars()
-	{
-		return env_vars;
-	}
-
-	public static void setEnv_vars(HashMap<String, String> env_vars)
-	{
-		GuiTestHelper.env_vars = env_vars;
-	}
 
 }

@@ -12,7 +12,6 @@ public class Client {
 	public String host;
 	public String lookup_name; 
 	
-	// added back in 
 	public Client(String host, String lookup_name) throws MalformedURLException {
 		try
 		{
