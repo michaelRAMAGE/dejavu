@@ -72,7 +72,6 @@ public class TestBoardCSSFileLoad
     	// Create client and log a user into client
 		client = testHelper.initializeTestData("jim@gmail.com", "jim123");
 		client.getUser().getBoard("Team Jim").setTheme(new Theme("dummy_theme"));
-
 		(new CustomBoardView(stage, client, client.getUser().getBoard("Team Jim"))).load(); 
     	assert(client != null); 
 	}
@@ -108,47 +107,47 @@ public class TestBoardCSSFileLoad
 	public void testStyleClass(FxRobot robot) throws InterruptedException, IOException {
 
 		// Initial style should be loaded in 
-		// -----
-	
+		// check that our initial file is in the path 
+		
+		String default_css_file = "views/basetheme.css";
+		assert(robot.lookup("#boardViewRoot").queryAs(BorderPane.class).getStylesheets().contains(default_css_file));	
+		
+		System.out.println(robot.lookup("#boardViewRoot").queryAs(BorderPane.class).getStyleClass());
+//		
 		// ROY in ROYGBIV (card and list each)
 		// R -- red 
-		robot.clickOn("#styleBoardButton");
-		setCardStyle(robot, "Background", "red");
-		setListStyle(robot, "Background", "black");
-		robot.clickOn("#onSubmitButton");
-		
-		@SuppressWarnings("unchecked")
-		FilteredList<Node> listChildren = 
-				robot.lookup("#listViewStorageContainer").queryAs(javafx.scene.Parent.class)
-				.getChildrenUnmodifiable().filtered(t -> t.getId().contains("list"));
-		
-		// All lists should have ListNode class
-		ArrayList<String> list_ids = new ArrayList<String>();
-		for (Node list : listChildren) {
-			System.out.println(list);
-			
-			String selector = list.getId(); 
-			assertTrue(list.getStyleClass().contains("ListNode"));
-			list_ids.add("#"+selector);
-		}
-		
-		System.out.println("list ids collected: " + list_ids);
-	
-		// All cards should have CardNode class
-		for (int c=0; c<list_ids.size(); c++) {			
-			ObservableList<Node> cards_with_style_class = robot.lookup("#cardContainer"+Integer.toString(c)).queryAs(VBox.class).getChildrenUnmodifiable();
-			for (Node card : cards_with_style_class) {
-				System.out.println(card);
-				
-				assertTrue(card.getStyleClass().contains("CardNode"));
-			}
-		}
-		
-		
-		
-		
-
+//		robot.clickOn("#styleBoardButton");
+//		setCardStyle(robot, "Background", "red");
+//		setListStyle(robot, "Background", "black");
+//		robot.clickOn("#onSubmitButton");
 //		
+//		@SuppressWarnings("unchecked")
+//		FilteredList<Node> listChildren = 
+//				robot.lookup("#listViewStorageContainer").queryAs(javafx.scene.Parent.class)
+//				.getChildrenUnmodifiable().filtered(t -> t.getId().contains("list"));
+//		
+//		// All lists should have ListNode class
+//		ArrayList<String> list_ids = new ArrayList<String>();
+//		for (Node list : listChildren) {
+//			System.out.println(list);
+//			
+//			String selector = list.getId(); 
+//			assertTrue(list.getStyleClass().contains("ListNode"));
+//			list_ids.add("#"+selector);
+//		}
+//		System.out.println("list ids collected: " + list_ids);
+//	
+//		// All cards should have CardNode class
+//		for (int c=0; c<list_ids.size(); c++) {			
+//			ObservableList<Node> cards_with_style_class = robot.lookup("#cardContainer"+Integer.toString(c)).queryAs(VBox.class).getChildrenUnmodifiable();
+//			for (Node card : cards_with_style_class) {
+//				System.out.println(card);
+//				
+//				assertTrue(card.getStyleClass().contains("CardNode"));
+//			}
+//		}
+//		
+		// Demonstrate we can make change after changes have already been made 
 //		// O -- orange 
 //		robot.clickOn("#styleBoardButton");
 //		setCardStyle(robot, "Background", "orange");

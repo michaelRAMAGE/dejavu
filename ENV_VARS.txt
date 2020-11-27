@@ -1,0 +1,3 @@
+RMI_HOST=localhost
+RMI_PORT=2099
+RMI_BIND_NAME=Server

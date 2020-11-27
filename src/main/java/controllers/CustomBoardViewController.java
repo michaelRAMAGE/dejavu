@@ -41,7 +41,8 @@ public class CustomBoardViewController
 	public Stage stage; 
 	public Client client; 
 
-	
+    @FXML
+    private BorderPane boardViewRoot;
 	
     @FXML
     private Button addListButton;
