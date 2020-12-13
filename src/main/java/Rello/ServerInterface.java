@@ -2,7 +2,6 @@ package Rello;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.HashMap;
 
 public interface ServerInterface extends Remote {
 	User createBoard(String bname, User user) throws RemoteException;

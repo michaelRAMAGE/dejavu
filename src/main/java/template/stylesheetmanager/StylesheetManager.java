@@ -1,16 +1,9 @@
 package template.stylesheetmanager;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-import com.sun.javafx.css.StyleManager;
-
 import ENV.EnvHandler;
 
 /**

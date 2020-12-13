@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import Rello.Board;
 import Rello.Client;
-import controllers.BoardListViewController;
 import controllers.boardCSSController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

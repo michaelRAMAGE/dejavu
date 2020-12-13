@@ -3,7 +3,6 @@ package controllers;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
-import java.rmi.registry.Registry;
 import java.util.HashMap;
 
 import ENV.EnvHandler;
@@ -11,15 +10,10 @@ import Rello.Client;
 import Rello.Server;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import loaders.LoginViewLoader;
 import template.LoginView;
 
 public class ServerViewController {

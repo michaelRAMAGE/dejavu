@@ -3,7 +3,6 @@ package commands;
 import java.util.ArrayList;
 
 import Rello.User;
-import template.ViewLoaderTemplate;
 
 public class UserActionsTransition
 {

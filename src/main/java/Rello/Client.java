@@ -4,13 +4,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.Function;
+
 
 import commands.CommandInterface;
-import commands.CommandInvoker;
-import commands.UpdateBoardCommand;
 import commands.UserActionsTransition;
 
 public class Client {

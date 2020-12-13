@@ -3,7 +3,6 @@ package Rello;
 // This tests decoration and css constructor via decoration
 // Theme class and decorator classes are used in here
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

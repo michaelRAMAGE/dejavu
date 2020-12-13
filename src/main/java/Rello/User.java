@@ -3,8 +3,6 @@ package Rello;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 
 public class User implements Serializable
 {

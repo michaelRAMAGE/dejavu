@@ -3,11 +3,7 @@ package controllers;
 import java.io.IOException;
 
 import Rello.Client;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import loaders.BoardListViewLoader;
 import template.BoardListView;
 
 public class BoardListViewTransition

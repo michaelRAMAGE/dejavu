@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 import Rello.Board;
 import Rello.Client;

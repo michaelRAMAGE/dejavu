@@ -4,9 +4,6 @@ import java.io.IOException;
 
 import Rello.Board;
 import Rello.Client;
-import commands.CommandInterface;
-import commands.CommandInvoker;
-import commands.UpdateBoardCommand;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

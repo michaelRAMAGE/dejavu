@@ -3,34 +3,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Rello.Board;
-import Rello.Card;
 import Rello.Client;
 import Rello.List;
-import Rello.Server;
-import Rello.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import loaders.BoardCreateViewLoader;
-import loaders.BoardListViewLoader;
-import loaders.ListCreateViewLoader;
-import loaders.ListViewLoader;
-import loaders.SaveChangesViewLoader;
-import loaders.ServerViewLoader;
 import template.BoardListView;
-import template.CustomBoardView;
 import template.ListCreateView;
 import template.ListView;
 import template.boardCSSView;
@@ -153,7 +138,6 @@ public class CustomBoardViewController
 		if (insert_idx != 0) { insert_idx = insert_idx - 1; }
 		listViewStorageContainer.getChildren().add(listView); // do we use show on all children()?????
 	}
-	
 }
 	
 

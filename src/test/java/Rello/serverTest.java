@@ -1,12 +1,10 @@
 package Rello;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.net.MalformedURLException;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.Registry;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.AfterAll;

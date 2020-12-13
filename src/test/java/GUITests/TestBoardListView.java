@@ -7,7 +7,6 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
-import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
@@ -21,13 +20,9 @@ import org.testfx.framework.junit5.Start;
 import Rello.Board;
 import Rello.Client;
 import controllers.BoardListViewController;
-import javafx.application.Platform;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.FlowPane;
 
 import javafx.stage.Stage;
-import javafx.stage.Window;
-
 import template.BoardListView;
 import utils.TestHelper;
 import utils.ServerHelper;

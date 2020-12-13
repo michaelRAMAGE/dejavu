@@ -24,10 +24,6 @@ package template;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
-
-import com.sun.javafx.css.StyleManager;
-
 import Rello.Board;
 import Rello.Client;
 import controllers.CustomBoardViewController;

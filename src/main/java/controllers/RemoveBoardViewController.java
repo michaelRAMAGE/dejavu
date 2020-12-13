@@ -67,6 +67,7 @@ public class RemoveBoardViewController {
     	stage.hide();
 
     	client.getUser().removeBoard(choiceBox.getValue());
+    	
     	client.removeBoard(client.getUser().getBoard(choiceBox.getValue()), client.getUser()); 
     	
     	new BoardListView(main_stage, client).load(); 

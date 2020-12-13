@@ -7,8 +7,6 @@ import java.util.HashMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import theming.Theme;
-
 class xmlTest
 {
 	Server users = Server.getInstance(); // start users

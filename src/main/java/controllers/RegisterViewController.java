@@ -1,21 +1,16 @@
 package controllers;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
+
 
 import Rello.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import loaders.BoardListViewLoader;
-import loaders.LoginViewLoader;
 import template.BoardListView;
 import template.LoginView;
 

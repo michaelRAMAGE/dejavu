@@ -2,6 +2,6 @@ RMI_HOST=localhost
 RMI_PORT=2099
 RMI_BIND_NAME=Server
 BASE_PATH=/home/ming/eclipse-workspace/DejaVuu/src/main/java/
-CSS_FOLDER=views/
+CSS_FOLDER=css/
 DEFAULT_CSS_FILENAME=basetheme
 DEFAULT_CSS_FILE=basetheme.css
