@@ -1,7 +1,12 @@
 package theming;
 
-public abstract class ThemeNode
+import java.io.Serializable;
+
+public abstract class ThemeNode implements Serializable
 {
+
+	private static final long serialVersionUID = 2729073178918416530L;
+	
 	String node_name = "default";
 	
 	// FOR JAVA BEANS 
@@ -10,6 +15,7 @@ public abstract class ThemeNode
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public String getNode_name()
 	{
 		return node_name;

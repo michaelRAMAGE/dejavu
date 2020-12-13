@@ -1,7 +1,12 @@
 package theming;
 
-public class TextFill extends NodeDecorator
+import java.io.Serializable;
+
+public class TextFill extends NodeDecorator implements Serializable
 {
+
+	private static final long serialVersionUID = 2935949285925626109L;
+	
 	ThemeNode node;
 	String css_prop_name = "-fx-text-fill"; 
 	String value; 

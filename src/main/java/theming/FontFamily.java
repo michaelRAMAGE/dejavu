@@ -1,7 +1,12 @@
 package theming;
 
-public class FontFamily extends NodeDecorator
+import java.io.Serializable;
+
+public class FontFamily extends NodeDecorator  implements Serializable
 {
+
+	private static final long serialVersionUID = -1559402175852237267L;
+	
 	ThemeNode node;
 	String css_prop_name = "-fx-font-family"; 
 	String value; 

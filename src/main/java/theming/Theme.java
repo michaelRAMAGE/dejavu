@@ -10,11 +10,10 @@ import java.util.List;
 
 public class Theme implements Serializable
 {
-	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 280993085617696424L;
 
 	public Theme()
 	{

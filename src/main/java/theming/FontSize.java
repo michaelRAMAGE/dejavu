@@ -1,7 +1,12 @@
 package theming;
 
-public class FontSize extends NodeDecorator
+import java.io.Serializable;
+
+public class FontSize extends NodeDecorator  implements Serializable
 {
+
+	private static final long serialVersionUID = 4019909861367285143L;
+	
 	ThemeNode node;
 	String css_prop_name = "-fx-font-size"; 
 	String value; 

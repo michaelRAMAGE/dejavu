@@ -1,7 +1,12 @@
 package theming;
 
-public class ListNode extends ThemeNode
+import java.io.Serializable;
+
+public class ListNode extends ThemeNode implements Serializable
 {
+
+	private static final long serialVersionUID = 3394020805476916752L;
+
 	public ListNode() {
 		this.node_name = ".ListNode";
 	}

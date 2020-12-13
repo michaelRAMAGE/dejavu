@@ -10,14 +10,12 @@ import java.rmi.RemoteException;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
 import Rello.Client;
-import javafx.geometry.HorizontalDirection;
 import javafx.stage.Stage;
 
 import template.BoardListView;
@@ -152,32 +150,55 @@ public class TestSaveBoardChanges
 //		System.out.println("\n\n");
 //	}
 	
-	@Test
-	public void testdeleteListBoard(FxRobot robot) throws InterruptedException 
-	{
-
-		// Click on board
-		robot.clickOn("Team Jim");
-		
-		// Delete some lists
-		testHelper.deleteList(robot, "0"); 
-		testHelper.deleteList(robot, "0"); // this is the next board in line (rerender and ids change)
-
-		// Go back to board
-		robot.clickOn("#goBackToBoardListButton"); 
-		
-		// Log out
-		robot.clickOn("#logoutUserButton"); 
-		
-		// Log back in 
-		testHelper.signIn(robot, "#usernameTextBox", "#passwordTextBox", test_user_email1, test_user_pass1);
-		
-		// Check to see changes are retained
-		robot.clickOn("Team Jim");
-		Thread.sleep(5000);
-	}
+//	@Test
+//	public void testdeleteListBoard(FxRobot robot) throws InterruptedException 
+//	{
+//
+//		// Click on board
+//		robot.clickOn("Team Jim");
+//		
+//		// Delete some lists
+//		testHelper.deleteList(robot, "0"); 
+//		testHelper.deleteList(robot, "0"); // this is the next board in line (rerender and ids change)
+//
+//		// Go back to board
+//		robot.clickOn("#goBackToBoardListButton"); 
+//		
+//		// Log out
+//		robot.clickOn("#logoutUserButton"); 
+//		
+//		// Log back in 
+//		testHelper.signIn(robot, "#usernameTextBox", "#passwordTextBox", test_user_email1, test_user_pass1);
+//		
+//		// Check to see changes are retained
+//		robot.clickOn("Team Jim");
+//	}
 	
-	
+//	@Test
+//	public void testMoveListBoard(FxRobot robot) throws InterruptedException 
+//	{
+//
+//		// Click on board
+//		robot.clickOn("Team Jim");
+//		
+//		// Move list to front
+//		testHelper.moveList(robot, "0");
+//				
+//		// Select list to move and move
+//		testHelper.selectChoiceBoxOption(robot, "#choiceBoxB", "0, Week1", "#saveButton");
+//		
+//		// Go back to board
+//		robot.clickOn("#goBackToBoardListButton"); 
+//		
+//		// Log out
+//		robot.clickOn("#logoutUserButton"); 
+//		
+//		// Log back in 
+//		testHelper.signIn(robot, "#usernameTextBox", "#passwordTextBox", test_user_email1, test_user_pass1);
+//		
+//		// Check to see changes are retained
+//		robot.clickOn("Team Jim");
+//	}
 	
 	
 	void createListAndCheck(FxRobot robot, String list_name1) throws InterruptedException 

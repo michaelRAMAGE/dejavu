@@ -5,26 +5,13 @@ import java.util.HashMap;
 
 import Rello.Board;
 import Rello.Client;
-import Rello.Server;
 import Rello.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import loaders.BoardCreateViewLoader;
-import loaders.BoardListViewLoader;
-import loaders.CustomBoardViewLoader;
-import loaders.LoginViewLoader;
-import loaders.RemoveBoardViewLoader;
-import loaders.ServerViewLoader;
 import template.BoardCreateView;
 import template.CustomBoardView;
 import template.LoginView;
@@ -40,7 +27,6 @@ public class BoardListViewController {
 	public void setClient(Client in_client) {
 		this.client = in_client; 
     	this.user = client.getUser(); 
-    	System.out.println(this.user.getBoard("Team Jim").getLists());
 		renderBoardList(); 
 	}
 	
@@ -81,7 +67,6 @@ public class BoardListViewController {
     
     @FXML
     void onLogoutUser(ActionEvent event) throws IOException {
-    	System.out.println("Logging out: " + client.getUser().getBoard("Team Jim").getLists());
 		Client new_client = client.logoutUser(this.client.host, this.client.lookup_name);
 		(new LoginView(stage, new_client)).load(); 
     }

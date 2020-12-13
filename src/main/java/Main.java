@@ -2,11 +2,9 @@ import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import com.sun.javafx.application.PlatformImpl;
-import com.sun.javafx.css.StyleManager;
 
 import Rello.Server;
-import Rello.User;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
