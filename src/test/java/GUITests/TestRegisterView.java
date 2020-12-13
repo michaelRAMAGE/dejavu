@@ -8,7 +8,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -18,17 +17,14 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
 import Rello.Client;
-import controllers.ServerViewController;
-import controllers.LoginViewController;
+
 import controllers.RegisterViewController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import loaders.RegisterViewLoader;
-import utils.GuiTestHelper;
+import utils.TestHelper;
 import utils.ServerHelper;
 
 
@@ -37,7 +33,7 @@ public class TestRegisterView
 {
 
 	static ServerHelper serverHelper = new ServerHelper(); 
-	static GuiTestHelper testHelper = new GuiTestHelper(); 
+	static TestHelper testHelper = new TestHelper(); 
 	static Client client; 
 	
 	@BeforeAll

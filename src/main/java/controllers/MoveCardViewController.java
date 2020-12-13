@@ -82,7 +82,10 @@ public class MoveCardViewController {
     
     	// Modify local list and then set it on client to pass back
     	list.moveCardInList(startIdx, endIdx);
+    	
     	client.getUser().getBoard(list.getBoard().getName()).getLists().set(list_idx, list);  
+    	client.updateBoard(list.getBoard(), client.getUser());
+    	
     	Stage main_stage = (Stage) stage.getOwner();
     	stage.hide(); 
 

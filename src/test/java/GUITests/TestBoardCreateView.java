@@ -8,7 +8,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,14 +25,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.BoardCreateViewLoader;
-import utils.GuiTestHelper;
+import utils.TestHelper;
 import utils.ServerHelper;
 
 @ExtendWith(ApplicationExtension.class)
 public class TestBoardCreateView
 {
 	static ServerHelper serverHelper = new ServerHelper(); 
-	static GuiTestHelper testHelper = new GuiTestHelper(); 
+	static TestHelper testHelper = new TestHelper(); 
 	static Client client; 
 	static HashMap<String, Board> boards; 
 	

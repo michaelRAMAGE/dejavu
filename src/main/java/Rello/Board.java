@@ -35,7 +35,7 @@ public class Board implements Serializable
 		this.boardID = generateID(); 
 		this.theme = new Theme("default_theme");
 	}
-	
+
 	public Board(String name, String id, User owner) {
 		this.name = name; 
 		this.owner = owner;	
@@ -73,6 +73,31 @@ public class Board implements Serializable
 	}
 
 	
+	// This pair is the preferred (others will late be removed)
+	public Board(String name, User owner, HashMap<String, Board> boards_index) {
+		this.name = name; 
+		this.owner = owner;	
+		this.members = new HashMap<String, User>();
+		this.lists = new ArrayList<List>();
+		this.boardID = generateID(boards_index); 
+		this.theme = new Theme("default_theme");
+	}
+	
+	// Generate ID for board
+	public String generateID(HashMap<String, Board> boards_index) {
+		 Random rand = new Random();	
+		 int upperbound = 100; 
+		 String random = Integer.toString(rand.nextInt(upperbound)); 
+		 if (boards_index == null) {
+			 return random;
+		 }
+		 else if (boards_index.containsKey(random) == false) {
+			 return random; 
+		 }
+		 else {
+			 return generateID(boards_index); 
+		 }
+	}
 	
 	
 	// Generate ID for board
@@ -90,6 +115,8 @@ public class Board implements Serializable
 			 return generateID(); 
 		 }
 	}
+	
+
 	
 	@Override
 	public boolean equals(Object obj) {

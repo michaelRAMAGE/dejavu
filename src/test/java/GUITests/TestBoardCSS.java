@@ -6,7 +6,7 @@ import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+
 
 
 import org.testfx.assertions.api.Assertions;
@@ -19,22 +19,15 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
 import Rello.Board;
-import Rello.Card;
 import Rello.Client;
-import Rello.List;
 import controllers.CustomBoardViewController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import loaders.CustomBoardViewLoader;
+
 import template.CustomBoardView;
 import theming.Theme;
-import utils.GuiTestHelper;
+import utils.TestHelper;
 import utils.ServerHelper;
 
 
@@ -44,7 +37,7 @@ public class TestBoardCSS
 	
 	// Helpers
 	static ServerHelper serverHelper = new ServerHelper(); 
-	static GuiTestHelper testHelper = new GuiTestHelper(); 
+	static TestHelper testHelper = new TestHelper(); 
 	
 	// Data 
 	static Client client; 

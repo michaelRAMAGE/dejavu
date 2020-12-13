@@ -19,6 +19,11 @@ public class BoardListView extends ViewLoaderTemplate
 	private Client client; 
 	
 	
+	public Client getClient()
+	{
+		return client;
+	}
+
 	public BoardListView(Stage stage, Client client) {
 		this.stage = stage;
 		this.client = client; 

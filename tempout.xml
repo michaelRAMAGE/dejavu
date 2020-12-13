@@ -2,49 +2,101 @@
 <java version="1.8.0_261" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
-   <string>jeffrey</string>
+   <string>odysseus@gmail.com</string>
    <object class="Rello.User" id="User0">
     <void class="Rello.User" method="getField">
      <string>email</string>
      <void method="set">
       <object idref="User0"/>
-      <string>jeffrey</string>
+      <string>odysseus@gmail.com</string>
      </void>
     </void>
     <void class="Rello.User" method="getField">
      <string>password</string>
      <void method="set">
       <object idref="User0"/>
-      <string>jeff123</string>
+      <string>odysseus123</string>
      </void>
     </void>
     <void class="Rello.User" method="getField">
      <string>boards</string>
      <void method="set">
       <object idref="User0"/>
+      <object class="java.util.HashMap"/>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>alfred@gmail.com</string>
+   <object class="Rello.User" id="User1">
+    <void class="Rello.User" method="getField">
+     <string>email</string>
+     <void method="set">
+      <object idref="User1"/>
+      <string>alfred@gmail.com</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>password</string>
+     <void method="set">
+      <object idref="User1"/>
+      <string>alfred123</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>boards</string>
+     <void method="set">
+      <object idref="User1"/>
+      <object class="java.util.HashMap"/>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>jim@gmail.com</string>
+   <object class="Rello.User" id="User2">
+    <void class="Rello.User" method="getField">
+     <string>email</string>
+     <void method="set">
+      <object idref="User2"/>
+      <string>jim@gmail.com</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>password</string>
+     <void method="set">
+      <object idref="User2"/>
+      <string>jim123</string>
+     </void>
+    </void>
+    <void class="Rello.User" method="getField">
+     <string>boards</string>
+     <void method="set">
+      <object idref="User2"/>
       <object class="java.util.HashMap">
        <void method="put">
-        <string>dsdsd</string>
+        <string>Board1</string>
         <object class="Rello.Board" id="Board0">
          <void class="Rello.Board" method="getField">
           <string>boardID</string>
           <void method="set">
            <object idref="Board0"/>
-           <string>14</string>
+           <string>7</string>
           </void>
          </void>
          <void class="Rello.Board" method="getField">
           <string>name</string>
           <void method="set">
            <object idref="Board0"/>
-           <string>dsdsd</string>
+           <string>Board1</string>
           </void>
          </void>
          <void class="Rello.Board" method="getField">
           <string>owner</string>
           <void method="set">
            <object idref="Board0"/>
-           <object idref="User0"/>
+           <object idref="User2"/>
           </void>
          </void>
          <void class="Rello.Board" method="getField">

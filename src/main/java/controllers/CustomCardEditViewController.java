@@ -65,6 +65,7 @@ public class CustomCardEditViewController {
     void onRemoveCard(ActionEvent event) throws IOException {
     	// Remove the card
     	list.removeCard(card_idx);
+    	this.client.getUser().replaceBoard(list.getBoard().getName(), list.getBoard());
     	
     	// switch out
     	switchToBoardView(); 
@@ -93,6 +94,7 @@ public class CustomCardEditViewController {
 		stage.hide(); // hide modal
     	
     	// Rerender board 
+		this.client.updateBoard(list.getBoard(), client.getUser());
 		new CustomBoardView(main_stage, client, list.getBoard()).load();
     }
 

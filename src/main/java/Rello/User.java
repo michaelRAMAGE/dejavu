@@ -107,7 +107,7 @@ public class User implements Serializable
 
 	// Adds an existing board to a user 
 	public void addBoard(String bname, Board new_board) { 
-		boards.put(bname, new_board);
+		this.boards.put(bname, new_board);
 	}
 	
 	public void removeBoard(String bname) {
@@ -120,13 +120,20 @@ public class User implements Serializable
 	// boards uses a board name
 	public Board createBoard(String bname) {
 		Board new_board = new Board(bname, this);
-		boards.put(bname, new_board); 
+		this.boards.put(bname, new_board);
 		return new_board; 
 	}
 	
 	public Board createBoard(String bname, String id) {
 		Board new_board = new Board(bname, id, this);
 		boards.put(bname, new_board); 
+		return new_board; 
+	}
+	
+	// FOR TESTING ---
+	public Board createBoard(String bname, HashMap<String, Board> boards_index) {
+		Board new_board = new Board(bname, this, boards_index);
+		this.boards.put(bname, new_board);
 		return new_board; 
 	}
 	

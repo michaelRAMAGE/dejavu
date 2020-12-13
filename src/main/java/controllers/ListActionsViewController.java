@@ -55,11 +55,9 @@ public class ListActionsViewController {
     
     @FXML
     void onAddCard(ActionEvent event) throws IOException {
-		// Load up card creation vie
+		// Load up card creation view
     	new CardCreateView(stage, client, list, list_idx).load();
-//		cont.setStage(stage);
-//		cont.setClient(client);
-//		cont.setModel(this.list, this.list_idx);
+
     }
     
     @FXML
@@ -97,7 +95,7 @@ public class ListActionsViewController {
     	// remove list and update it accordingly
     	lists.remove(this.list_idx);
     	client.getUser().getBoard(list.getBoard().getName()).setLists(lists);
-    	
+    	client.updateBoard(list.getBoard(), client.getUser());
     	// load board again
     	Stage main_stage = (Stage) stage.getOwner();
     	stage.hide();

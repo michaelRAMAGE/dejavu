@@ -51,8 +51,6 @@ public class LoginViewController {
     @FXML
     void onSignInClick(ActionEvent event) throws IOException {
     	boolean success = client.loginUser(userName.getText(), userPass.getText());
-    	
-    	client.tester();
     	System.out.println("Login success: " + success);
     	incNamePassLabel.setVisible(!success);	
     	if (success) {

@@ -30,7 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
-import utils.GuiTestHelper;
+import utils.TestHelper;
 import utils.ServerHelper;
 
 
@@ -40,7 +40,7 @@ public class TestBoardView
 	
 	// Helpers
 	static ServerHelper serverHelper = new ServerHelper(); 
-	static GuiTestHelper testHelper = new GuiTestHelper(); 
+	static TestHelper testHelper = new TestHelper(); 
 	
 	// Data 
 	static Client client; 

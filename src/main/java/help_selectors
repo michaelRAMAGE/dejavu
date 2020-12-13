@@ -1,0 +1,42 @@
+This document describes the selectors for 
+the views in this application:
+
+-------------------
+BoardListView
+-------------------
+#boardListFlowPane
+#addBoardButton
+#removeBoardButton 
+#logoutUserButton
+
+
+-------------------
+BoardRemoveView
+-------------------
+#currentCardInfoLabel - instructions for user
+#choiceBox - dropdown for selecting a board to remove
+	selecting a child of the choiceBox can be tricky.
+	one way to accomplish this in testfx is robot.clickon(value of option in choiceBox dropdown list)
+#cancelButton - button to close this view
+#saveButton - button to complete board removal 
+
+-------------------
+ListActionsView
+-------------------
+#addCardButton
+#moveListButton
+#moveCardInListButton
+#removeListButton
+
+
+-------------------
+ListActionsView
+-------------------
+#editListButton[LISTNUMBER]
+#addCardButton
+#moveListButton
+#moveCardInListButton
+#removeListButton
+choiceBoxB
+cancelButton
+saveButton

@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
@@ -18,7 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.framework.junit5.Stop;
 
 import Rello.Server;
 import controllers.ServerViewController;

@@ -4,6 +4,14 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.function.Function;
+
+import commands.CommandInterface;
+import commands.CommandInvoker;
+import commands.UpdateBoardCommand;
+import commands.UserActionsTransition;
 
 public class Client {
 
@@ -11,6 +19,8 @@ public class Client {
 	public User user; 
 	public String host;
 	public String lookup_name; 
+	public UserActionsTransition actions; 
+	public CommandInterface command; 
 	
 	public Client(String host, String lookup_name) throws MalformedURLException {
 		try
@@ -44,21 +54,24 @@ public class Client {
 		return this.user; 
 	}
 	
+	// Log a user in
 	public boolean loginUser(String email, String password) throws RemoteException {
+
 		if (SS == null) {
 			return false; 
 		}
 		User user_in = SS.loginUser(email, password); 
-		System.out.println(user_in);
-
 		if (user_in == null) {
 			return false;
 		}
-		user = user_in; 
+		this.user = user_in; 
+		this.actions = new UserActionsTransition(this.user); 
 		return true; 
 	}
 	
+	// Add user or return their credentials if exist
 	public boolean addUser(String email, String password) throws RemoteException {
+
 		if (SS == null) {
 			return false; 
 		}
@@ -66,46 +79,63 @@ public class Client {
 		if (user_in == null) {
 			return false;
 		}
-		user = user_in; 
+		this.user = user_in; 
+		this.actions = new UserActionsTransition(this.user); 
 		return true; 
 	}
 	
-	public boolean updateBoard(Board board, User user) throws RemoteException {
+	void userInfo() {
+		System.out.println("Email: " + this.user.getEmail());
+		System.out.println("Boards: " + this.user.getBoards());
+	}
+	
+	public boolean updateBoard(Board board, User old_user) throws RemoteException {
+
 		if (SS == null) {
 			return false; 
 		}
-		User user_in = SS.updateBoard(board, this.user);
-		if (user_in == null) {
-			return false;
-		}
-		user = user_in; 
-		return true; 
 		
-	}
-	
-	public boolean createBoard(String bname, User user) throws RemoteException {
-		if (SS == null) {
-			return false; 
-		}
-		User user_in = SS.createBoard(bname, user);
+		User user_in = SS.updateBoard(board, old_user);
 		if (user_in == null) {
 			return false;
 		}
-		user = user_in; 
+		
+		this.user = user_in; 
 		return true; 
 	}
 	
-	public boolean removeBoard(Board board, User user) throws RemoteException {
+	public boolean createBoard(String bname, User old_user) throws RemoteException {
 		if (SS == null) {
 			return false; 
 		}
-		User user_in = SS.removeBoard(board, user);
+		
+		User user_in = SS.createBoard(bname, old_user);
 		if (user_in == null) {
 			return false;
 		}
-		user = user_in; 
+		
+		this.user = user_in; 
 		return true; 
 	}
+	
+	public Client logoutUser(String host, String lookup_name) throws RemoteException, MalformedURLException
+	{
+		SS.logoutUser();
+		return new Client(this.host, this.lookup_name);
+	}
+	
+	public boolean removeBoard(Board board, User old_user) throws RemoteException {
+
+		User user_in = SS.removeBoard(board, old_user);
+		if (user_in == null) {
+			return false;
+		}
+		
+		this.user = user_in; 
+		return true; 
+	}
+
+
 	
 	public boolean tester() throws RemoteException {
 		if (SS == null) {
@@ -114,6 +144,16 @@ public class Client {
 		SS.tester();
 		return true; 
 	}
+	
+	public void setCommand(CommandInterface command) { 
+		this.command = command; 
+	}
+	
+	public void invokeCommand() throws RemoteException {
+		command.execute(); 
+	}
+
+
 }
 	
 

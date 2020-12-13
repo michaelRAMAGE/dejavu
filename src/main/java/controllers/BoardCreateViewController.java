@@ -52,7 +52,8 @@ public class BoardCreateViewController {
 	@FXML
 	void onCancel(ActionEvent event) throws IOException
 	{
-		switchToBoardListView(); 
+		(new BoardListView(stage, client)).load();
+
 	}
 
 	@FXML
@@ -62,12 +63,9 @@ public class BoardCreateViewController {
 		if (nameTextField.getText() != "") {
 			client.getUser().createBoard(new_board_name);
 			client.createBoard(new_board_name, client.getUser());
-			switchToBoardListView(); 		
+			System.out.println(client.getUser().getBoards());
+			(new BoardListView(stage, client)).load();
 		}
-	}
-		
-	void switchToBoardListView() throws IOException {
-		(new BoardListView(stage, client)).load();
 	}
 }
 

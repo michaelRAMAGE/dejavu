@@ -1,6 +1,5 @@
 package GUITests;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -12,7 +11,6 @@ import java.rmi.RemoteException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -22,23 +20,14 @@ import org.testfx.framework.junit5.Start;
 import Rello.Board;
 import Rello.Client;
 import Rello.List;
-import controllers.CardCreateViewController;
-import controllers.ListCreateViewController;
-import controllers.ListViewController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import loaders.CardCreateViewLoader;
-import loaders.ListCreateViewLoader;
-import loaders.ListViewLoader;
+
 import template.ListView;
-import utils.GuiTestHelper;
+import utils.TestHelper;
 import utils.ServerHelper;
 
 // Note : due to the poor implementation and coupling of some generators,
@@ -51,7 +40,7 @@ public class TestListView
 {
 
 	static ServerHelper serverHelper = new ServerHelper(); 
-	static GuiTestHelper testHelper = new GuiTestHelper(); 
+	static TestHelper testHelper = new TestHelper(); 
 	static Client client; 
 	static List list; 
 	static int list_idx; 

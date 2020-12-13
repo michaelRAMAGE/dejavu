@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
+import template.CustomBoardView;
 
 public class MoveListViewController {
 
@@ -84,25 +85,15 @@ public class MoveListViewController {
     	Board board = lists.get(list_idx).getBoard();
     	board.moveList(list_idx, targetIndex);
     	
-
     	client.getUser().replaceBoard(board.getName(), board);  
+    	client.updateBoard(board, client.getUser());
+    	
     	Stage main_stage = (Stage) stage.getOwner();
 
     	stage.hide(); 
     	
     	// reload the main stage to reflect changes
-		FXMLLoader loader = (new CustomBoardViewLoader()).load(); 
-
-    	// Load the view
-    	BorderPane view = loader.load(); 
-    	CustomBoardViewController cont = loader.getController();
-    	
-    	cont.setStage(main_stage);
-    	cont.setClient(client);
-    	cont.setModel(board);
-    	Scene new_scene = new Scene(view);
-    	main_stage.setScene(new_scene);	
-    	main_stage.show();
+		new CustomBoardView(main_stage, client, board).load(); 
     }
 
 

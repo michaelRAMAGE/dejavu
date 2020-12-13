@@ -18,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.CustomBoardViewLoader;
 import template.CustomBoardView;
+import template.ViewLoaderTemplate;
 
 public class CardCreateViewController
 {
@@ -67,8 +68,8 @@ public class CardCreateViewController
 		if (nameTextField.getText() != "") {
 			String bname = this.board.getName();
 			client.getUser().getBoard(bname).getList(list_idx).addCard(nameTextField.getText()); 
-//			client.updateBoard(board, client.getUser());
-			switchToBoardView(); 		
+			client.updateBoard(board, client.getUser());
+			switchToBoardView(); 
 		}
 	}
 		
@@ -84,6 +85,7 @@ public class CardCreateViewController
 		}
 		
 		String bname = this.board.getName();
-		new CustomBoardView(main_view, client, client.getUser().getBoard(bname)).load(); 
+		ViewLoaderTemplate view = new CustomBoardView(main_view, client, client.getUser().getBoard(bname));
+		view.load();
 	}
 }

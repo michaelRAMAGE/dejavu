@@ -10,7 +10,22 @@ public final class EnvHandler
 {
 	static private String ENV_PATH = "src/main/java/ENV/ENV_VARS.txt";
 	static private HashMap<String, String> env_vars = readInVars(); 
+	static private String base_path = env_vars.get("BASE_PATH"); 
+	static private String css_path = env_vars.get("CSS_FOLDER"); 
+	static private String full_css_path = base_path + css_path; 
+	static private String default_css_filename = env_vars.get("DEFAULT_CSS_FILENAME");
+	static private String default_css_file = env_vars.get("DEFAULT_CSS_FILE");
 
+	
+	public static String getDefaultCssFilename()
+	{
+		return default_css_filename;
+	}
+
+	public static String getDefaultCssFile()
+	{
+		return default_css_file;
+	}
 
 	public static void main(String[] args) {
 //		 File f=new File("icecreamTopping.txt");
@@ -59,4 +74,20 @@ public final class EnvHandler
 	{
 		ENV_PATH = NEW_ENV_PATH; 
 	}
+
+	public static String getCssPath()
+	{
+		return css_path;
+	}
+	
+	public static String getBasePath()
+	{
+		return base_path;
+	}
+
+	public static String getFullCssPath()
+	{
+		return full_css_path;
+	}
+	
 }

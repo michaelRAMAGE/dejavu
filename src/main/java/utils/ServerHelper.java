@@ -11,13 +11,17 @@ import ENV.EnvHandler;
 import Rello.Server;
 
 public class ServerHelper
-{
+{	
+	static private HashMap<String, String> env_vars = EnvHandler.getEnvVars(); 
 	private Server server; 
 	private Registry registry;
-	static private HashMap<String, String> env_vars = EnvHandler.getEnvVars(); 
 	public String bindname = env_vars.get("RMI_BIND_NAME");
 	public int port = Integer.parseInt(env_vars.get("RMI_PORT"));
 
+	public ServerHelper() { 
+		super(); 
+	}
+	
 	public Server bootServer() throws AccessException, RemoteException {
 		server = Server.getInstance();
 		registry = LocateRegistry.createRegistry(port); 
@@ -33,15 +37,26 @@ public class ServerHelper
 	}
 	
 	public void closeServer() throws AccessException, RemoteException, NotBoundException {
+		server.storeToDisk();
 		server.resetInstance();
 		registry.unbind(bindname);
 		registry = null;
 	}
+	
 	public void closeServer(String save_to) throws AccessException, RemoteException, NotBoundException {
 		server.setXMLFileName(save_to);
 		server.storeToDisk();
 		server.resetInstance();
 		registry.unbind(bindname);
-		
+	}
+
+	// Only unbind
+	public void cleanup() throws AccessException, RemoteException, NotBoundException {
+		registry.unbind(bindname);
+	}
+
+	public Server getServer()
+	{
+		return server;
 	}
 }

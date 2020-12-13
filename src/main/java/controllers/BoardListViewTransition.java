@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import loaders.BoardListViewLoader;
+import template.BoardListView;
 
 public class BoardListViewTransition
 {
@@ -20,12 +21,6 @@ public class BoardListViewTransition
 	}
 	
 	public void showView() throws IOException {
-    	FXMLLoader loader = (new BoardListViewLoader()).load();
-    	BorderPane view = loader.load(); 
-    	BoardListViewController cont = loader.getController(); 
-    	cont.setStage(stage);
-    	cont.setClient(client);
-    	Scene new_scene = new Scene(view);
-    	stage.setScene(new_scene);	
+    	new BoardListView(stage, client).load();
 	}
 }

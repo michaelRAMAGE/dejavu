@@ -7,174 +7,256 @@ import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.HashMap;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import utils.ServerHelper;
+import utils.TestHelper;
+
 class serverTest
 {
-	static String bind_name = "Server"; 
-	static Server server; 
-	static Registry registry; 
 	static Client client; 
-	
+	static TestHelper testHelper = new TestHelper(); 
+	static ServerHelper serverHelper = new ServerHelper();
+			
 	@BeforeAll
 	static void setUp() throws Exception
 	{
-		// Initialize server and client
-		server = Server.getInstance(); // get server instance
-		
-		// Set file path (if it does not exist on read in for boot, just store it out after for next)
-		server.setXMLFileName("client_server_test.xml");
-		
-		registry = server.bootServer(bind_name); // bind and get registry
-		
-		client = new Client(registry, bind_name); 
-		
-		// Add in a tester users
-		server.addUser("jim@gmail.com","jim123");
-	}
-
-	void resetStateHelper() {
-		
+		// boot up the server
+		serverHelper.bootServer("client_server_test.xml");
+		serverHelper.getServer().getUsers().clear();
+		serverHelper.getServer().getBoardsIndex().clear(); 
 	}
 	
-	@Test
-	void loginBadUserTest() throws RemoteException, MalformedURLException
-	{
-		// Try to log into client added during the setup
-		client = new Client(registry, bind_name); 
+//	@Test
+//	void loginBadUserTest() throws RemoteException, MalformedURLException
+//	{
+//		// Try to log into client added during the setup
+//		client = new Client(registry, bind_name); 
+//
+//		// BAD CREDS
+//		String email = "jim@gmail.com";
+//		String password = "jim12"; 
+//		
+//		// returns true if a non-null user obtained from server
+//		assertTrue(client.loginUser(email, password) == false); 
+//		// checks to see that the user is being set on the client
+//		assertTrue(client.getUser() == null); 
+//		
+//		// we know the user will have all their data because xml storage testing passed
+//		client = null; 
+//	}
 
-		// BAD CREDS
-		String email = "jim@gmail.com";
-		String password = "jim12"; 
-		
-		// returns true if a non-null user obtained from server
-		assertTrue(client.loginUser(email, password) == false); 
-		// checks to see that the user is being set on the client
-		assertTrue(client.getUser() == null); 
-		
-		// we know the user will have all their data because xml storage testing passed
-		client = null; 
-	}
 	
-	@Test
-	void loginGoodUserTest() throws RemoteException, MalformedURLException
-	{
-		// Try to log into client added during the setup
-		client = new Client(registry, bind_name); 
-
-		// GOOD CREDS
-		String email = "jim@gmail.com";
-		String password = "jim123"; 
-		
-		assertTrue(client.loginUser(email, password) == true); 
-		assertTrue(client.getUser() != null); 	
-		
-		// we know the user will have all their data because xml storage testing passed
-		client = null; 
-	}
+//	@Test
+//	void loginBadUserTest() throws RemoteException, MalformedURLException
+//	{
+//		// Try to log into client added during the setup
+//		client = new Client(registry, bind_name); 
+//
+//		// BAD CREDS
+//		String email = "jim@gmail.com";
+//		String password = "jim12"; 
+//		
+//		// returns true if a non-null user obtained from server
+//		assertTrue(client.loginUser(email, password) == false); 
+//		// checks to see that the user is being set on the client
+//		assertTrue(client.getUser() == null); 
+//		
+//		// we know the user will have all their data because xml storage testing passed
+//		client = null; 
+//	}
+//	
+//	@Test
+//	void loginGoodUserTest() throws RemoteException, MalformedURLException
+//	{
+//		// Try to log into client added during the setup
+//		client = new Client(registry, bind_name); 
+//
+//		// GOOD CREDS
+//		String email = "jim@gmail.com";
+//		String password = "jim123"; 
+//		
+//		assertTrue(client.loginUser(email, password) == true); 
+//		assertTrue(client.getUser() != null); 	
+//		
+//		// we know the user will have all their data because xml storage testing passed
+//		client = null; 
+//	}
 	
 	@Test
 	void createBoardTest() throws RemoteException, MalformedURLException
 	{
+		System.out.println("Create board");
 
-		client = new Client(registry, bind_name); 
+		// Obtain client and log user into client
 		String email = "jim@gmail.com";
 		String password = "jim123"; 
-		assertTrue(client.loginUser(email, password) == true); 
 		
-		// log into a user -- client is already logged in
+		// Obtain a client, create/retrieve user
+		client = testHelper.initTestData(email, password);
+		
+		// Get user
 		User user = client.getUser(); 
-		assertTrue(user != null);
+		
+		// Test before
+		HashMap<String, Board> client_boards = client.getUser().getBoards();
+		HashMap<String, Board> server_boards = serverHelper.getServer().getBoardsIndex();
+		assert((client_boards.size() == 0) && (server_boards.size() == 0));
 		
 		// Create board
-		client.createBoard("testboard", user);
-		
-		// Test that the board was created on user
-		assertTrue(client.getUser().getBoard("testboard") != null); 		
-		// ** testing the size
-//		assertTrue(client.getUser().getBoards().size() == 2);
-		
-		// get that board id now
-		String board_id = client.getUser().getBoard("testboard").boardID;
-		
-		// Test that board was created on the board index
-		assertTrue(Server.getBoardsIndex().get(board_id) != null);
-		assertTrue(Server.getBoardsIndex().get(board_id).getOwner().getEmail().equals("jim@gmail.com"));
-		assertTrue(Server.getBoardsIndex().get(board_id).getName().equals("testboard"));
+		client.createBoard("testboard1", user);
+		user = client.getUser(); // get updated user on client
+		client.createBoard("testboard2", user);
+		user = client.getUser(); // get updated user on client
 
-		// The clearing is done because the xmls will be updated on next run,
-		// which would change the results of running the test a second time
+		// Test after
+		HashMap<String, Board> expected_boards = client.getUser().getBoards();
+		HashMap<String, Board> actual_boards = serverHelper.getServer().getBoardsIndex();
 		
-		// clear boards
-		client.user.getBoards().clear();
-		Server.getBoardsIndex().clear();
+		// Test that the user is replaced with updated user on server
+		assert(serverHelper.getServer().getUser(user.getEmail()) != null);
+		assert(serverHelper.getServer().getUser(user.getEmail()).getBoard("testboard1") != null);
+		assert(serverHelper.getServer().getUser(user.getEmail()).getBoard("testboard2") != null);
+
+		System.out.println("Expected boards: " + expected_boards);
+		System.out.println("Actual boards: " + actual_boards);
+
+		assert((expected_boards.size() ==  actual_boards.size()));
+		for (Board board : expected_boards.values()) {
+			String inBoardID = board.getBoardID();
+			Board actual_board = actual_boards.get(inBoardID);
+			assert(actual_board != null);
+			assert(actual_board.getName().equals(board.getName()));
+			assert(actual_board.getMembers().size() == board.getMembers().size());
+		}
 		
-		// make sure they are cleared
-		assertTrue(client.user.getBoards().size() == 0);
-		assertTrue(Server.getBoardsIndex().size() == 0); 
 		
-		// ALL PASS? Good!
-		client = null; 
+		serverHelper.getServer().getUsers().clear();
+		serverHelper.getServer().getBoardsIndex().clear(); 
+		System.out.println("\n\n");
+
 	}
 	
 	@Test
 	void updateBoardTest() throws RemoteException, MalformedURLException
 	{
-		client = new Client(registry, bind_name); 
+		System.out.println("Update board");
+
+		// Obtain client and log user into client
 		String email = "jim@gmail.com";
 		String password = "jim123"; 
-		assertTrue(client.loginUser(email, password) == true); 
-
-		// locate a board to test
-			// we use the board created in createBoardTest()
-			// this board should be around still
 		
-		// log into a user -- client is already logged in
+		// Obtain a client, create/retrieve user
+		client = testHelper.initTestData(email, password);
+		
+		// Get user
 		User user = client.getUser(); 
-		assertTrue(user != null);
 		
-		assert(client.getUser().getBoard("testboard2") == null);
-		// ^^ not on client, not on server. can only check server given a board idx
+		// Add board on user
+		Board testboard = new Board("testboard", user, serverHelper.getServer().getBoardsIndex());
+		assert(user.getBoard("testboard") == null);
+		user.addBoard(testboard.getName(), testboard);
+		assert(user.getBoard("testboard") != null);
 		
-		// Create board
-		client.createBoard("testboard2", user);
+		// Add board on server's board index
+		String testboard_id = testboard.getBoardID();
+		assert(serverHelper.getServer().getBoardsIndex().get(testboard_id) == null); 
+		serverHelper.getServer().getBoardsIndex().put(testboard_id, testboard); 
+		assert(serverHelper.getServer().getBoardsIndex().get(testboard_id) != null); 
 		
-		// get the test board 
-		Board test_board = client.getUser().getBoard("testboard2"); 
-		String test_board_id = test_board.boardID; 
-		assert(Server.getBoardsIndex().get(test_board_id) != null);
+		// Update the board
+		user.getBoard("testboard").setName("testboard_newname");
+		client.updateBoard(testboard, user);
+		user = client.getUser();
 		
-		// make a change
-		test_board.setName("newtestboard2");
+		// Test client gets updated
+		assert(user.getBoard("testboard") == null);
+		assert(user.getBoard("testboard_newname") != null);
 		
-		// ensure that key was changed
-		assertTrue(client.user.getBoard("newtestboard2") != null);
+		Board updated_board = serverHelper.getServer().getBoardsIndex().get(testboard_id);
 		
-		// if passed, then the client's board is AOK with that update
+		// Test server gets updated
+		assert(updated_board != null);
+		assert(updated_board.getBoardID().equals(testboard_id));
+		assert(updated_board.getName().equals("testboard_newname"));
 		
-		// Now update board
-		boolean user_updated = client.updateBoard(client.user.getBoard("newtestboard2"), client.user);
-		assertTrue(user_updated == true); // successfully received updated user object from server
-		assertTrue(Server.getBoardsIndex().get(test_board_id) != null); // check that board was updated on server board index
-		assertTrue(Server.getBoardsIndex().get(test_board_id).getOwner().getEmail().equals("jim@gmail.com")); // check that board was updated on server board index
+		serverHelper.getServer().getUsers().clear();
+		serverHelper.getServer().getBoardsIndex().clear(); 
+		System.out.println("\n\n");
 
-		// clear boards
-		client.user.getBoards().clear();
-		Server.getBoardsIndex().clear();
+	}
+	
+	@Test
+	void removeBoardTest() throws RemoteException, MalformedURLException
+	{
+		System.out.println("Remove board");
+
+		// Obtain client and log user into client
+		String email = "jim@gmail.com";
+		String password = "jim123"; 
 		
-		// make sure they are cleared
-		assertTrue(client.user.getBoards().size() == 0);
-		assertTrue(Server.getBoardsIndex().size() == 0); 
+		// Obtain a client, create/retrieve user
+		client = testHelper.initTestData(email, password);
 		
-		client = null;
+		// Get user
+		User user = client.getUser(); 
+		
+		// Add board on user
+		Board testboard = new Board("testboard", user, serverHelper.getServer().getBoardsIndex());
+		assert(user.getBoard("testboard") == null);
+		user.addBoard(testboard.getName(), testboard);
+		assert(user.getBoard("testboard") != null);
+		serverHelper.getServer().getUser(user.getEmail()).addBoard(testboard.getName(), testboard);
+		
+		// Add board on server's board index
+		String testboard_id = testboard.getBoardID();
+		assert(serverHelper.getServer().getBoardsIndex().get(testboard_id) == null); 
+		serverHelper.getServer().getBoardsIndex().put(testboard_id, testboard); 
+		assert(serverHelper.getServer().getBoardsIndex().get(testboard_id) != null); 
+		assert(serverHelper.getServer().getUser(user.getEmail()).getBoard(testboard.getName()) != null);
+		System.out.println("BEFORE: User in users on server " + serverHelper.getServer().getUser(user.getEmail())
+				+ ", has boards: " + serverHelper.getServer().getUser(user.getEmail()).getBoards());
+		
+		// Remove the board
+		client.removeBoard(testboard, user);
+		user = client.getUser();
+		
+		// Test client does not have board
+		assert(user.getBoard(testboard.getName()) == null);		
+		Board updated_board = serverHelper.getServer().getBoardsIndex().get(testboard_id);
+		
+		// Test server does not have the board
+		assert(updated_board == null);
+		
+		// Test that board is removed on server
+		assert(serverHelper.getServer().getUser(user.getEmail()) != null);
+		assert(serverHelper.getServer().getUser(user.getEmail()).getBoard(testboard.getName()) == null);
+
+		// Test that user has been replaced with updated board deletion on the server
+		// Check all users on the server do not have the board
+		for (User curr : serverHelper.getServer().getUsers().values()) {
+			System.out.println("AFTER: User in users on server " + curr + ", has boards: " + curr.getBoards());
+			assert(curr.getBoards().size() == 0);
+			assert(curr.getBoard(testboard.getName()) == null);
+		}
+		assert(serverHelper.getServer().getUser(user.getEmail()).getBoard(testboard.getName()) == null);
+		
+		// Clear users and boards for next test
+		serverHelper.getServer().getUsers().clear();
+		serverHelper.getServer().getBoardsIndex().clear(); 
+		
+		System.out.println("\n\n");
+
 	}
 	
 	@AfterAll
 	static void tearDown() throws AccessException, RemoteException, NotBoundException 
 	{
-		server.closeServer(registry, bind_name);
+		serverHelper.closeServer();
 	}
 
 }

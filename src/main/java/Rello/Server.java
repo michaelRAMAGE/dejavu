@@ -46,8 +46,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		users = new HashMap<String, User>(); 
 		board_index = new HashMap<String, Board>(); 
 		setAllData(); 
-
-
 	}
 	
 	// Private constructor 
@@ -58,7 +56,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		users = new HashMap<String, User>(); 
 		board_index = new HashMap<String, Board>(); 
 		setAllData(); 
-		System.out.println(users);
 	}
 	
 	
@@ -98,7 +95,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		users = null; 
 		board_index = null; 
 		registry = null; 
-		SERIALIZED_FILE_NAME = "users.xml";
 	}
 	
 	// Boot server with default name binding
@@ -144,28 +140,18 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		setBoardIndex(); // set up the board index
 	}
 
-	// Log user into server
-	@Override
-	public User loginUser(String email, String password) throws RemoteException {
-		User user_obj = authenticateUser(email, password); // if authenticated, returns user, otherwise null
-		System.out.println(email + " : " + password);
-		System.out.println("on server: " + users.get(email));
-		System.out.println("on server: " + getUsers());
-		System.out.println(this);
-
-
-		return user_obj; 
-	}
 	
 	// Update user boards when an authorized user updates a board
 	@Override 
 	public User updateBoard(Board board, User user) throws RemoteException {
-		String board_in_id = board.boardID; // client's updated board's board id
+		System.out.println("BOARD BEING UPDATED: " + board.getName() + ", " + board.getLists());
+		String board_in_id = board.getBoardID(); // client's updated board's board id
 		String board_in_name = board.getName(); 
 		User user_owner = board.getOwner(); 
 		
 		board_index.replace(board_in_id, board);
-		user_owner.replaceBoard(board_in_name, board); // update owner and children get updated?
+		user_owner.replaceBoard(board_in_name, board); 
+		users.replace(user_owner.getEmail(), user_owner);
 		
 		return user; // return user back
 	}
@@ -174,9 +160,44 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	@Override
 	public User createBoard(String bname, User user) throws RemoteException
 	{
+		
+		// Add board to user
 		Board new_board = user.createBoard(bname); // create board on user
-		board_index.put(new_board.boardID, new_board); // add board to index
+		
+		// Replace user on the server
+		users.replace(user.getEmail(), user);
+		
+		// Add board to board index
+		board_index.put(new_board.getBoardID(), new_board); // add board to index
 		return user; // return the updated user to client
+	}
+
+	// Remove board
+	@Override
+	public User removeBoard(Board board, User user) throws RemoteException
+	{
+		for (User u : users.values()) {
+			if (u.getBoards().containsKey(board.getName())) {
+				u.removeBoard(board.getName());	
+				users.replace(u.getEmail(), u);
+			}
+		}
+		board_index.remove(board.getBoardID());
+		return users.get(user.getEmail());
+	}
+
+	// Log user into server
+	@Override
+	public User loginUser(String email, String password) throws RemoteException {
+		User user_obj = authenticateUser(email, password); // if authenticated, returns user, otherwise null
+		return user_obj; 
+	}
+	
+	@Override
+	public void logoutUser() throws RemoteException
+	{
+		// TODO Auto-generated method stub
+		storeToDisk(); 
 	}
 	
 	// Authenticate a user's credentials : return user on success, null on failure
@@ -186,11 +207,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			return null;
 		}
 		if (!desired_user.password.equals(password)) { // valid email, but wrong password, return null
-			System.out.println(desired_user.password);
 			return null; 
 		}
-		System.out.println(desired_user);
-
 		return desired_user; 		
 	}
 	
@@ -207,9 +225,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	
 	// Add user using email and password 
 	public User addUser(String email, String password) { 
-		System.out.println("email to try: " + email);
 		if (!users.containsKey(email)) { 
-			System.out.println(users);
 			User new_user = new User(email, password);
 			users.put(email, new_user);
 			return new_user; 
@@ -221,9 +237,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	
 	// Add user using email and password 
 	public User registerUser(String email, String password) { 
-		System.out.println("email to try: " + email);
 		if (!users.containsKey(email)) { 
-			System.out.println(users);
 			User new_user = new User(email, password);
 			users.put(email, new_user);
 			return new_user; 
@@ -292,13 +306,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	// Store users to disk
 	public void storeToDisk() { // store out to XML
 		XMLEncoder encoder=null;
-		System.out.println(SERIALIZED_FILE_NAME);
 		try {
 		encoder=new XMLEncoder(new BufferedOutputStream(new FileOutputStream(SERIALIZED_FILE_NAME)));
-		} catch(FileNotFoundException fileNotFound){
+		} catch(FileNotFoundException fileNotFound) {
 			System.out.println("ERROR: While Creating or Opening the File");
 		}
-		System.out.println("writing file");
+		System.out.println("Writing " + SERIALIZED_FILE_NAME);
 		encoder.writeObject(users); // users is a hashmap<email, users>
 		encoder.close();
 	}
@@ -340,6 +353,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			}	
 		}
 	}
+	
+	// Sets the global board index -- for TESTING
+	public void setBoardIndex(HashMap<String, User> test_users) { // will be useful when called after a readFromDisk or when users is set
+		for (User user : test_users.values()) { 
+			HashMap<String, Board> user_boards = user.getBoards();
+			if (user_boards == null) { // if user has no boards, continue to next iteration
+				continue; 
+			}
+			for (Board board : user_boards.values()) {
+				if (board_index.containsKey(board.boardID)) {
+					board_index.put(board.boardID, board);
+				}
+			}	
+		}
+	}
 
 	// Deep comparison of two maps of users
 	@Override
@@ -369,16 +397,5 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		System.out.println("Method called from client.");
 	}
 
-	@Override
-	public User removeBoard(Board board, User user) throws RemoteException
-	{
-		for (User u : users.values()) {
-			System.out.println("user removing board: " + u);
-			if (u.getBoards().containsKey(board.getName())) {
-				u.removeBoard(board.getName());		
-			}
-		}
-		board_index.remove(board.getName());
-		return users.get(user.getEmail());
-	}
+
 }

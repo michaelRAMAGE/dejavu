@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 import com.sun.javafx.css.StyleManager;
 
+import ENV.EnvHandler;
+
 /**
  * This class handles loading stylesheets on the object passed in to loadCSS.
  * There is extendable support to new object classes via implementing StylesheetWrapperInterface.
@@ -20,12 +22,13 @@ public class StylesheetManager
 {
 	
 	// File class reads path different compared to getStylesheets.add(path) on other classes
-	private String default_css_file = getCSSFiles().get("basetheme");
-	private String css_path = "views/";
-	private String read_path = "/home/ming/eclipse-workspace/DejaVuu/src/main/java/views/";
+	private static String default_css_filename = EnvHandler.getDefaultCssFilename();
+	private static String default_css_file = EnvHandler.getDefaultCssFile();
+	private String css_path = EnvHandler.getCssPath() + default_css_file; 
+	private String read_path = EnvHandler.getFullCssPath() + default_css_file; 
 
 	// Keep track of all css files created during runtime changes 
-	private static HashMap<String, String> css_files = cssMap();
+	private static HashMap<String, String> css_files = initCssMap();
 	
 	// CSS file to add to stylesheet and to read from 
 	private static File temp_css; 
@@ -36,12 +39,7 @@ public class StylesheetManager
 	public StylesheetManager()
 	{
 		super();
-		o("boardCSSView DID NOT pass file to CustomBoardView (Temporary css == null)");
-
-		// Append default file to default path 
-		this.css_path += default_css_file;
-		this.read_path += default_css_file;  
-		
+		o("boardCSSView DID NOT pass file to CustomBoardView (Temporary css == null)"); 
 		// Output 
 		o("Filename: " + default_css_file);
 	}
@@ -58,11 +56,6 @@ public class StylesheetManager
 		
 		// Set new css style file 
 		this.temp_css = temp_css; 
-		
-		// Deprecated name path look up scheme!
-//		String file_name = temp_css.getName();		
-//		css_path += file_name;
-//		read_path += file_name;
 			
 		// New path lookup scheme
 		this.css_path = temp_css.toURI().toString();
@@ -74,14 +67,14 @@ public class StylesheetManager
 //		addCSSFile(nickname, file_name);
 	}
 
-	private static HashMap<String, String> cssMap() {
+	private static HashMap<String, String> initCssMap() {
 		HashMap<String, String> css_files = new HashMap<String, String>();
-		css_files.put("basetheme", "basetheme.css");
+		css_files.put(default_css_filename, default_css_file);
 		return css_files; 
 	}
 	
 	public static void addCSSFile(String nickname, String filename) {
-		System.out.println("Adding new css file to map (key: " + nickname + ", value: " + filename + ")");
+//		System.out.println("Adding new css file to map (key: " + nickname + ", value: " + filename + ")");
 		css_files.put(nickname, filename);
 	}
 	
@@ -142,7 +135,6 @@ public class StylesheetManager
 		
 //		System.out.println("Get cached image: " + StyleManager.getInstance().getCachedImage(full_css_path));
 
-	
 		// clear, load (should dodge caching,...right?)
 		// WAS I EVER EVEN DODING THE CACHE??? I WAS NOT USING URI STRINGS 
 //		s.getStylesheets().remove(getClass().getResource("/" + full_css_path).toExternalForm()); 	
@@ -163,17 +155,12 @@ public class StylesheetManager
 		 * the file can be read from the system. In other words, loadStylesheet does not recognize it. 
 		 */
 		// This returns the sheet at the location...
-		System.out.println(StyleManager.loadStylesheet(full_css_path)); // is this where things are cached?
-		
-//		// delete file for next load 
-//		if (temp_css != null) { 
-//			temp_css.delete(); 
-//		}
+//		System.out.println(StyleManager.loadStylesheet(full_css_path)); // is this where things are cached?
 	}
 	
 	// got tired of system.out.println
 	private static void o(String message) {
-		System.out.println(message);
+//		System.out.println(message);
 	}
 	
 	// Read a file in (css file for our use here)

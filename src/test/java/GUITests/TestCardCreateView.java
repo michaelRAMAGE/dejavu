@@ -6,9 +6,9 @@ package GUITests;
 	import java.rmi.AlreadyBoundException;
 	import java.rmi.NotBoundException;
 	import java.rmi.RemoteException;
-import java.util.ArrayList;
 
-import org.assertj.core.api.Assertions;
+
+
 	import org.junit.jupiter.api.AfterAll;
 	import org.junit.jupiter.api.BeforeAll;
 	import org.junit.jupiter.api.Test;
@@ -20,15 +20,15 @@ import org.assertj.core.api.Assertions;
 import Rello.Client;
 import Rello.List;
 import controllers.CardCreateViewController;
-import controllers.ListCreateViewController;
+
 import javafx.fxml.FXMLLoader;
-	import javafx.scene.Parent;
+
 	import javafx.scene.Scene;
 	import javafx.scene.layout.BorderPane;
 	import javafx.stage.Stage;
 import loaders.CardCreateViewLoader;
 import loaders.ListCreateViewLoader;
-import utils.GuiTestHelper;
+import utils.TestHelper;
 	import utils.ServerHelper;
 
 
@@ -39,7 +39,7 @@ public class TestCardCreateView
 {
 
 	static ServerHelper serverHelper = new ServerHelper(); 
-	static GuiTestHelper testHelper = new GuiTestHelper(); 
+	static TestHelper testHelper = new TestHelper(); 
 	static Client client; 
 	static List list; 
 	static int list_idx;

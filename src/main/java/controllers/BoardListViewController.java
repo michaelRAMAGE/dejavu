@@ -40,6 +40,7 @@ public class BoardListViewController {
 	public void setClient(Client in_client) {
 		this.client = in_client; 
     	this.user = client.getUser(); 
+    	System.out.println(this.user.getBoard("Team Jim").getLists());
 		renderBoardList(); 
 	}
 	
@@ -80,7 +81,8 @@ public class BoardListViewController {
     
     @FXML
     void onLogoutUser(ActionEvent event) throws IOException {
-		Client new_client = new Client(this.client.host, this.client.lookup_name);
+    	System.out.println("Logging out: " + client.getUser().getBoard("Team Jim").getLists());
+		Client new_client = client.logoutUser(this.client.host, this.client.lookup_name);
 		(new LoginView(stage, new_client)).load(); 
     }
     

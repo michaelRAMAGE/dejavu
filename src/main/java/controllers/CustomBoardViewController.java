@@ -29,6 +29,7 @@ import loaders.ListCreateViewLoader;
 import loaders.ListViewLoader;
 import loaders.SaveChangesViewLoader;
 import loaders.ServerViewLoader;
+import template.BoardListView;
 import template.CustomBoardView;
 import template.ListCreateView;
 import template.ListView;
@@ -129,8 +130,8 @@ public class CustomBoardViewController
 
     @FXML
     void onGoBackToBoardList(ActionEvent event) throws IOException {
-    	SaveChangesViewTransition saveChangesView = new SaveChangesViewTransition(stage, client, board); 
-    	saveChangesView.showView();
+    	// load board list view
+    	new BoardListView(stage, client).load();
     }
 
 	public void loadAllListViews() throws IOException {
@@ -141,12 +142,7 @@ public class CustomBoardViewController
 			ListView listview = new ListView(client, stage, list, i, custom_id);
 			listview.load();
 			
-			BorderPane p = listview.getListView();			
-//			// strapping styling in
-//			if (board.getTheme().getNodes().get(".ListNode") != null) {
-//				p.setStyle(board.getTheme().getNodes().get(".ListNode").nodeProperty());
-//				System.out.println(board.getTheme().getNodes());
-//			}			
+			BorderPane p = listview.getListView();						
 			
 			addListViewToContainer(p); 
 		}
